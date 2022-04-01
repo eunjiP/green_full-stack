@@ -1,0 +1,872 @@
+- mariaDB 의 포트 번호 : 3306
+	//실무라면 기본 포트말고 다른걸로 바꾸는 경우가 많음(보안을 위해서)
+
+- MySQL - Oracle
+- MariaDB - 무료
+(개인사업을 생각한다면 비용에 대한 부분 알아봐야한다.)
+
+- 환경변수 : 실행파일을 실행하기 위해 어느 위치에 하든 접속하게 만드는것 => Path설정
+ > 설정 안되어 있는 경우 : cmd에서는 mysql을 할경우 위치한 곳에 mysql이 없으면 오류가 난다.
+그때는 위치한 곳으로 이동해야한다.(/로 이동 후 설치된 위치로 cd한다. > bin파일로 가서 mysql.exe쪽으로 가야한다.
+
+ >설정 되어 있는 경우 : Command Prompt에서는 환경 변수가 설정되어 있기 때문에 어느 위치에 가도 실행이 된다.
+
+
+참고-데이터베이스에서는 전부다 대소문자 중요하지 않음 = 모두 동일하게 취급
+	//memberTBL 같은 이름에는 사이에 띄어쓰기 들어가면 에러남(_면 가능하지만 띄어쓰기는 불가)
+	//꼭 사용 해야한다면 `` (esc 아래의 키)로 묶어서 사용 애햐함
+-주석처리 : -- (한줄)	/* */ (여러줄)
+
+### 
+<RDB-관계형 데이터베이스>
+	//저장이 중요, 실행이 느림 -> 은행(내용이 중요)
+	//구현은 가능하나 성능이 떨어 질 수 있다.(팔로우, 팔로잉을 구현하기는 힘들다)
+종류)
+MySQL	: 적은 비용으로 소규모의 접속자라면 사용하기 좋다
+MS-SQL 	: 중간 비용으로 중규모의 접속자
+Oracle	 :고비용, 대규모의 접속자 가능
+
+<NoSQL>
+	//RDB의 반대적인 특징
+	//중복허용, 조인도 하지말자 대신, 빠르다 -> SNS(내용보다는 속도중요)
+	//스키마가 존재 하지 않음
+종류)
+MongoDB
+Firebase - DB
+
+
+# 엑셀과 데이터베이스의 차이점
+	//엑셀 - 파일
+	//데이터베이스 - 중앙 집중형 : 무조건 한개의 파일을 공유해서 사용한다.
+ex) 엑셀은 파일이라 다른 사람에게 공유한다면 원본 파일을 수정해도 반영되지 않지만 데이터베이스는 중앙집중형이라 공유를 해도 수정시에 동일하게 수정된다.
+
+
+# 데이터베이스의 특징
+ - 무결성 = 중복 최소화
+	 = 문제 안 생기게!
+ - 독립성
+ - 보안 :  매우 중요
+ - 데이터 중복의 최소화 : 무결성과 연관
+ - 응용프로그램 제작 및 수정이 쉽다.
+ - 데이터의 안전성 향상 : 복구와 복원이 쉽다
+
+
+# SQL (Structured Query Language) : 쉽게 말해서 표준언어
+
+
+# RDB 구성 요소
+-테이블(Table) : RDB의 핵심개념이자 최소 단위( = 틀 = 스키마)
+	//=릴레이션(Relation), 엔티티(Entity)
+	//역할 : 중복을 줄여서 데이터 저장 효율성을 보장
+-PK(Primary Key/기본키) : row와 레코드를 대표하는 것(중복 불가/유일-ex)주민등록번호)
+-FK(Foreign Key/외래키)
+
+
+# JOIN(조인) : 부모테이블과 자식테이블끼리 연결
+	//단점) 조인이 많을 수록 속도가 느려진다.
+
+
+### DCL(데이터 제어어/유저 만들고, 유저 권한 주고) ###
+-- 아직 안 배우기 전
+
+### DDL(정의어) ###
+	: create, drop, alter, truncate
+
+- 전체 삭제 하는 방법 -
+1. truncate (속도빠름)
+2.where절 없는 delete문 사용(truncate 보다는 느림)
+
+### DML(데이터 조작어) ###
+	: crud만드는것
+
+## 데이터 베이스 생성
+방법1)
+PHPClass 우클릭 > 새로 생성 > 데이터베이스 > 이름 설정 > 확인
+방법2)
+쿼리 > CREATE DATABASE test2; > Shift + Ctrl + F9(이때 커서는 세미콜롬 안에서 실행) > 새로고침
+방법3)
+Command Prompt > CREATE DATABASE test3; (소문자가능) > 새로고침(우클릭 > 새로고침)
+
+
+## 데이터 베이스 삭제
+방법1)
+PHPClass 우클릭 > 삭제
+방법2)
+쿼리 >drop database test2; > Shift + Ctrl + F9 (현재 줄만 실행)/ 우클릭 후 실행도 가능 > 새로고침
+방법3)
+Command Prompt > drop database test3;
+
+# show databases;	//프롬프트에서 데이터베이스 목록보는 방법
+   show tables;	//테이블 목록 보는 방법
+
+
+## 테이블 생성
+
+#USE test;	//데이터베이스 선택
+
+<형식>
+CREATE TABLE 테이블명 (
+	컬럼명1 데이터타입(최대 글자 수) 제약조건	
+	컬럼명2 데이터타입(최대 글자 수) 제약조건	
+	컬럼명3 데이터타입(최대 글자 수) 제약조건
+);
+
+ex1)
+CREATE TABLE memberTBL (
+	memberID CHAR(8) NOT NULL PRIMARY KEY,		//칼럼명 memberID인 문자 최대 8자리까지 가능하게함 /NOT NULL : 값이 없을 수 없다.(필수값)/PRIMARY KEY : PK (unique, not null, index 가 한번에 들어간다)
+	memberName CHAR(5) NOT NULL,
+	memberAddress CHAR(20) NULL			//NULL : 없어도 된다-옵션(기본값으로 생략가능)
+);
+
+ex2)
+CREATE TABLE producttbl (
+	productName CHAR(4) PRIMARY KEY,
+	cost INT NOT NULL,		//int(정수)는 최대 글자수 적지 않아도 된다. - 데이터 베이스에는 정수와 실수만 존재
+	MAKEDATE DATE,			//DATE:날짜 /DATE TIME : 날짜와 시간/ TIME : 시간
+	company CHAR(5),
+	amount INT NOT null
+);
+
+-- 날짜 시간
+SELECT NOW();
+-- 날짜
+SELECT CURRENT_DATE();
+-- 날짜 시간
+SELECT CURRENT_TIMESTAMP();
+-- CURRENT_DATE()안에는 시간 정보는 없어서 00:00:00로 표시됨
+created_at DATETIME DEFAULT CURRENT_DATE()	//시간 정보가 들어가게 넣어달라할때 시간정보 없는 함수를 사용할 경우
+
+
+# 데이터 타입
+- int(4바이트 - 일반적), bigint(8바이트 - int보다 큰 값) =>정수
+- DECIMAL, float => 실수
+- VARCHAR : 한글자를 입력하면 한칸만 사용=가변길이(속도가 느림)-내용이 적고 얼마나 적을지 모르는 경우 사용	=>문자
+- CHAR : 한글자를 입력해도 입력한 칸을 다 사용=고정길이(속도가 빠름)	=>문자
+- BLOB : 이미지나 동영상이 섞여 있다 / TEXT : 텍스트 형식
+- DATE : 날짜 / DATETIME : 날짜와 시간(초가 아닌 문자로 저장) / TIMESTAMP : 기준날자에서 지난 초를 표현(국제적으로 사용할 경우 사용-아직은 38년까지 사용가능)
+	//범위 볼때 signed(기본값-음수값까지 가능)와 unsigned(음수값 불가)
+
+
+## 테이블 삭제
+DROP TABLE memberTBL;
+
+
+# 동일한 명령으로 프롬프트에서 실행도 가능
+ex)
+MariaDB [(none)]> use test;			//데이터베이스 선택
+MariaDB [test]> show tables;		//테이블 목록 보기
++----------------+
+| Tables_in_test |
++----------------+
+| membertbl      |
+| producttbl     |
++----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [test]> create table test (		//테이블 생성
+    -> ddd int null,
+    -> bbbb char(5) not null
+    -> );
+Query OK, 0 rows affected (0.015 sec)
+
+MariaDB [test]> show tables;		//테이블 목록 보기
++----------------+
+| Tables_in_test |
++----------------+
+| membertbl      |
+| producttbl     |
+| test           |
++----------------+
+3 rows in set (0.000 sec)
+
+MariaDB [test]> drop table test;		//테이블 삭제
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [test]> show tables;		//테이블목록 재확인
++----------------+
+| Tables_in_test |
++----------------+
+| membertbl      |
+| producttbl     |
++----------------+
+2 rows in set (0.000 sec)
+
+
+## 데이터 입력
+
+# CRUD, DML(데이터 조작어)
+1. Create(insert문)
+<형식>
+INSERT INTO 테이블명	//INSERT와 INTO 사이의 띄어쓰기는 꼭 들어가야한다!!
+(값을 넣고 싶은 컬럼명)
+VALUES
+(값들);
+	=>실행 후 /* 영향 받은 행: 1 라고 뜨는거는 1줄 입력했다는 말
+
+ex1)
+INSERT INTO membertbl
+(memberid, membername, memberaddress)
+VALUES
+(1, '홍길동', '서울시');
+	//PK는 중복되는 값이 존재 하면 절대 안된다!!!!
+	//insert 와 values의 갯수는 동일해야함/값의 순서 또한 중요함 -> 에러 발생
+	
+ex2)
+INSERT INTO membertbl
+(memberid, membername)
+VALUES
+(5,'신사임당'),
+(6, '유관순'),
+(7, '나이팅게일');
+	//데이터베이스만 가능한데 여러가지 값을 한번에 넣는게 가능함
+
+
+2. Read (select문)-제일 어려움
+** from이 들어가는 거 2가지
+ - DELETE문 : DELETE from
+ - select문 : SELECT ~ from
+
+<형식>
+SELECT 보고싶은 컬럼명들 FROM 테이블명
+[JOIN 테이블 연결]
+[WHERE 보고싶은 조건]
+[GROUP BY 그룹으로 묶는 조건]
+[HAVING 그룹으로 묶는 조건에서의 조건]
+[ORDER BY 레코드 순서지정]		//SELECT, FROM, WHERE, GROUP BY, HAVING 보다 뒤에 존재!!
+[LIMIT 보고 싶은 레코드 수]
+	//join~limit까지의 순서는 중요!!!
+
+ex1) - membertbl의 memberid, membername, memberaddressd 내용을 확인한다.(쿼리 입력창 하단에 내용이 확인됨)
+SELECT memberid, membername, memberaddress
+FROM membertbl;
+
+ex2) - membertbl의 전체를 확인
+SELECT * FROM membertbl;
+	//모든 문법은 끝날때 무조건 ; 을 붙여준다. -> 윗줄에 마무리가 되지 않으면 에러 발생할 수 있다.
+
+ex3)
+SELECT * FROM membertbl
+WHERE memberid = '1';
+	//membertbl에서 memberid가 1인 것만 찾아라
+
+ex4)
+SELECT * FROM membertbl
+WHERE memberaddress != '서울시';
+	//주소가 서울시가 아닌것만 찾아라(null값은 안나옴)
+
+응용) 형변환 ( CONVERT(변경하려는 컬럼명, 변환하는 타입), CAST(변경하려는 컬럼명 AS 변환하려는 타입) )
+1. CONVERT() 사용
+SELECT * FROM membertbl
+WHERE CONVERT(memberid, INT) BETWEEN 1 AND 10
+AND memberaddress = '서울시';
+	//문자열인 memberid를 형변환 후 1~10까지 이면서 주소가 '서울시'
+2. CAST() 사용
+SELECT *, CAST(memberid AS INT)
+FROM membertbl
+WHERE memberid BETWEEN 1 AND 10;
+
+
+ex5)
+SELECT * FROM membertbl
+WHERE memberaddress IS null;
+	//주소가 null값인 경우
+
+ex6)
+SELECT * FROM membertbl
+WHERE memberaddress IS NULL
+OR memberaddress != '서울시';
+	//주소가 서울시가 아닌 것 또는 null인 것
+memberaddress != '서울시'; == memberaddress <> '서울시';	//DB만 사용 가능
+
+ex7)
+SELECT * FROM membertbl
+WHERE membername = '사나이'
+and memberaddress = '부산시';
+	//주소가 부산시이면서 이름이 사니이인 레코드를 찾아라
+
+SELECT * FROM test.membertbl	//위치한 데이터베이스가 달라도 알고 싶은 테이블 내용을 알 수 있다.(root권한일경우에만 가능)
+WHERE membername = '사나이'
+and memberaddress = '부산시';
+
+
+3. LIKE문
+	//문자열 포함된 레코드를 찾을때 사용
+	//게시판에서 검색 기능 만들때 사용(속도는 많이 느림)
+
+ex1)
+SELECT * FROM membertbl
+WHERE membername = '나이팅';	=> 나오지 않는다 (정확히 일치 해야함)
+
+ex2)
+SELECT * FROM membertbl
+WHERE membername LIKE '%팅%';	=> 어느 위치든 팅이 있으면 나온다
+
+ex3)
+SELECT * FROM membertbl
+WHERE membername LIKE '사%';	=> 시작이 사로 시작하는 이름이 나온다.
+
+ex4)
+SELECT * FROM membertbl
+WHERE membername LIKE '%이';	=> 끝이 이로 끝나는 이름이 나온다.
+
+ex5)
+SELECT * FROM employees
+WHERE emp_no >= 10010 AND emp_no <= 10020;	=>10010 <= emp_no <= 10020 까지를 찾기
+		//범위를 정해서 찾는게 가능하다!!
+
+ex6)
+SELECT * FROM employees
+WHERE emp_no BETWEEN 10010 AND 10020;		=> 사이값 (포함)/위에 문법과 동일한 결과
+		//문자열도 BETWEEN가능
+
+ex7)
+SELECT * FROM employees
+WHERE emp_no >= 10000 AND emp_no <= 10010
+AND gender = 'M';				=> 숫자 범위 안이면서 남자인것을 찾아라
+		//좀더 구체적으로 선택도 가능
+
+ex8)
+SELECT * FROM departments
+WHERE dept_no = 'd001' 
+or dept_no = 'd003' 
+or dept_no = 'd005';			=> d001, d003, d005인 데이터를 가지고 와라
+==>IN으로 간편하게 표현 할 수 있다!!
+SELECT * FROM departments
+WHERE dept_no IN ('d001', 'd003', 'd005');
+
+활용)
+SELECT * FROM employees
+WHERE emp_no % 2 = 1;		=>홀수
+
+SELECT * FROM employees
+WHERE emp_no % 2 = 0;		=>짝수
+
+
+4. Update (update문) - where절이 없으면 모든 레코드에 적용(수정/삭제시에는 백업 필수)
+	//중요) WHERE절에 PK값을 넣었고, '='이라면 나올 수 있는 경우의 수 => 2개(나오거나 안나오거나)
+<형식>
+	UPDATE 테이블명
+	SET 수정하고 싶은 컬럼명 = 변경 하고 싶은 값
+	WHERE 레코드 선택				
+		//WHERE 절은 항상 필수!!(전체를 바꾸는게 아니라면/PHP에서는 경고창이 뜨지 않기 때문에 주의!!!!!!)
+		//보통 PK 값이 들어간다.(동명이인 같은 동일 값이 존재할 수 있으므로)
+
+ex1)
+UPDATE membertbl
+SET membername = '게일'
+WHERE memberid = '7';	=> 한개만 수정
+
+ex2)
+UPDATE membertbl
+SET membername = 'gugu',
+memberaddress = '강원도'
+WHERE memberid = '9';	=>여러개 값 수정도 가능
+
+ex3)
+UPDATE membertbl
+SET membername = '111',
+memberaddress = '22'
+WHERE memberid = '0';
+	/* 영향 받은 행: 0		=> 문법적으로 오류는 없지만 존재하지 않아서 반영이 되지 않았다.
+
+
+5. Delete (delete문) - where절이 없으면 모든 레코드에 적용(수정/삭제시에는 백업 필수)
+<형식>
+DELETE FROM 테이블명 WHERE 절
+	//동일 하게 WHERE 절은 주로 PK가 들어간다.
+
+ex1)
+DELETE FROM membertbl 
+WHERE memberaddress IS NULL;		=>주소가 null인 값을 찾아서 삭제해라
+
+ex2)
+DELETE FROM membertbl 
+WHERE memberaddress IS NOT NULL;	=>null이 아닌 값이 삭제된다.
+
+ex3)
+DELETE FROM membertbl 
+WHERE memberid = '7';
+			//* 영향 받은 행: 0	=>없어서 삭제 안됨
+
+ex4)
+DELETE FROM membertbl 
+WHERE memberid = '8';			=>일반적인 PK값 넣는 방법
+
+
+# 참고) 이름 표기법
+예시 ) 	my name is hong
+- camel case	: myNameIsHong
+- pascal case	: MyNameIsHong
+- snke case	: my_name_is_hong
+- cabob case 	: my-name-is-hong 
+
+
+- DB는 프로그래밍 언어처럼 연결하지 않고 문자열로 입력 하더라도 숫자처럼 덧셈처리를 한다.
+ex)
+SELECT '1' + '11' AS num;
+결과 : 12
+
+SELECT 'a' * '11' AS num;
+결과 : 0
+
+- 따라서, 문장의 연결을 원할때는 concat을 호출해서 해결
+ex)
+SELECT CONCAT('1', '11');
+결과 : 111
+
+SELECT CONCAT('1', ' ','11');		//여러개 합치는 것 가능
+결과 : 1 11
+	//concat 괄호 안을 Arguments(아규먼트)라고 한다.
+	//MariaDB는 Arguments를 여러개 보낼 수 있지만, 오라클은 두개 밖에 보낼 수 없어서 처리 하려면 나눠서 보내야한다.
+	> SELECT CONCAT('1', CONCAT(' ', CONCAT('11', '안녕')));    =>1 11안녕
+
+- 테이블명, 데이터베이스명일때는 백키눌러 줘야한다!!!(홑따움표 아님!!주의!!)
+ex)
+USE `employees`;	
+
+
+#  UNIQUE가 들어가면 같은 값을 넣을 수 없다.
+
+
+# PRIMARY KEY를 넣는 방법1	//주로 한개만 넣을때 사용
+CREATE TABLE memberTBL (
+	memberID CHAR(8) NOT NULL PRIMARY KEY,
+	memberName CHAR(5) NOT NULL,
+	memberAddress CHAR(20) NULL
+);
+# PRIMARY KEY를 넣는 방법2	//한개 이상 넣을때 
+CREATE TABLE memberTBL (
+	memberID CHAR(8),
+	memberName CHAR(5) NOT NULL,
+	memberAddress CHAR(20) NULL
+	PRIMARY KEY (memberID)
+);
+
+
+## 함수 사용(left, right, mid), like 기능 언더바(자리차지)
+	//like는 속도가 느려져서 되도록 사용을 안하는게 좋다.
+-- 생일칼럼에서 앞 4자만 가지고 오도록 
+SELECT LEFT(birth_date, 4) FROM employees;
+
+-- 년도가 1952년인 사람만 찾기
+SELECT * FROM employees
+WHERE LEFT(birth_date, 4) = '1952';
+
+-- 위와 동일한 결과
+SELECT * FROM employees
+WHERE birth_date LIKE '1952%';
+
+-- like랑 같이 사용하는 자리 조건 '_' 사용
+SELECT * FROM employees
+WHERE birth_date LIKE '____-09-__';
+
+-- 1960년 이상(like로는 대체 불가하므로 left이용)
+SELECT * FROM employees
+WHERE LEFT(birth_date, 4) >= '1960';
+
+-- right 활용
+SELECT * FROM employees
+WHERE right(birth_date, 2) >= '20';
+
+-- mid 활용(6번째위치에서 2개-맨앞부터 1)
+SELECT * FROM employees
+WHERE mid(birth_date, 6, 2) = '12';
+
+응용) 숫자로 형변환 후 수식 수행, 생년월일에서 년도/월/일을 분리해서 다른 칼럼명 사용
+(참고 - CAST 형식 : CAST(바꾸고 싶은 곳 AS 타입형) )
+SELECT birth_date 
+ , CAST(LEFT(birth_date, 4) AS INT) - 10
+ , LEFT(birth_date, 4) AS l4
+ , mid(birth_date, 6, 2) AS m2
+ , right(birth_date, 2) AS r2
+FROM employees;
+
+
+# ENUM() : 잘못된 값이 안들어가게 해놓는 방법
+ex)
+gender에는 'M'과 'F'만 들어가도록 ENUM()를 사용한다.
+
+
+# AS :  컬럼명을 잠시 바꾸는 기능(실제 명이 변경된건 아니다.)
+ex)
+SELECT emp_no AS my_no FROM employees
+WHERE LEFT(hire_date, 4) <= '2020';
+
+SELECT emp_no 'my_no' FROM employees		//AS는 생략 가능(홑따움표 사용해도 되고 안해도 무관)
+WHERE LEFT(hire_date, 4) <= '2020';
+
+SELECT emp_no 'my_no' FROM employees as 'aa'	//테이블에 as는 join할때 주로 사용
+WHERE LEFT(hire_date, 4) <= '2020';
+
+
+
+## 서브 쿼리 
+	//SELECT문 안에 SELECT문 
+
+ex) emp_no = 499613인 직원의 생년월일과 같은 사람을 찾자
+-- 1. 데이터를 확인 후에 적용하는 방법
+SELECT * FROM employees
+WHERE birth_date = '1953-06-09';
+
+-- 2.emp_no = 499613인 직원의 생년월일을 확인하는 방법
+SELECT birth_date FROM employees
+WHERE emp_no = 499613;
+
+-- 서브쿼리 (emp_no = 499613인 직원의 생년월일을 1.에 적용한다.)
+SELECT * FROM employees
+WHERE birth_date = 
+(SELECT birth_date FROM employees
+WHERE emp_no = 499613);
+
+
+- 서브쿼리 문제) emp_no 499619 인 사람과 같은 성별을 가진 사람만 찾아라
+
+답)
+-- 499619인 사람 포함
+SELECT * FROM employees
+WHERE gender = (SELECT gender FROM employees
+WHERE emp_no = 499619);
+
+-- 499619를 뺀 나머지 사람
+SELECT * FROM employees
+WHERE emp_no != 499619 and gender = (SELECT gender FROM employees
+WHERE emp_no = 499619);
+
+** 스칼라값 : 행도 하나고 열도 하나인 값(위의 예시로는 'M' 같은)
+'='과 서브 쿼리를 사용할 때는 서브쿼리가 스칼라값이아야 한다.
+=> 만약, 여러개라면 ANY(SOME), ALL을 사용해야한다.
+
+
+# any : 최솟값보다 높은 거는 다 나옴 - some과 any는 동일하다. (786848개)
+SELECT * FROM salaries
+WHERE salary >= ANY (SELECT salary FROM salaries
+WHERE emp_no = 10010);
+
+SELECT * FROM salaries
+WHERE salary = ANY (SELECT salary FROM salaries
+WHERE emp_no = 10010);
+
+- '= ANY'는 IN으로 대체 가능
+SELECT * FROM salaries
+WHERE salary in (SELECT salary FROM salaries
+WHERE emp_no = 10010);
+
+# all : 전부다 만족해야 나옴 (480870개)
+SELECT * FROM salaries
+WHERE salary >= ALL (SELECT salary FROM salaries
+WHERE emp_no = 10010);
+			=>하지만, 두개 다 실무에 사용 많이 하지 않는다.(in은 사용함)
+
+
+
+## ORDER BY 
+-- 오름차순 (위에서 아래로 값이 커진다.) ASC - 기본값
+-- 내림차순 (위에서 아래로 값이 작아진다.) DESC
+
+SELECT * FROM salaries
+ORDER BY emp_no desc;		// 내림차순 정렬
+
+ex1) emp_no 내림차순, FROM_date 오름차순
+SELECT * FROM salaries
+WHERE emp_no IN (499988, 499987, 499986)
+ORDER BY emp_no DESC, FROM_date ;
+
+ex2) emp_no 내림차순, salary 내림차순
+SELECT * FROM salaries
+WHERE emp_no IN (499988, 499987, 499986)
+ORDER BY emp_no DESC, salary DESC ;
+
+
+- ORDER BY 문제)
+employees 테이블에서 나이는 내림차순으로
+같은 생일일 경우, 성별은 여성이 위로, 남성이 아래로 나오게 하시오.
+
+답)
+SELECT * FROM employees
+ORDER BY birth_date DESC, gender DESC;
+
+
+# DESC employees;	//칼럼의 타입이나 어떤 규칙을 줬는지 확인 하는 방밥(많이 사용은 안함)
+
+
+## DISTINCT : 내가 알고 싶은 컬럼에서 같은 종류는 1개만 나오게 하는것(중복 제거)
+	// 조합해서 중복 제거 (만약 PK두개를 distinct 조합해서 중복 제거하면 모두가 나온다)
+ex) dept_emp 테이블에서 dept_no의 종류가 몇개가 있는지?
+SELECT DISTINCT dept_no FROM dept_emp;
+
+
+ ## LIMIT ? (인자값 1개)/ LIMIT ?, ? (인자값 2개)
+
+# LIMIT ?
+	//처음 부터 ?개 (정렬했다면 정렬한 처음 부터 ?개)
+ex)
+SELECT * FROM employees
+LIMIT 30;
+
+# LIMIT ?, ?
+	//앞의 인자 : 인덱스 (0 - 처음) /뒤의 인자 : 갯수
+ex)
+SELECT * FROM employees
+LIMIT 0, 10;
+	//처음부터 10개만 보여줘
+	//인덱스 번호로부터 몇개를 의미
+SELECT * FROM employees
+LIMIT 10, 10;
+	//처음에 한 항목 다음부터 10개(처음이 0부터이므로)
+
+
+## 테이블 복사
+	//테이블의 쿼리문을 복사하면 스키마(틀)만 복사됨
+
+-- 테이블 칼럼, 데이터 타입, 레코드 복사.
+CREATE TABLE departments_temp2 AS 
+SELECT * FROM departments;
+	//안에 데이터까지 복사하는 방법(하지만 PK나 FK등의 제약 조건까지는 복사안됨)
+	//제약조건 : pk, fk, default, check, not null (이런 제약조건 복사안됨)
+
+-- 스키마 + 데이터 둘다 복사하는 경우
+1. 테이블 스키마 복사(레코드X) - 제약조건 복사 LIKE문!
+CREATE TABLE departments_temp3
+LIKE departments;
+2. 스키마 복사한 테이블에 내용 삽입
+INSERT into departments_temp3
+SELECT * FROM departments;
+
+
+## 그룹 함수 : min(최소), max(최대), sum(합-null은 제외됨), avg(평균-null은 제외됨), count(갯수)
+
+# group by를 사용 안 했을때는 전체에서  값을 가져온다.(전체라는게 중요)
+SELECT MIN(salary), MAX(salary), SUM(salary), AVG(salary), COUNT(emp_no) 
+FROM salaries;
+
+## GROUP BY 형식
+select 그룹으로 만들 칼럼, 그룹함수(함수적용할 칼럼)
+from 테이블명
+group by 그룹으로 만들 칼럼;
+
+# group by 사용(DISTINCT와 비슷한데 그룹함수와 쓰기 위한 용도 차이)
+-- 각각의 그룹 별로 함수를 적용가능
+SELECT emp_no, MIN(salary), MAX(salary), SUM(salary), AVG(salary), COUNT(emp_no)
+FROM salaries
+GROUP BY emp_no;
+
+
+## HAVING : group by절안에서 조건을 더 주고 싶을 때 사용
+예시) 부서별 사원수, 부서별 사원수가 20,000명 이상인 부서만 나오도록 한다.
+SELECT dept_no, COUNT(*) FROM dept_emp
+GROUP BY dept_no
+HAVING COUNT(*) >= 20000
+ORDER BY COUNT(*) DESC;
+
+
+# ROLLUP총합이 필요할 경우 사용(많이 사용은 안함)
+SELECT dept_no, COUNT(*)
+FROM dept_emp
+GROUP BY dept_no
+WITH ROLLUP;
+
+
+## AUTO_INCREMENT : 자동 숫자 증가//실수하더라도 카운트 됨
+	// pk가 비거나 사라진다고 번호 순서에 신경 쓰지말자. 사람으로 예를 들면 주민등록번호와 동일
+-- 옵션이 여러가지 존재 (ex-2개씩 증가 라던지, 실수 일때 카운트 안되게 하는 방법)
+예시) 
+USE `test`;
+	//데이터베이스 변경
+
+CREATE TABLE t_hobbit(
+   i_hobbit INT UNSIGNED AUTO_INCREMENT,
+   nm VARCHAR(10) UNIQUE NOT NULL,
+   PRIMARY KEY (i_hobbit)
+);
+
+-- 취미만 넣어도 자동적으로 i_hobbit 증가
+INSERT INTO t_hobbit (nm)
+VALUES ('농구');
+
+INSERT INTO t_hobbit (nm)
+VALUES ('축구');
+
+INSERT INTO t_hobbit (nm)
+VALUES ('배구');
+
+SELECT * FROM t_hobbit;
+
+예시) 테이블 생성시 초기값을 현재 날짜와 시간으로 지정시에 수정하는 방법
+CREATE TABLE t_hobbit2(
+   hobbit_id INT UNSIGNED PRIMARY KEY,
+   name VARCHAR(20) NOT NULL,
+   created_at DATETIME DEFAULT NOW()
+);
+
+-- 1 초기값으로 입력
+INSERT INTO t_hobbit2 (hobbit_id, NAME)
+VALUES (1, '핸드볼');
+-- 2 날짜만 수정(시간은 00:00:00으로 입력됨)
+INSERT INTO t_hobbit2 (hobbit_id, NAME, created_at)
+VALUES (2, '등산', '2022-02-10');
+-- 3 날짜, 시간 모두 수정
+INSERT INTO t_hobbit2 (hobbit_id, NAME, created_at)
+VALUES (3, '독서', '2022-02-10 12:12:13');
+
+
+# 두 테이블을 합칠 때 값의 중복으로 처리되지 않는 경우, 가공을 통하여 입력하는 방법
+예시) t_hobbit 내용을 t_hobbit2로 넣을 때
+INSERT INTO t_hobbit2
+(hobbit_id, NAME)
+SELECT i_hobbit, nm FROM t_hobbit;
+	//PK의 중복으로 입력 안됨=>오류발생
+
+INSERT INTO t_hobbit2
+(hobbit_id, NAME)
+SELECT i_hobbit + 3, nm FROM t_hobbit;
+	//중복 안되게 +3 시켜서 입력(가공)
+
+
+# update문으로 연산으로 통한 수정
+예시) emp_no : 10001의 모든 salary를 1,000씩 올리고 싶다.
+UPDATE salaries
+SET salary = salary + 1000
+WHERE emp_no = 10001;
+	//프로그래밍 +=는 사용 안됨
+	//where절 없는 경우 전체 적용!
+
+** 참고) DELETE문과 LIMIT문을 같이 사용할 수 있다.
+
+
+# INSERT IGNORE  : 입력하는 데이터에 오류가 있을시 그 문장의 전체가 적용 되지않는데, IGNORE사용하면 오류있는 부분만 제외하고 나머지는 적용(팝업창은 동일하게 뜸)
+ex)
+SELECT * FROM t_hobbit2;
+INSERT INTO t_hobbit2 ( hobbit_id, NAME) VALUES (7, '탁구');
+INSERT INTO t_hobbit2 ( hobbit_id, NAME) VALUES (8, '스키');
+	//오류 나면 뒤에 있는 모든 것 또한 안됨
+SELECT * FROM t_hobbit2;
+INSERT IGNORE INTO t_hobbit2 ( hobbit_id, NAME) VALUES (7, '탁구');
+INSERT IGNORE INTO t_hobbit2 ( hobbit_id, NAME) VALUES (8, '스키');
+	//오류난 거는 무시하고 뒤에꺼는 실행
+
+
+## 일반적으로 데이터 수정시에 오류가 나면 그 값을 확인하고 다시 바꾸고 넣어야하는데,
+    ON DUPLICATE KEY 를 사용 하면 없으면 추가하고 있으면 입력한 내용으로 수정이 가능!!
+
+ON DUPLICATE KEY 예시1)
+INSERT INTO t_hobbit2 ( hobbit_id, NAME) VALUES (7, '탁구')
+ON DUPLICATE KEY UPDATE NAME = '수영';
+ 
+ON DUPLICATE KEY 예시2) 수정을 값으로 할 수도 있고 수식으로 주는것도 가능
+INSERT INTO t_board (i_board, title,hits) VALUES (3, '바이', 0)
+ON DUPLICATE KEY UPDATE hits = hits + 1;
+	// 여러번 확인 후 입력 하는게 아니라 한줄로 있으면 추가 없으면 변경을 할 수 있어 간편함
+	// 입력값중에 하나라도 일치하는 값에 적용(마지막에 추가한거에 적용되는거 아님)
+
+
+# WITH : 임시 테이블을 만들고 as문 안에 있는 내용을 가져오겠다.(참고만)
+	// 서브쿼리에 as를 주고 사용하는것과 동일가 가능해서 with는 잘 사용안함
+	// where이나 group by, join할때 필요한 부분만 들고와서 주로 사용
+ex)
+WITH dept_emp_d001(emp_no, from_date, to_date)
+AS (
+   	SELECT emp_no, from_date, to_date 
+	FROM dept_emp
+   	WHERE dept_no = 'd001'
+)
+SELECT * FROM dept_emp_d001;
+
+with문이 아닌 서브쿼리와 as를 사용)
+SELECT A.* FROM			//A쿼리의 모든 것을 보여줘
+(
+  	SELECT emp_no, from_date, to_date 
+	FROM dept_emp
+   	WHERE dept_no = 'd001'
+) A;				//as A의 축약으로 괄호의 내용을 A이라고 별칭
+				//from절에 별칭을 줘야만 에러발생하지 않음
+
+
+
+** 테이블 생성시 주는 제약조건
+- DATE DEFAULT NOW()	//날짜를 넣는데 초기값은 현재 날짜로 설정
+	== CURRENT_TIME : NOW대신 가능
+- UNSIGNED		//부호없는
+
+
+
+### 외래키(FK) : 연결하는 두 테이블에서 참조하는 값이 잘못 입력되지 않도록 방지하는 목적!!!!
+
+# 형태 : FOREIGN KEY(fk할 칼럼명) REFERENCES 참조할 테이블명(칼럼명)
+
+# 생성시 주의할 점
+ - 참조를 당하는 쪽을 먼저 생성 하고 참조하는 테이블을 생성해야한다.
+ - 값입력때도 참조할 값이 먼저 입력되야함!!
+ - 컬럼명은 달라도 되지만 타입과 속성은 같아야한다!!
+
+ex)
+1. 참조 해야하는 t_customer 테이블 먼저 생성
+CREATE TABLE t_customer (
+cus_no INT UNSIGNED PRIMARY KEY,
+nm VARCHAR(10) NOT NULL
+);
+		// nm VARCHAR(10)항상 괄호 안의 자리수를 다 차지 하지 않으면 효율적
+		// nm CHAR(10) 항상 같은 자리수를 차지 할 경우 좋다.
+
+2. FK 사용 할 t_order 테이블 생성 하면서 FK지정
+CREATE TABLE t_order (
+o_no INT PRIMARY KEY,
+cus_no INT ,
+o_date DATE DEFAULT NOW(),
+o_price INT DEFAULT 0,
+FOREIGN KEY (cus_no) REFERENCES t_customer (cus_no)
+);
+
+# FK 설정으로 잘못된 값 입력시 오류 발생
+ - 오류 멘트 : foreign key constraint fails
+ex) t_customer에는 3과 5밖에 없는데 둘 값 말고 다른 값 입력시에는 오류(FK의 역할)
+INSERT INTO t_order
+(o_no, cus_no, o_price)
+VALUES 
+(4, 4, 55000);	
+
+
+### 정규화
+
+# 정규화1) 칸안에는 무조건 한가지 값만 넣어라
+
+- 여러 값이 들어가야한다면 세로로 넣는 것이 아니라 가로로 값을 추가하는게 좋다. RDB를 하게되면 중복을 최소화할수 있다.
+
+# RDB의 정규화 목적 : 무결성을 위해서(insert, delete 할때 오류 방지), 중복제거
+- 테이블 하나에서만 처리 하지않고 테이블과의 관계(1:1/1:M/M:N)를 생각하고 테이블을 여러개 만든 다음 select할때 join을 활용해서 한번에 보이도록 처리
+
+# 테이블의 구조로 사용용도를 예측해볼 수 있다.
+-중복이 되면 절대안된다 또는 정보보다는 속도를 중요시 한다.
+(테이블이 많을 수록 속도는 느려지지만 유지보수는 용이,
+테이블이 적을 수록 속도는 빨라지지만 유지보수는 낮아진다.-중복 될 수 있다.)
+
+
+
+## JOIN	: 두 테이블의 정보를 연결 하여 원하는 값을 얻을 수 있게 해준다.
+<형식>
+select 별칭1.*, 별칭2.* from 기준으로 작성한 테이블명 별칭1
+inner join 참고 원본 테이블명 별칭2
+on 별칭1.칼럼명 = 별칭2.칼럼명
+
+ex1) 모두의 값을 출력
+SELECT B.*, A.*, C.* 
+FROM t_member_hobbit A
+INNER JOIN membertbl B
+ON A.memberid = B.memberID
+INNER JOIN t_hobbit2 C
+ON A.hobbit_id = C.hobbit_id;
+
+ex2) 이름과 주소, 취미만 보고 싶다
+SELECT B.memberName, B.memberAddress, C.name 
+FROM t_member_hobbit A
+INNER JOIN membertbl B
+ON A.memberid = B.memberID
+INNER JOIN t_hobbit2 C
+ON A.hobbit_id = C.hobbit_id;
+
+
+
+
+
+
+
+
