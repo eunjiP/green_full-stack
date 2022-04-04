@@ -1,0 +1,133 @@
+-- 형변환 CONVERT(콤마로 구분) = 명시적인 변환
+SELECT '10';	-- 문자
+SELECT CONVERT('10', INT);  -- 강제 형변환(문자 -> 숫자)
+
+SELECT '10' + '10';		-- 숫자 우선으로 연결(자동형변환됨)
+	-- 결과 => 20 (= SELECT CONVERT('10', INT)+CONVERT('10', INT))
+	-- 참고) 프로그래밍은 문자 우선(결과 : 1010)
+SELECT CONVERT('10.1', FLOAT);
+	
+SELECT 10;		-- 숫자
+SELECT CONVERT(10, CHAR);	-- 강제 형변환(숫자 -> 문자)
+
+
+-- 형변환 cast(as로 구분) = 암시작인 형변환
+SELECT CAST('10' AS INT);
+
+-- 참고)
+SELECT 1 > '2mega';	-- '2mega'에서 2만 인식 해서 0(false)
+
+
+-- 문자열 합치기 concat
+SELECT 'A' + 'B';		-- 숫자로 인식 0으로 결과나온다.
+SELECT CONCAT('A', '2B2');
+SELECT CONCAT('A', '2B2', '가나다라');
+
+
+===============================================================
+WAS (Web Application Server) .class > 실행 > html
+
+Apache Server(웹서버) html
+P
+MySQL, MariaDB
+
+xampp = 모두 한번에 다운로드 가능
+
+참고 주소 - https://fifo22.tistory.com/34
+
+## 아파치 설치
+conf > httpd.conf에서 두가지 내용 확인하기 (일치여부)
+Define SRVROOT "c:/Apache24"
+
+ServerRoot "${SRVROOT}"
+-------------------------------------------------
+DocumentRoot "${SRVROOT}/htdocs"
+<Directory "${SRVROOT}/htdocs">
+
+
+## php 설치
+php.ini-production 파일 복사 붙여넣기 후 복사본을 php.ini로 만든다.
+
+extension_dir = "c:/php8/ext"	//세미콜롬 제거, 주소변경
+
+
+conf > httpd.conf 실행
+index.html 검색 후 index.php추가
+=> DirectoryIndex index.php index.html
+
+PHPIniDir "C:/php8"
+LoadModule php_module "C:/php8/php8apache2_4.dll"
+AddHandler application/x-httpd-php .php
+AddType application/x-httpd-php .php .html
+	.//마지막에 추가
+
+
+https://programming-workspace.tistory.com/19
+
+php.ini 파일
+extension=mysqli
+extension=mbstring
+extension=gettext
+extension=curl
+	// 주석 해제
+
+date.timezone =Asia/Seoul
+	//주석해제 및 추가
+
+
+error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_USER_DEPRECATED
+	//내용 추가
+
+저장 후 종료
+
+Apache24 > bin > ApacheMonitor.exe 실행 start 후 초록 해 모양이 뜨면 성공!
+
+localhost 검색 해서  접속 되는지 확인
+
+
+
+# 서버와 클라이언트
+서버 : 요청을 받아서 정보를 반환 - ex)APM	=> PHP - 서버에서 수행
+클라이언트 : 요청 - ex)브라우저		=> java스크립트 - 클라이언트에서 수행
+
+
+# 
+method="post" action="./fruitdata.php"
+	//action : 목적지
+	//method: 방법
+	- get방식 : input의 name이 넘어가는 key 값으로 처리하기위해 목적지로 보낸다.-주소창에 보이면서 전송됨(헤더로 전송/빠르다/길이제한)
+	- post방식 : 값을 담기는 하지만 주소창에 보이지 않음(바디에 전송/보안적/느리다/길이제한없다.)
+
+
+<?php
+	php문법
+?>
+
+# php는 변수를 $로 표시함
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
