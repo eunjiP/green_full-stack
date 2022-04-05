@@ -1,0 +1,25 @@
+https://cssgridgarden.com/#ko
+	//그리드 게임
+
+** grid-column-end를 음수로 설정가능( grid-column-start 도 가능)
+	//칸이 여러개 일때 한칸을 빼고 나머지를 다 적용하고 싶을때 하면 유용
+	//칸이 늘어나더라도 끝의 한칸은 항상 뺄수 있다
+
+그리드 선의 시작과 끝 위치를 기준으로 그리드 항목을 정의하는 대신, span을 이용하여 열(column)의 넓이를 지정할 수 있습니다.
+	//ex)시작값
+	grid-column-end:span 2
+
+** grid-area은 /(슬래쉬)로 구분지어 grid-row-start, grid-column-start, grid-row-end, grid-column-end순으로 입력 가능
+
+
+** grid-template-columns은 백분율 같은 값뿐만 아니라, 픽셀 및 em과 같은 길이 단위도 허용합니다.
+
+** grid-template: 50% 50% / 200px;은 각각 50% 인 두개의 행(row)과 200px 너비의 한개의 열(column)의 그리드를 생성합니다.
+
+
+
+
+
+
+
+

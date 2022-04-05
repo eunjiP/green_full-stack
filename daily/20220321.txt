@@ -1,0 +1,152 @@
+** 아이디가 여러개로는 사용하면 안된다. 하지만 적용은 된다.
+   혹시라도 여러개 사용할 경우는 class를 사용하자!!
+h1, p : 둘다
+h1 p : h1밑의 모든 p(descendant selector)
+h1 > p : h1밑의 일차 자식 p (child selector)
+h1 + p : h1 바로 옆에 있는 p에게만  적용하겠다.(adjacent selector)
+h1 ~ p : h1 뒤로 있는 p모두 (같은 층에 존재 해야한다.) (sidling selector)
+
+
+//326page
+<li><a href="#">메인 메뉴 : </a></li>
+	//a태그를 활성화는 시키지만 이동을 하지는 않을때 사용
+
+ a[href] 와 a,  a[href='#3'], a[target][href]의 차이
+	//a : a태그 전체 적용
+	//a[href] : href가 있는 쪽에만 적용
+	//a[href='#3'] : a태그중 #3에게 적용
+	// a[target][href] : target과 href가 있는 것에만 적용
+
+
+//328page
+** 
+[class = button] {color: red;}	:  button
+[class ~= button] {color: red;} : class안에 버튼이 포함되면 모두
+ div[class ~= button] : and조건으로 div면서 class에 버튼이 있으면 적용
+
+
+//329page
+a[title ~= 'us'] {color: red;} : us만 있는 a태그
+a[title |= 'us'] {color: red;} : us만있거나 us-로 시작된 속성값인 a태그
+
+
+//330page
+[title ^= 'eng'] {color: red;} : 시작값이 eng인 경우에 적용
+[ddd ^= 'eng'] {color: red;}
+<div ddd="engasosnkdn">어떤것</div>	//사용자 정의속성(없는 속성이지만 만들어서 사용하고 적용도 시킬수 있다.)
+** 화면 이동
+<li><a href="#ctn1" title="english">영어</a></li>	 	
+	//화면에서 cnt1쪽으로 이동	
+	//scroll-behavior: smooth; : 페이지 이동시 부드럽게 이동함
+<li><a href="#ctn2" title="japanese">일본어</a></li>
+<li><a href="#ctn3" title="chinese">중국어</a></li>
+<div id="ctn1">
+        cnt1
+    </div>
+    <div id="ctn2">
+        cnt2
+    </div>
+    <div id="ctn3">
+        cnt3
+
+
+//331page
+[title $= 'eng'] : 끝이 eng인는 경우(확장자명으로 적용할때 간혹 사용)
+
+
+//332page
+a[href *= 'naver'] {color: green;} : 어느위치에 있던 지정된 속성값이 적용
+
+
+** 자주사용되는 속성 선택자 형태
+[속성]
+[속성=값]
+[속성 ~= 값]
+[속성 *= 값]
+ 나머지는 참고만
+
+
+//336page
+** 가상 선택자
+-shift + alt + 방향키
+-a태그는 인라인태그임으로 block을 줘야 width, hight값을 줄 수 있다.
+ .navi a:link : a태그가 링크를 방문하기 전에
+ .navi a:visited : a태그의 링크를 방문하고 나면
+ .navi a:hover	: 마우스를 올렸을때
+ .navi a:focus : 키보드 이벤트-input/textarea/select/a 관련/(유사-.navi a:active-클릭되는 순간)
+
+<a href="http://www.naver.com" target="_blank">
+	//target="_blank" : 새창으로 오픈 (css로는 안되는걸로 알고 있다.-자바스크립트로는 가능(a태그를 배열에 추가하고 반복문 돌려서 속성을 추가한다))
+
+
+** (★★★)
+:focus는 키보드 이벤트로에 반응할 수 있는 엘리멘트 or 사용자의 input(click, drag 등)에 반응할 수 있는 엘리먼트에 존재
+img, input, textarea, select, a, 나머지 태그들은 tabindex(tabindex="1"/tab했을때 이동하는 순서)속성을 주게되면 가능
+ ex)div:focus => tabindex="1"를 넣어야 가능/ 없으면 불가능
+
+:active는 거의 다 사용 가능
+
+
+//340page
+ #intro:target : #intro으로 이동 했을때 속성값을 적용한다.(같은 문서에서 다른 위치로 이동할때 주로 사용)
+
+<input type="text" enabled value="ena">
+	//enabled 사용가능상태-기본값(input:enabled 속성적용가능)
+<input type="text" disabled value="dis">
+	//disabled : 사용할수없는상태(input:disabled 속성적용가능)
+
+
+input[type='radio']:checked + label { background-color: aqua;}		//input과 label을 인접선택자로 같이 적용해야한다.
+
+
+
+ex)
+<label><input type="radio" name="room" id="basic">기본형(최대 2인)</label>
+	//내용을 태그로 감싸지 않고는 input[type=radio]:checked + label로는 속성을 적용 할 수 없다.
+<label><input type="radio" name="room" id="basic"><span>기본형(최대 2인)</span></label>
+	//내용을 태그로 감싸 줘야지만 인접선태자를 사용 해서 속성적용 가능
+	//input[type=radio]:checked + span 
+<label><span>기본형(최대 2인)</span><input type="radio" name="room" id="basic"></label>
+	//내용이 앞으로 와도 적용을 할 수가 없다.(span + input[type=radio]:checked =>불가)
+
+
+
+**
+ .contents p:nth-child(7) 	//contents밑에 7번째 p인 자식
+ .contents :nth-child(7)	//contents밑에 7번째 자식
+ .contents p:nth-last-child(1) {color:  pink;} //contents밑에 마지막 자식 p(끝에서 순서 시작)
+
+ .contents p:nth-of-type(3)	//contents밑에 p태그 중의 3번째
+ 
+ .contents :nth-child(odd)	//홀수 = .contents :nth-child(2n+1)
+ .contents :nth-child(even)	//짝수 = .contents :nth-child(2n)
+ 응용=> 3씩 증가도 가능 : .contents :nth-child(3n+1) { color: red;}
+
+
+
+//346page
+** 가상 요소★★★
+li .new : li 자식들 중에 new클래스를 가지고 있는 애들(li 본인 빼고)
+li.new : li 본인이 new클래스를 가지고 있어야한다. (li이면서 class에도 속해야한다.)
+
+li.new::after { 
+            content: '!!!!'	//content는 필수라서 ' ' 넣을게 없어도 빈칸이라도 삽입
+        }
+
+::after/::before 을 넣게 되면 앞뒤로 스타일을 넣을 수 있다.
+	//class에만 추가해주면 간편하게 수정도 가능해서 용이하다. 
+
+
+
+** 화면에 안보이게 하는 방법!!!!!!
+1. display: none : 안보이고 공간차지도 안한다.
+2. visibility : hidden : 안보이지만 공간차지는 한다.
+
+
+
+
+
+
+
+
+

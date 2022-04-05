@@ -1,0 +1,36 @@
+**
+ #box1 {flex-grow: 1;}
+ #box3 {flex-grow: 1; flex-basis: 0%;}
+ #box2 { width: 100px;}
+       /* 실제 공간을 지정한 박스2번 부터 공간 차지하고 나머지 공간을 박스1, 박스3이 나눠서 가지고 간다. 
+          flex-grow 는 0이 기본값
+          같은 1대1로 줘도 내용이 긴 박스3이 더 많이 차지 = >flex-basis: 0%;속성을 주면 두개 동일하게 배분 */
+
+
+flex-grow 도 기본값은 0
+flex-shrink: 1 기본값 1(부모가 줄어들면 같이 줄어든다.)
+flex-shrink: 0(늘어나지도 줄어들지도 않는다.)
+flex-shrink: 1이상이면 더빨리 줄어든다.
+
+
+grid 큰 레이아웃잡을때 유용
+
+ grid-template-columns: 200px 200px 200px 200px;
+ grid-template-rows:200px 200px; (중간에만 필요한 만큼 공간 주고 싶다면 auto를 주면된다. ex) grid-template-rows:200px auto 200px; )
+ //지정한 2줄 4칸을 벗어나면 필요한 만큼만 공간차지 한다.
+
+
+** fr : 비율
+
+
+align-items: center;
+    /* 그리드에서도 사용가능!!!!!! */
+/* 포인트/ 영역벗어났을때 안보이게 처리 하는것과 이미지 너비를 지정하지 않는것 */
+
+
+http://unsplash.it/1200/600?image=495
+
+
+
+
+

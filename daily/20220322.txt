@@ -1,0 +1,139 @@
+** attribute와 property의 차이
+attribute (어트리뷰트)
+	//문서를 작성할때 적용한값 (value='안녕'이라고 적은것) 
+
+property (프로퍼티)
+	//웹사이트에서 text로 적으면 value값이 바뀌는데 그게 프로퍼티
+	//아쉽게 css는 실시간반응이 되지않아서 attribute에만 적용되고 property는 불가
+
+
+** a href=" " 안에 올수 있는 값
+- http 온라인 상의 리소스값
+- local에 있는 파일명(html)
+- #	//페이지 이동이 아니라 긴 문장으로 스크롤이동에 많이 사용된다.(#뒤에는 이동해야하는 곳의 id를 작성한다.)
+
+
+**
+#reservation:target : 예약페이지로 이동했을때 적용되도록 사용
+응용1)  #sec1:target img { width: 600px;}
+	//sec1로 이동했을때 이미지 크기가 커지도록 활용도 가능
+	//각각으로 줄수도 있고 div[id^='sec]:target img { width: 600px;} 한번에 적용도 가능
+응용2)  #sec3:target { background: url('images/3.jpg') no-repeat; width: 500px;}
+	//sec3으로 이동했을때 이미지가 나타나도록 설정
+	//div로 설정된거면 높이를 높여서 이미지가 나올정도로 높여줘야한다.
+
+
+** 홀수(odd)/짝수(even)의 활용
+.contents p:nth-of-type(even) {color: blue;}
+	//p타입중의 짝수
+.contents h2:nth-of-type(even) {color: green;}
+	//h2타입중의 짝수
+
+
+** 가상 선택자
+::before : 왼쪽에
+::after : 오른쪽에
+
+li.new::after : li의 클래스에 new가 있는데만 적용
+
+
+transform: translate(X축값, Y축값);
+	//이동
+	//translateX, translateY
+transform: scale(비율);
+	//비율만큼 확대/축소
+	//scaleX, scaleY
+transform: rotate(20deg);
+	//20도 만큼 회전
+{transform: skew(15deg);} =>형태 : skew(가로각도, 세로각도)
+	//15도를 가로로 비틀기
+	//skewX, skewY
+
+응용) 배경만 왜곡을 하길 원할때는 배경에 준 각도 만큼 텍스트를 -각도를 준다.
+
+
+//369page
+transition은 hover됐을때만 넣으면 돌아갈때 바로 풀려 버리기 때문에 평소에 적용을 하는게 맞다!!
+transition:all ease 1s; 
+	//all : 모든 속성이 트랜지션 대상이된다.(기본값)-none/속성이름(background-color, width, height 이런 식으로 추가도 가능 = > 갯수만큼 시간을 각각 설정 해야한다.) 가능
+	//ex)transition: background-color, width, height ease 1s, 1s;
+	//ease : 처음에는 천천히 시작해서 빨라지다가 마지막에 느려짐(기본값)-linear, ease-in, ease-out, ease-in-out, cubic-bezier(n, n, n, n) 을 사용가능
+	//1s : 시간 설정
+
+팁) 속성 이름이 많으면 적용을 따로 빼서 해주는게 더 정확히 적용된다.
+ex)
+transition: background-color, width, height 1s, 1s, 5s;
+	=>너비와 높이가 같이 커진다.
+transition-property: background-color, width, height;		(속성)
+transition-duration:  1s, 1s, 5s;	(시간)
+	=>너비가 커지고 높이가 천천히 커진다.
+	==transition: background-color 1s, width 1s, height 5s; (같은 결과-각각으로 설정을 따로 주는 것과 같은 효과/ease는 기본 값이라 다 생략, 혹시라도 다른 효과를 원할때는 각각으로 입력 해주면 적용가능하다.)
+	//결론 : 축약으로 했을때는 이어서 사용하는게 아니라 속성값 마다 설정을 따로따로 해주는데 좋다.(붙여서 사용하면 정확히 적용이 안되니 주의!)
+
+
+//374page
+(z-index 참고 : https://mytory.net/archives/10997)
+ z-index: 10;
+	//다른 요소보다 위에 있도록 표현
+	//z-index : 레이블을 위로 올려주는 역할
+	//값이 높아야 위에 보인다.(img에 z-index:5;를 적용했기 때문에 글이 위에 보이려면 5보다 큰 값을 주어야한다.)
+
+ opacity : 투명도 효과
+	//애니메이션을 줄때 opacity : 0 ->opacity : 1 로 변하게 하면 없어질때 점점 투명해지면서 없어진다.
+
+★★ overflow:hidden;
+	//벗어 났을때 안보이는게 처리되는것 (핵심)-자주사용됨!
+	//당사자의 영역을 벗어나는것은 안보이게 처리된다.
+//auto, scroll, visible 등 옵션이 있다.
+
+//381page
+ border: 1px solid transparent;
+	//1px 실선의 투명 테두리
+animation-iteration-count: infinite;
+	//애니메이션 무한반복
+
+
+//390page
+viewport = body부분
+width=device-width,initial-scale=1		: device를 맞춰서 사용해라
+
+그래서 요즘 추세는 모바일을 먼저 개발하고 웹을 만든는 경우가 많다.
+
+
+//391page
+#box1 { font-size: 10vw;}
+	//vw:1vw는 뷰포트 너비의 1%와 같다.
+#box2 { font-size: 10vh;}
+	//vh:1vh 뷰포트 높이의 1%와 같다.
+#box3 { font-size: 10vmin;}
+	//vmin : 뷰포트의 너비와 높이중에 작은 값을 1%
+#box4 { font-size: 10vmax;}
+	//vmax : 뷰포트의 너비와 높이중에 높은 값을 1%
+
+//395page
+@media : 미디어 쿼리
+
+@media screen and (min-width:768px) and (max-width:1439px)	//사이즈가 저크기에 되면 밑에 있는게 적용된다.
+
+-속성 적용할때는 기본값에서 변경 되는 것만 주어도 무방하다!!
+
+
+** 참고-모바일기기의 뷰포트 크기를 알 수 있는 사이트
+https://yesviz.com/devices.php
+
+
+**
+<link rel="stylesheet" href="경로">
+	//html에서 css파일을 링크할 때
+@import url('경로');
+	//css에서 또 다른 css파일을 링크할 때 사용
+
+
+
+
+
+
+
+
+
+

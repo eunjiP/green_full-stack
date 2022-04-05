@@ -1,0 +1,143 @@
+**
+@media screen and (max-width: 1024px)
+-사이에 and가 없으면 적용이 안된다.-오류발생
+-max적용일경우, 스크린 사이즈 지정할때도 큰것부터 적어줘야 크기별로 적용된다.(작은 크기가 위에 있으면 마지막 큰 크기 이미지만 적용됨으로 순서 중요!!)
+-min인 경우는 그 반대로 적용해야함
+and : 조건1 and 조건2 and 조건3
+	//모두 다 참이어야 참 
+or : 조건1 or 조건2 or 조건3
+	//조건 3개중에 1개라도 참이면 참
+
+
+//409page~
+** opacity
+ex1) 부모가 opacity 0.5이면
+	자식이 opacity 1이라도 0.5가 적용(0.5 * 1 = 0.5)
+ex1) 부모가 opacity 0.5이면 
+	자식이 opacity 0.5이라도 0.25가 적용(0.5 * 0.5 = 0.25)
+	=부모가 1인데 자식을 0.25한거와 같은 결과가 나온다.
+
+** flex
+div에 flex를 적용하면 인라인 블락처럼 보임
+display: flex; /*인라인블락처럼 보임*/
+ flex-direction: row; (정방향(main-가로방향, cross-세로방향)/column:역방향(main-세로방향,cross-가로방향))
+	//옵션 : row(m:L->R/c:위->아래), row-reverse(m:R->L/c:위->아래), column(m:위->아래/c:L->R), column-reverse(m:아래->위/c:L->R)
+
+ justify-content : flex-start = main방향의 통제(기본값)
+	//flex-end, center, space-around(객체 사이의 간격 동일하게), space-between(양쪽끝에 붙이고 객체사이의 간격은 동일하게), space-evenly(테두리와 객체사이 모두 간격 동일)
+
+ align-items: flex-start; (기본값) =cross방향의 통제
+	//flex-end, center, baseline, stretch
+
+이해해놓기)
+main이 가로(row)방향면 cross는 세로방향 (기본값)
+main이 세로(column)방향면 cross는 가로방향
+
+ex)
+ display: flex;		//main이 가로방향
+ flex-direction: column;//main의 내용이 세로로 변경
+
+
+** align-items
+flex-start: 요소들을 컨테이너의 꼭대기로 정렬합니다.
+flex-end: 요소들을 컨테이너의 바닥으로 정렬합니다.
+center: 요소들을 컨테이너의 세로선 상의 가운데로 정렬합니다.
+baseline: 요소들을 컨테이너의 시작 위치에 정렬합니다.
+stretch: 요소들을 컨테이너에 맞도록 늘립니다.(너비나 높이가 없어야한다.)
+
+
+** align-content : 여러 줄 사이의 간격을 지정
+flex-start: 여러 줄들을 컨테이너의 꼭대기에 정렬합니다.
+flex-end: 여러 줄들을 컨테이너의 바닥에 정렬합니다.
+center: 여러 줄들을 세로선 상의 가운데에 정렬합니다.
+space-between: 여러 줄들 사이에 동일한 간격을 둡니다.
+space-around: 여러 줄들 주위에 동일한 간격을 둡니다.
+stretch: 여러 줄들을 컨테이너에 맞도록 늘립니다.(너비(columne)나 높이(row일때)가 없어야한다.)
+
+
+** order : 순서 변경(오른쪽: 양수/0은 원래 위치/왼쪽: 음수)
+	//이동하는 칸의 숫자가 아니라 자기 자리는 모두 0의 값을 갖는데 왼쪽으로 정렬원하면 음수의 숫자를 부여, 오른쪽으로 정렬 원하면 양수의 숫자를 부여
+
+
+**align-items와 align-self 차이
+ align-items : 부모한테 사용할 때
+ align-self : 자식한테 사용할 때-혼자서 이동
+
+
+** flex-wrap 속성 
+-nowrap : 모든 요소들을 한 줄에 정렬합니다.
+-wrap : 요소들을 여러 줄에 걸쳐 정렬합니다. (공간이 부족하면 뒷번호를 밑에 줄로 보낸다)
+-wrap-reverse : 요소들을 여러 줄에 걸쳐 반대로 정렬합니다.(공간이 부족하면 뒤에 번호를 위로 올린다.)
+
+
+** flex-flow : flex-direction과 flex-wrap의 축약형(자주사용 안함)
+ex) flex-flow: row wrap
+	//=flex-direction: row; flex-wrap: wrap
+
+
+** flex게임 참고 : https://flexboxfroggy.com/
+
+
+** flex-grow : 부모의 남는 공간을 들고갔다.(숫자는 비율로 들고 가는거라서 3:5 나 300:500 나 동일)
+	// #box1 {flex-grow: 1;} 1분에 1을 다 가지고 가겠다.
+
+	// #box1 {flex-grow: 1;}	: 남은 공간을 1/2씩 가지고 가겠다.
+           #box3 {flex-grow: 1;}	: 남은 공간을 1/2씩 가지고 가겠다.
+	// #box1 {flex-grow: 3;}	: 남은 공간을 3/4씩 가지고 가겠다.
+           #box3 {flex-grow: 1;}	: 남은 공간을 1/4씩 가지고 가겠다.
+
+
+** 
+max-width: 600px;  //600보다 작을때는 부모크기를 따라가지만 600보다 크면 600에서 멈춰있는다.
+gap: 10px;  //박스 사이의 간격
+flex-basis: 200px;	//기본적으로 200px씩 차지하게 된다.
+flex-shrink: 1;		//기본값 : 줄어드는 속도(숫자가 클수록 빨리 줄어든다/0을 주면 안 줄어든다.)
+			//flex-wrap:wrap이 있으면 적용안된다.
+
+
+
+//423page
+이번에야말로 CSS Grid를 익혀보자 – 1분코딩(참고하면 도움됨)
+https://studiomeal.com/archives/533
+
+
+** grid //minmax, repeat은 콤마 필수 !!!
+ grid-template-columns : 칸 너비 (칸의 갯수많음 넣어주면됨)
+	//ex)grid-template-columns: 200px 200px 200px 200px;
+ grid-template-rows : 줄 높이
+	//ex)grid-template-rows:200px 200px;
+	//grid-template-rows: minmax(100px, auto);  : 줄 높이 최소 100px =>콤마 사용 필수!!
+ grid-template-columns:repeat(3, 1fr);	=>콤마 사용 필수!!
+	=grid-template-columns:1fr 1fr 1fr ; (콤마 사용안한다!)
+	//fr : 상대적인 크기 지정(남는 공간에 대한 비율)
+ grid-gap:20px 30px;	=>표준화로 gap으로 명칭이 변경됨
+	//줄간격(줄과 줄사이-가로(row)) 20픽셀, 칼럼간격(칸과 칸사이-세로(column)) 30픽셀
+	//=grid-column-gap:30px; 
+        // grid-row-gap:20px; 
+
+ grid-column:1/4; 	//세로 1번~4번 줄까지 차지 하겠다.
+ grid-row:2/4;		//가로 2번~4번 줄까지 차지 하겠다.
+ grid-column-start:1;	//column 줄 시작을 1번 부터 하겠다.
+
+ grid-template-areas: 	//위치를 먼저 지정해주고 각각의 박스에 이름 지정만 하면 된다.
+    "box1 box1 box1"
+    "box2 box3 box3"
+    "box2 . box4";
+ grid-area:box1;	//이름 지정
+
+
+** minmax 함수 : 최솟값과 최댓값을 지정할 수 있는 함수입니다.
+minmax(100px, auto) : 최소한 100px, 최대는 자동으로(auto) 늘어나게.
+
+
+** auto-fit, auto-fill의 차이
+화면이 넓어지거나 작아졌을때 자동으로 칼럼갯수를 맞춰주는 역할
+-차이점 : 남는 공간이 생겼을시 채울지 말지
+	//auto-fit : 남는 공간 채우고, auto-fill : 남는 공간을 안 채운다.
+	//한줄이 아닐때는 차이가 나지 않는다.
+
+
+->응용)grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	//반복하는 횟수를 정하지 않고 화면을 변경 했을때 자동적으로 변경 되게 설정하고 크기 또한 minmax로 화면 크기를 변경했을때 자동적으로 변경되게 설정한다.
+
+
