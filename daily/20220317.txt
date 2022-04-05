@@ -1,0 +1,232 @@
+** Rem과 em
+Rem : 구조의 상관없이 html(16px)의 폰트 사이즈로 값이 정해진다. (전체 사이즈를 변경 할 때 쓴다.)
+	//ex)html : font-size : 16px =>1rem = 16px
+
+em : 내 부모의 사이즈를 기준으로 변한다.
+	//ex) font-size : 10px 
+	<div class="cls1">
+	   <div class="cls">
+	   </div>
+	</div>
+	</body>
+
+	.cls1 { font-size:2em; } => 20px (cls1의 부모는 바디라서 10px * 2)
+	.cls2 { font-size:2em; } => 40px (cls2의 부모는 cls1임으로 20px * 2)
+
+//238page
+** p태그는 기본적으로 margin이 들어간다.
+
+** p안에 div를 자식으로 가질 수 없다. (p태그가 블락이라 불가)
+ 블락은 인라인 태그만 자식으로 가질수 있다.
+
+** span은 필요한 만큼만 차지
+ex)
+<span class="accent">
+            오늘
+        </span>  		결과========>오늘 을 살고(오늘을 사이에 빈칸이 존재)
+
+<span class="accent">오늘</span>을 살고	결과========>오늘을 살고 (붙어서 나옴)
+
+
+//242page
+.box1 { width: 400px; height: 100px;}	//고정
+.box2 { width: 50%; height: 100px;}	//브라우저 또는 부모의 크기의 따라 달라질 수 있다. (가변형)
+
+<div class="box1">
+        <div class="box2"></div>
+ </div>				//box1이 고정 사이즈 이므로 box2는 box1이 변하지 않는 이상 고정되어 있다.
+				//아무리 자식이라고 해도 살짝 벗어난다. 그래서 계산을 해서 사이즈를 조절해줘야한다.(참고- border-collapse: collapse; 는 테두리임으로 적용안됨)
+
+
+//243page
+ 내용 200픽셀 * 100픽셀 => 실제 박스는 좌우 10픽셀 합쳐서 220픽셀 * 120픽셀 이된다.
+
+전체 사이즈를 200에 100으로 하고 싶다면 box-sizing: border-box; 를 포함 하면 전체 사이즈를 원하는 크기로 지정가능
+
+
+//254page
+<style>
+        img { margin-bottom: 15px; }		//그림 아래에 15픽셀을 줘라
+        #round { border-radius: 30px;}		//테두리를 둥글게 해라
+        #circle { border-radius: 50%;}		//그림을 원으로 표현
+        #round1 { 
+            border-top-left-radius: 20px;		//왼쪽 위에만 둥글게 해라
+            border-bottom-right-radius: 30px; }	//오른쪽 아래만 둥글게 해라
+</style>
+
+
+//260page
+** margin 값에 따른 설정 (padding도 동일한 순서로 적용)
+ #margin1 { margin: 50px} : margin 공간에 50픽셀씩 준다.-주로 사용
+ #margin2 { margin: 30px 50px} : 위아래는 30픽셀, 좌우에는 50픽셀
+ #margin3 { margin: 30px 20px 50px} : 위는 30픽셀, 좌우는 20픽셀, 아래는 50픽셀
+ #margin4 { margin: 10px 20px 30px 40px} : 위 10픽셀, 오른쪽 20픽셀, 아래 30픽셀, 왼쪽 40픽셀 (시계방향)-주로 사용
+ 
+ //263page 참고
+ display: inline-block : 인라인 속성(쉽게 글이라고 생각하면 된다.)과 블락 속성도 쓸수 있게 변경 해준다.
+	//블락 속성이면 마진 중첩/마진 상쇄이 일어나서 중복되는 마진은 중첩이 일어난다. (가장 큰값으로 떨어진다.)
+	//인라인 속성일때는 둘의 마진 크기 만큼 떨어지게 된다.
+
+
+
+//266page
+#container { height: 100%; background-color: antiquewhite;}
+.cls1 { background-color: aquamarine;}
+=>container가 전체를 차지하지 못한다.
+
+html, body { height: 100%; background-color: blue;}		//이부분을 추가 해야만 전체 차지하게 된다.
+#container { height: 100%; background-color: antiquewhite;}
+.cls1 { background-color: aquamarine;}
+
+ .cls1 { margin: 0 auto; background-color: aquamarine;}		//필요한 만큼만 공간차지 하는 아이라서 공간이 없기 때문에 중앙정렬이 적용이 안된다.
+ .cls1 { margin: 0 auto; width: 100px; background-color: aquamarine;} //크기를 설정하고 중앙정렬해야한다.
+
+
+
+//269page
+** disply속성값
+block
+inline : width, hight는 안된다.
+inline-block : padding이나 마진을 넣고 싶으면 이 속성을 사용
+none : 공간도 차지 안하고 화면에 표시하고 싶지않다.
+
+-화면에 안보이게 하면서 공간차지하는거
+ visibility : 안보이지만 공간차지는 한다.
+ display:none; : 공간차지를 안한다.
+ opacity : 투명도값을 줘서 => 수정은 용이하지만 요즘은 디자인쪽에서 처리해서 비추
+
+
+//269page
+ * { box-sizing: border-box;} : 전체 크기를 고정해주기 위해서
+cursor: pointer; : 커서를 가까이 됐을때 클릭 가능하게 하는 방법
+	//a태그를 사용하면 글자위에 올려야하지만 cursor: pointer; 를 사용하면 여백에 가까이 가도 가능하다.
+
+** 차이점
+① nav, ul { list-style: none;} : 둘다 적용하겠다
+
+② nav ul { list-style: none;} : nav 자식인 ul에게 속성을 적용하겠다. /단계가 상관이 없다.=nav나오고 여러번 안에 포함되어도 적용가능하다.(nav에게는 영향이 없다.)
+
+③ nav > ul { list-style: none;} : nav 바로 밑에 있는 ul에게 적용한다. (단계가 중요하다)
+
+
+
+//271page
+ img { width: 300px; 
+            float: left; 		//이미지는 둘중에 하나만 적는다. 둘다 적으면 그림의 비율이 이상해진다.
+            margin-right: 40px;		//float: left; 글이 왼쪽 부터 시작한다. 
+            margin-bottom: 20px;}	//(이거만 적용하면 답답해서 마진을 같이 적용해서 공간을 띄어준다.)
+				//아래쪽을 40픽셀로 주게 되면 실제 보이는 크기가 다른데 이유는 글자체에도 공간이 있어서 아래는 조금 작게 줘야 한다.		
+
+
+
+//271page
+ ** 레이아웃 만들때 사용하는 float 와 clear (floatd 사용 후에 clear를 사용 해야한다.)
+	//float : 인라인처럼 붙어서 연결되고 clear을 해야 다음으로 넘어 간다.
+ ex) <style>
+        #box1 { background: #ffd800; float: left;}
+        #box2 { background: #0094ff; float: left;}		
+        #box3 { background: #00ff21; clear: both;}	//clear을 하지 않으면 float영향으로 박스2번과 박스3번이 붙는다.
+        #box4 { background: #a874ff; }
+      </style>
+
+
+//274page
+** 순서는 부모기준으로 몇번째인지 알아야 한다!!!
+ section:first-child : section 의 첫번째 (=section:nth-child(1) )
+ section:last-child : section 의 마지막
+ section:not(first-child) : 첫번째 빼고 다~
+ section:nth-child(2n) : 짝수
+ section:nth-child(2n-1) : 홀수
+
+ex) 
+<style>
+        #container {text-align: center; font-size: 55px;}
+        #head {width: 1200px; height: 120px; background: rgb(197, 197, 197);}
+        section:nth-child(2)  {width: 300px; height: 600px; background: rgb(62, 230, 252); float: left;}
+		//부모(div)기준으로 2번째 (section:first-child 로 했을때 적용안됨!)
+        section:nth-child(3)  { width: 900px; height: 600px; background: rgb(135, 255, 56); float: left;}
+		//부모(div)기준으로 3번째 (section:last-child 로 했을때 적용안됨!)
+        #footer { width: 1200px; height: 100px; clear: both; background: rgb(197, 197, 197)}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header id="head">헤더</header>
+        <section id="side">사이드바</section>
+        <section id="story">본문</section>
+        <footer id="footer">푸터</footer>
+</div>
+
+
+
+//280page
+** position ★★★
+- static : 모든 태그들의 기본값 /위치조정 불가
+- relative : 스테틱과 유사함/차이점:위치조정가능(left, right, top, bottom)
+- absolute : relative 유사(left, right, top, bottom사용가능)/부모가 꼭 있어야하고 부모가 될 수 있는건 static제외한 모든게 부모가 가능 (아래나 위, 좌나 우 둘 중에 하나는 부여해야한다.-예상불가라서 )
+- fixed : 고정시킨다. (사이트에서 스크롤을 내려도 고정되어있는게 있는데 그 부분을 fixed-움직이지 않음)
+
+
+-예시1)
+<style>
+        p { 
+             width: 150px; 
+             background-color: antiquewhite;}
+        #pos1 { position: relative;
+            top: 20px;
+            left: 30px;}
+        #pos2 { position: relative; top: 10px; left: 10px;}
+        #pos3 { position: absolute; bottom: 10px;			//relative의 움직임 보다 훨씬 크게 움직인다.
+        background-color: aqua;}				//부모기준에서 크기를 이동함 그래서 한개의 내용안에서 크기를 지정할때 사용을 많이 함
+    </style>
+
+
+
+-예시2)
+<style>
+         * { margin: 0; padding: 0;}
+         html, body { height: 100%;}
+         #container { height: 100%; padding: 10px;}
+         .item {
+             display: inline-block;
+             border: 1px solid gray;
+             width: 100px;
+             height: 200px;
+             margin-right: 10px;
+         }
+         .item > div:nth-child(1) {height: 70%;}
+         .item .info { height: 30%; background-color: aliceblue; position: relative;}
+         .item .info div:first-child { position: absolute; left: 5px; top: 5px;}	
+     </style>
+</head>
+<body>
+    <div id="container">
+        <div class="item">
+            <div>이미지</div>
+            <div class="info">
+                <div>내용</div>
+            </div>
+        </div>
+		//1) position을 아무한테도 적용안했을때 : absolute의 부모는 body가 된다.
+		//2) position을 item에 적용 : absolute의 부모는 item이 된다.
+		//3) position을 info에 적용 : absolute의 부모는 info가 된다.
+		
+		//결론) static은 위치가 이동이 안되고 absolute의 부모도 될 수 없다.
+		//       absolute는 부모를 기준으로 위치이동을 한다!!
+
+
+
+//286page
+** 사진을 배경으로 설정
+ #back { 
+            width: 500px; height: 300px;
+            background: url('12.jpg') no-repeat;}	//background: url('url주소')
+					//no-repeat : 사진의 크기가 작으면 크기를 맞추기위해 반복한다.
+
+
+
+
+
+
+
+

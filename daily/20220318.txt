@@ -1,0 +1,99 @@
+** fixed : 스크롤을 내려도 항상 같은 자리에 위치한다.
+#fix { position: fixed;left: 10px; top: 10px;}	//할때 위치는 항상 같이 지정하는게 좋다.
+					//아래 내용이 있다면 fixed때문에 글이 가려진다.(주의하기)
+ #container { height: 4000px; background-color: antiquewhite;
+            margin-top: 75px;}
+					//하나의 방법으로 마진을 주는 방법도 있다.
+
+<body>
+    <div id="fix">안녕</div>
+    <div id="container">
+        "안녕하세요"
+    </div>
+</body>
+
+
+** ::first-letter : 첫번째 글자 스타일 지정
+
+** a태그에 block적용 : text라인의 줄맞춤하기에는 block이 좋다.- 알아두면 좋은 팁
+
+
+// 293page
+** 백그라운드 투명도 설정
+- 안드로이드는 앞에 2자리가 투명도
+- 웹은 뒤에 2자리가 투명도	#00000080; =>16진수로 투명도 설정(참고-80 : 50%투명도)
+- rgb(0, 0, 0, 0.5); => rgb로 투명도 설정
+
+
+** 백그라운드는 상속안됨(상속이 안되는 것 중에 대표적) => 다른 색으로 백그라운드를 줄수 있다는 말
+	/color는 상속됨
+
+
+** background-clip 종류에 따른 표현
+ { background-clip: padding-box;}	//테두리가 패딩범위까지 적용
+ { background-clip: content-box;}	//콘텐츠(내용)부분에만 적용 - 박스 밖에 공간이 존재하게 보인다.
+
+
+//296page
+** background-repeat 종류 : repeat, repeat-x, repeat-y, no-repeat
+
+ background: url('images/bg1.jpg') repeat-y;
+	== background-image: url('images/bg1.jpg');
+           	     background-repeat: repeat-y;
+
+ background: url('images/bg1.jpg') no-repeat center; 	//중앙정렬
+	//html, body { height: 100%;} : 크기지정이 안되면 정렬이 정확히 안되는 경우가 있다.
+	// center에는 left, right, top, bottom, 백분율, 길이값 으로 적용해줄 수 있다.
+
+	cursor: pointer; : 커서모양이 나오게 해줌
+
+ text-decoration-line: none;	//a태그 밑줄없애는 방법
+ == text-decoration: none;
+
+
+//299page
+background-origin 과 background-clip은 하는 역할이 비슷
+
+
+//302page
+ background-size의 기본값은 auto
+ background-size: cover; 		//가로가 길면 세로를 맞추고 가로를 짜르고
+ :화면에 그림이 다나오도록 표현	//세로가 길면 가로를 맞추고 세로를 짜른다.
+
+
+ background-size: cover; //화면을 줄이든 커지든 사진이 다 덮어서 표현
+
+
+### CSS 고급 선택자 ###
+** 연결 선택자
+상위요소 하위요소 { }	//있기만 하면 된다.
+-하위선택자(descendant selector) : section p	// section다음에 나오는 p 모두 다
+-자식선택자(child selector) : section > p	//일차인 애들한테 효과를 주고 싶을때 사용
+-인접 형제 선택자(adjacent selector) : h1 + p	//인접 형제 선택자(h1의 형제인 p요소 중 첫번째 p
+-형제 선택자(sibling selector) : h1 ~ p		//첫번째 요소이후에 나오는 두번째 요소는 다~적용
+
+	//h1 ~ p:hover : h1 이후에 오는 p의 모두 커서가 가까이 갔을때 변화를 준다.
+
+
+//325page
+ 인라인태그는 디스플레이 이용해서 위치를 이동하는게 좋다.
+
+
+ul > li:not(:last-child) { margin-bottom: 5px; }
+/* 마지막 li 엘리먼트를 제외하고 전부 */
+
+ul > li:not(:first-child) { margin-top: 5px; }
+/* 위 문장과 방식은 다르지만 결과는 같음. */
+
+
+
+
+
+
+
+
+
+
+
+
+

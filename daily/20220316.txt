@@ -1,0 +1,320 @@
+** 웹이미지 무력화 시키는 방법
+F12 > 이미지 선택(엘레멘트 선택자) > 우클릭 > 오픈 인 뉴 탭 > 이미지 저장가능
+
+
+** 이미지 파일 종류
+-비트맵 방식 : 점으로 이미지를 형상화 / 확대하면 깨진다.
+-벡터 방식 : 계산식으로 이미지 형성화/ 아무리 확대-축소해도 안깨짐가능/용량이 작음
+-jpg : 색상정보가 같은 정보가 있음/ 용량이 적고 지금도 많이 사용
+-png : jpg와 압축률이 비슷하고 크기는 조금 작다. 하지만 투명을 표현가능함!
+
+//99page
+** img와  src는 세트 (참고-네이버는 이미지 주소를 막아놔서 구글로 가져오면 가능!)
+<img src="1.png">			//내컴퓨터에 있는 이미지 삽입 방식
+<img src="https://w.namu.la/s/4cda40ddb3744af7cdff2e9ac4178b80fd8dd13d67972788ad2a1770d7fcb94b8fc34b5c9fd5ebf4c07d8153dabd1881c7478833f4accdb39338d73c11a7952065cb9caacb64fff57c90b388e0e35063213f78ec38d4cd80d4bc04b3a41f8e638dd6826ed74e698f60da362f8cec796f">		//이미지 주소값을 이용한 이미지 삽입 방식
+
+<img src="1.png" alt="강철부대2" title="타이틀 강철부대2">
+-alt : 직접적으로 보이지 않는데 이미지가 없으면 이런 이미지 였다라고 알 수 있다.
+	//시각장애인 분들은 리더기가 내용을 읽어주기 때문에 적어주는게 좋다.
+-title : 마우스를 올렸을때 표현됨(잘사용안함)
+
+
+** 같은 폴더 안에 존재 하는게 아니라 img폴더 안에 1.png가 있을 경우 (./ : 현재 위치)
+   =><img src="img/1.png"> 라고 해야 이미지가 삽입된다.( == <img src="./img/1.png">)
+   img폴더 안에 sol폴더 안에 1.png가 있을 경우
+   =><img src="img/sol/1.png">
+
+** 다른 폴더 안에 이미지 존재하는 경우 (../ : 상위 디렉토리로 이동)
+   =><img src="../ch03/2.webp">
+
+
+//132page
+    <form action="/login" method="post">	// action, method 필수 값 (method : 방식 /action : 목적지)
+        <fieldset>		// form태그와 같이 안써도 되지만 같이 쓰는게 좋다. /테두리가 표현됨(요즘은 잘 안쓴다.)
+            <label>아이디 : <input type="text" name="user_id" value=""></label>	//label : 아이디라는 글자만 클릭해도 입력할 수 있는 곳으로 이동된다. /value : 최초값 (비밀번호에는 사용 불가!) - 값이 없어도 빈칸이다. /name : 적어야한다.(전송할때 필요한 값임으로)
+            <label >비밀번호 : <input type="password" name="user_pw"></label>
+            <input type="submit" value="로그인">		//input은 type에 따라서 모양과 형태가 변한다 (참고 130page) /submit : 전송
+            <input type="reset" value="초기화">		//reset : 초기화상태로 돌아간다. (초기 value값으로 돌아간다 생각하면 된다. - value 값에 초기값이 있으면 그 상태로 돌아감)
+        </fieldset>
+    </form>
+
+
+
+** 버튼 만드는 방법 (form 밖에서는 의미가 없고 form안에서는 역할을 한다.)
+1. <input type="submit" value="서브밋버튼">
+2. <input type="button" value="버튼버튼">	
+3. <button>버튼버튼2</button>		//텍스트로 바꿔서 접근 -form태그 안에 적으면 type="submit"이 자동으로 들어간다.
+					//form안에서 전송되는게 싫으면 type = "button"으로 변경 하면된다.
+
+
+**  div로 작성하면 성별을 눌렀을때 입력 창으로 이동하지 않는데 for="user_gender" 를 넣게 되면 이동하게 변경 가능
+	<div>
+                <label for="user_gender">성별</label>  
+            </div>
+            <div>
+                <input type="text" id="user_gender" name="user_gender">
+            </div>
+
+
+** 133page
+   <form>
+        <fieldset>
+            <legend>배송 정보</legend>		//범례(테두리의 제목 같은 역할)
+                <ul>
+                    <li>
+                        <label for="user-name">이름</label>
+                        <input type="text" id="user-name">
+                    </li>
+                    <li>
+                        <label for="addr">배송주소</label>
+                        <input type="text" id="addr">
+                    </li>
+                    <li>
+                        <label for="mail">이메일 주소</label>
+                        <input type="email" id="mail">
+                    </li>
+                    <li>
+                        <label for="phone">연락처</label>
+                        <input type="tel" id="phone">
+                    </li>
+                </ul>
+        </fieldset>
+    </form>
+
+
+//134page  ★input은 name, value가 필수다!!!!
+<p><b>주문할 상품을 선택해 주세요.</b></p>		//<b> : 굵게 표현(CSS할꺼라서 외울필요는 없음)
+<label><input type="checkbox" value="s_3">선물용 3kg</label>	//label이 없으면 박스를 정확하게 클릭해야해서 불편함
+<label><input type="checkbox" value="s_5">선물용 5kg</label>
+<label><input type="checkbox" value="f_3">가정용 3kg</label>
+<label><input type="checkbox" value="f_5">가정용 5kg</label>
+<p><b>포장 선택</b></p>
+            <label><input type="radio" name="gifr" value="yes">선물 포장</label>	// radio버튼은 한개만 선택가능함!(성별 이런 곳에 많이 사용) - checked가 둘중에 하나에 넣는게 좋다. 
+									//name기준으로 한개만 선택 가능-name이 다를 경우 중복도 가능하다.
+            <label><input type="radio" name="gifr" value="no">선물 포장 안 함</label>
+<div>
+         <input type="submit" value="주문">
+</div>
+
+
+<label><input type="checkbox" value="s_3" checked>선물용 3kg</label>	//checked : 항상 체크되어있다.
+<label>선물용 3kg<input type="checkbox" value="s_3" checked></label>	//설명 뒤에 체크 박스 생성
+
+
+
+** ctrl +a > ctrl + k +f  : 자동 줄맞춤
+// 138page
+** type="number" - 스핀 박스
+ <input type="number" name="age" value="100"> : 한글입력 안되고 숫자 올리는 버튼 생성, 초깃값 생성가능
+** type="range" -슬라이드 막대
+ <label>가격 <input type="range" name="price" value="10" min="0" max="100"></label> : 범위를 설정가능(설정안해도 기본적으로 최소는 0, 최대는 100), 기본값 설정도 가능(설정 안해도 기본적으로 50으로 설정됨)
+ <input type="range" step="10" name="price" > : 증가값도 설정 가능
+
+
+** html 에는 정수라는 개념이 존재하지 않아서 전부다 문자열로 취급된다.
+
+
+//146~150page
+<input type="text" name="uid" placeholder="user id" required>
+	 	// placeholder : 힌트, required : 필수입력값
+<div><input type="text" name="iuser" value="1" autofocus required></div>	
+	//readonly : 값을 입력이 안된다.(클라이언트가 선택한 값을 보여줄때 사용) autofocus : 자동으로 아이디 입력창으로 이동(바로 입력가능-두개가 적용하면 먼저 나오는게 적용되니 무조건 한개만 주는게 좋다!)
+<div><input type="hidden" name="iuser" value="1"></div>
+		//hidden : 눈에는 값이 보이지 않지만 1이라는 값이 같이 전송된다.
+ ==>readonly 는 눈에 보이지만 수정이 안되고 hidden은 눈에 안보이지만 같이 전송됨, 둘이 의미는 비슷하다.
+
+<div><label>프사 : <input type="file" name="pic" accept="image/*" multiple>
+		//type="file" : 파일 업로드 가능
+		//accept="image/*" : 이미지 파일만 업로드(accept : 원하는 파일만 업로드 가능)
+		//multiple : 파일 여러개 업로드 가능(ctrl로 파일 선택 후 업로드 하면 된다.)
+<div><label>남긴 말 <textarea cols="20" rows="10" name="cmt"></textarea></label></div>
+		//textarea : 한 줄이 아닌 여러줄의 내용을 남길 수 있다.
+		//value 속성이 없다. 초깃값 넣으려면 <textarea >aaaa</textarea> 사이에 넣어야 한다.
+		//cols : 가로, rows : 세로 => CSS로 가능해서 잘 사용 안함
+
+
+
+<div>
+            <label>
+                지역 : 
+                <select name="location">	//콤보박스로 옵션 선택 가능(보기가 많은 경우 radio보다 select이용이 효율적)
+					//<select name="location" size="4" multiple> : 사이즈나 중복 선택도 가능
+                    <option>서울</option>
+                    <option>대전</option>
+                    <option>대구</option>
+                    <option>부산</option>
+                </select>
+            </label>
+        </div>
+
+** select : 보여지는 값(서울) 과 전송되는 값(1)이 다르길 원한다면 value 를 사용
+<option value="1">서울</option>
+<option value="2">대전</option>
+<option value="3">대구</option>
+<option value="4">부산</option>
+=> 서울을 선택하더라도 전송하면 1이 전송됩니다.
+
+<option value="1">서울</option>
+<option value="2">대전</option>
+<option value="3" selected>대구</option>	//처음 값이 대구로 되도록 설정 원할때(selected가 두개이면 제일 마지막으로 된게 selected된다.)
+<option value="4">부산</option>
+
+
+
+** input type="checkbox", input type="radio" 같은 선택되는 값이 있으면 value 값이 필수다!!!!(안넣으면 값이 넘어가지 않는다.)
+
+     <div>
+            취미 : 
+            <label><input type="checkbox" name="hobbit" value="1" checked>농구</label>
+            <label><input type="checkbox" name="hobbit" value="2">축구</label>
+            <label><input type="checkbox" name="hobbit" value="3" checked>배구</label>	//초기값 배구로 선택(checked는 초기값으로 여러개 선택도 가능하다.)
+            <label><input type="checkbox" name="hobbit" value="4">탁구</label>
+        </div>
+        <div>
+            성별 : 
+            <label>여성<input type="radio" name="gender" value="f" checked></label>
+            <label>남성<input type="radio" name="gender" value="m"></label>
+        </div>
+
+
+######### CSS (Cascading Style Sheets) #########
+** style 안에 주석처리 : /* */
+	//요즘은 한줄로 표현을 많이 한다.(가독성이 높아서)
+
+//171page
+** 선택자 종류
+*  : 전체 선택자 (179page)
+태그 선택자 (180page)
+클래스 선택자 (181page)
+아이디 선택자 (183page)
+
+** 형식 : 선택자 { 속성 1: 속성값1; 속성2: 속성값2; }
+	// , 를 사용해서 선택자 여러개를 중복으로 적용할 수 있다.
+	//ex) #id1 { background-color: antiquewhite; color: brown;}
+        	      .cls1, #id1 { color: pink;}
+
+
+1. 태그 선택자
+	div { font-weight: bold;}
+
+
+2. 클래스 선택자 (. 사용)
+ 	.cls1 { color:blue; }
+ 
+
+3.아이디 선택자 (# 사용)
+	#id1 { background-color: antiquewhite;}
+
+
+** 선택자가 중복된다면? (important를 사용하면 무조건 적용된다)
+	// ①자세하면 우선순위가 높아진다. (id > class > 태그 > 전체)
+	// ②같은 우선순위면 뒷쪽에 적힌게 적용된다.
+	
+
+예시1)
+ <style>
+        #id1 { color: brown;}
+        .cls1 { color: pink;}
+        div { color: red;}
+        div { color: blue;}
+    </style>
+</head>
+<body>
+    <div class="cls1">aaa</div>
+    <div class="cls1" id="id1">bbb</div>
+</body>
+
+=> 결과 a = 핑크/b = 갈색
+
+예시2)
+<style>
+        #id1 { color: brown;}
+        .cls1 { color: pink;}
+        div { color: red;}
+        div { color: blue;}
+    </style>
+</head>
+<body>
+    <div class="cls1">aaa</div>
+    <div class="cls1" id="id1" style="color: chartreuse;">bbb</div>		//인라인 스타일 : 직접 색상 지정도 가능(잘사용 안함)
+
+=> 결과 a = 핑크/b = 그린
+
+
+<스타일 적용하는 방법>
+1.인라인 스타일
+2.html파일 내에서 style적용
+3.외부에 css파일 생성 후 적용하는 방법
+
+
+
+//194page~ 는 집에서 한번 쳐보기
+//199page~(구글 폰트 참조)
+
+//205page
+** color 표현
+  -16진수 : 0~9, A, B, C, D, E, F 로 표현(참고-10진수 : 0~9 / 8진수 : 0~7 / 2진수 : 0, 1)
+  - RGB : 3가지 색을 섞어서 표현(섞을 수록 밝아짐-화면으로 표현할때)
+  - CMYK : 4가지 색을 섞어서 표현(섞을 수록 어두워진다.-인쇄할때)
+  - hsl : 색상, 채도, 명도의 줄임말
+  - rgba : rgb로 표현한 색상에 불투명도를 지정
+
+//222page
+ul { list-style: none;}	// 점을 없애는 방법
+a { text-decoration: none; color: black;}	//링크는 파란색으로 나오는데 검은색으로 설정도 가능
+div { letter-spacing: 1px; line-height: 40px; text-align: center;}	//letter-spacing : 스페이스 공간의 간격설정
+							//line-height  : 글자하나한의 공간의 간격
+							//text-align: center : 중앙정렬(텍스트만 가능, 중앙정렬할 공간이 있어야 가능하다)
+//233page
+li { line-height: 2;}		// li 태그 선택자의 줄간격을 글자의 2배로 설정
+<li><b>반응형 웹 디자인</b> - 다양한 화면 크기에 최적화하다.</li>
+border:1px solid #ccc	//테두리 생성의 축약형
+
+//234page
+ text-shadow: 3px 2px 5px #000; 		// 그림자 생성(가로 3픽스, 세로 2픽스, 위치 5픽스(퍼짐의 정도) 되는 곳에서 그림자 효과) - (축약형만 있다.)
+margin:0 auto;		//중앙 정렬
+
+margin + 숫자 2개 :  위아래, 왼쪽오른쪽
+margin + 숫자 4개 : 위, 아래, 왼쪽, 오른쪽
+
+
+** 글자 수정 한번에 하는 방법
+- 클릭 후 alt키 눌러서 변경 원하는걸 클릭 후에 글자 수정
+
+
+//235page
+table, th, td { border: 1px solid black; border-collapse: collapse;}  //border-collapse: collapse : 테두리의 선을 한줄로 합치는 역할
+
+table { caption-side: bottom;}	//글자를 아래 쪽에 표시
+
+
+//236page
+-em :  상대크기를 의미(<div id="check"> 폰트의 1.5배)
+-font-weight: bold; : 굵은 글자
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
