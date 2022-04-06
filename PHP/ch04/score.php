@@ -11,7 +11,7 @@ switch(판단할 변수)
         break;
 }
 */
-    $score = 80;
+    $score = 66;
 
     switch($score)
     {
@@ -30,6 +30,9 @@ switch(판단할 변수)
         case 0:
             print "당신의 성적은 F입니다.";
             break;
+
+        default:
+            print "디폴트<br>";
     }
 //PHP는 범위지정 가능(자바는 불가능)
     switch($score)
