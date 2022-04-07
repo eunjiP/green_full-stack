@@ -1,0 +1,67 @@
+알고리즘1-스택과 큐
+내가 푼 정답
+
+import java.util.*;
+
+
+public class algortest {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		
+		System.out.println("판단할 문자 입력 >> ");
+		String s = input.nextLine();
+		
+		String[] words;
+		Stack<String> stack = new Stack<>();
+		
+		words = s.split("");		//문자를 배열안에 넣기
+		
+		if(words[0].equals("(")) {
+			for (int i = 0; i < words.length; i++) {
+				if(words[i].equals("(")) {
+				stack.push(words[i]);
+				}
+			}
+			for (int i = 0; i < words.length; i++) {
+				if(words[i].equals(")")) {
+					stack.pop();
+				}
+			}
+			if (stack.empty()) {
+				System.out.println("true");
+			}
+			else {
+				System.out.println("false");
+			}
+		}
+		else {
+			System.out.println("false");
+		}
+
+	}
+}
+======================================= 실행 결과 =======================================
+판단할 문자 입력 >> 
+()()
+true
+
+판단할 문자 입력 >> 
+(())()
+true
+
+판단할 문자 입력 >> 
+)()(
+false
+
+판단할 문자 입력 >> 
+(()(
+false
+
+
+
+
+
+
+
