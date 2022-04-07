@@ -1,0 +1,62 @@
+//문제1
+int n = input.nextInt();
+int m = input.nextInt();
+
+for (int j = 0; j < m; j++) {
+	for (int i = 0; i < n; i++) {
+		System.out.print("*");			
+	}
+	System.out.println();
+}
+================실습 결과================
+3(입력)
+5(입력)
+***
+***
+***
+***
+***
+
+
+//2문제
+System.out.print("정수 입력 >>> ");
+int number = input.nextInt();
+int fac = 1;
+
+for(int n = number ;n > 0;n--) {
+	fac = fac * n;
+}
+System.out.println(number + "! = " + fac + "입니다.");	================실습 결과================
+정수 입력 >>> 5
+5! = 120입니다.
+
+
+//3문제
+System.out.print("정수 입력 >>> ");
+int n = input.nextInt();
+int sum = 0;
+		
+for (int i = 1; i <= n; i++) {
+	if (n % i == 0) {
+		sum = sum + i;
+	}
+	else {
+		continue;
+	}
+}
+System.out.println(n + "의 약수의 합은 " + sum + "입니다.");
+================실습 결과================		
+정수 입력 >>> 120
+120의 약수의 합은 360입니다.
+
+
+
+
+
+
+		
+
+
+
+
+

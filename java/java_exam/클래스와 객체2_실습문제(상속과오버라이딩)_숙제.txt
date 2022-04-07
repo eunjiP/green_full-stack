@@ -1,0 +1,68 @@
+//상속 오버라이딩 실습
+class Bank {
+	double getInterestRate(int money) {
+		return money * 0.01;
+	}
+}
+class BadBank extends Bank {
+	@Override
+	double getInterestRate(int money) {
+		return money * 0.1;
+		
+	}
+	
+}
+class NormalBank extends Bank {
+	@Override
+	double getInterestRate(int money) {
+		return money * 0.05;
+	}
+}
+class GoodBank extends Bank {
+	@Override
+	double getInterestRate(int mouny) {
+		return mouny * 0.03;
+	}
+}
+
+
+
+public class Test220215 {
+	public static void main(String[] args)  {	
+		
+		int money = 200;
+		
+		GoodBank gb = new GoodBank();
+		NormalBank nb = new NormalBank();
+		BadBank bb = new BadBank();
+		
+		System.out.println("200의 GoodBank이자 : " + gb.getInterestRate(money) + "원");
+		System.out.println("200의 NormalBank이자 : " + nb.getInterestRate(money) + "원");
+		System.out.println("200의 BadBank이자 : " + bb.getInterestRate(money) + "원");
+		
+		
+	}
+}
+=================실행 결과=================
+200의 GoodBank이자 : 6.0원
+200의 NormalBank이자 : 10.0원
+200의 BadBank이자 : 20.0원
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

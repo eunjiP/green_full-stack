@@ -1,0 +1,119 @@
+//실습1
+class Person {
+	static int mung = 0;
+		
+	public Person(String name) {
+		Person.mung++;
+		System.out.println(name + " is born.");
+	}
+	static int get_population() {
+		return Person.mung;
+	}
+}
+
+
+
+public class Test220215 {
+	public static void main(String[] args)  {
+		Scanner input = new Scanner(System.in);
+		
+		Person man = new Person("james");
+		Person woman = new Person("emily");
+		
+		System.out.println("전체 인구 수 : " + Person.get_population() + "명");
+	
+		
+	}
+}
+
+=================실행 결과=================
+james is born.
+emily is born.
+전체 인구 수 : 2명
+
+
+//실습2
+class Shop {
+	static int total = 0;
+	
+	static void sales(String manu1) {
+		if (manu1.equals("떡볶이")) {
+			Shop.total += 3000;
+		}
+		else if (manu1.equals("순대")) {
+			Shop.total += 1000;
+		}
+		else if (manu1.equals("튀김")) {
+			Shop.total += 500;
+		}
+		else if (manu1.equals("김밥")) {
+			Shop.total += 2000;
+		}
+	}
+	static void sales(String manu1, int num1) {
+		if (manu1.equals("떡볶이")) {
+			Shop.total = Shop.total + (3000 * num1);
+		}
+		else if (manu1.equals("순대")) {
+			Shop.total = Shop.total + (1000 * num1);
+		}
+		else if (manu1.equals("튀김")) {
+			Shop.total = Shop.total + (500 * num1);
+		}
+		else if (manu1.equals("김밥")) {
+			Shop.total = Shop.total + (2000 * num1);
+		}
+	}
+	static void sales(String manu1, int num1, String manu2, int num2) {
+		if (manu1.equals("떡볶이")) {
+			Shop.total = Shop.total + (3000 * num1);
+		}
+		else if (manu1.equals("순대")) {
+			Shop.total = Shop.total + (1000 * num1);
+		}
+		else if (manu1.equals("튀김")) {
+			Shop.total = Shop.total + (500 * num1);
+		}
+		else if (manu1.equals("김밥")) {
+			Shop.total = Shop.total + (2000 * num1);
+		}
+		if (manu2.equals("떡볶이")) {
+			Shop.total = Shop.total + (3000 * num2);
+		}
+		else if (manu2.equals("순대")) {
+			Shop.total = Shop.total + (1000 * num2);
+		}
+		else if (manu2.equals("튀김")) {
+			Shop.total = Shop.total + (500 * num2);
+		}
+		else if (manu2.equals("김밥")) {
+			Shop.total = Shop.total + (2000 * num2);
+		}
+	}
+	static int total() {
+		return Shop.total;
+	}
+}
+
+
+
+public class Test220215 {
+	public static void main(String[] args)  {	
+		Shop.sales("떡볶이");
+		Shop.sales("김밥", 2);
+		Shop.sales("튀김", 5);
+		Shop.sales("순대", 3, "김밥", 4);
+		
+		System.out.println("총 매출: " + Shop.total + "원");
+		
+	}
+}
+=================실행 결과=================
+총 매출: 20500원
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+//실습문제 1
+class Book {
+	String book;
+	String name;
+	void set_spec(String _book, String _name) {
+		book = _book;
+		name = _name;
+	}
+	
+	void print_info() {
+		System.out.println("책 제목 : " + book);
+		System.out.println("책 저자 : " + name);
+	}
+	
+}
+
+
+public class Test220215 {
+	public static void main(String[] args)  {
+		Scanner input = new Scanner(System.in);
+		
+		Book book1 = new Book();
+		Book book2 = new Book();
+		
+		book1.set_spec("파이썬", "민경태");
+		book2.set_spec("어린왕자", "생택쥐페리");
+		
+		book1.print_info();
+		book2.print_info();
+		
+	}
+}
+======================실습 결과======================
+책 제목 : 파이썬
+책 저자 : 민경태
+책 제목 : 어린왕자
+책 저자 : 생택쥐페리
+
+
+
+
+//실습문제2
+class Song {
+	String song;
+	String gaore;
+		void set_song(String _song, String _gaore) {
+		song = _song;
+		gaore = _gaore;
+		}
+		void print_song() {
+			System.out.println("노래제목 : " + song + "(" + gaore + ")");
+	}
+}
+class Singer {
+	String singer;
+	
+		void set_singer(String _singer) {
+			singer = _singer;
+		}
+		void hit_song(String _song) {
+			
+		}
+		void print_singer() {
+			System.out.println("가수이름 : " + singer);
+		}
+}
+
+
+public class Test220215 {
+	public static void main(String[] args)  {
+		Scanner input = new Scanner(System.in);
+		
+		Song song = new Song();
+		song.set_song("취중진담", "발라드");
+		
+		Singer singer = new Singer();
+		singer.set_singer("김동률");
+		
+		singer.print_singer();
+		song.print_song();
+======================실습 결과======================
+가수이름 : 김동률
+노래제목 : 취중진담(발라드)
+
+
+
+
+
+
+
+
+
+
+
