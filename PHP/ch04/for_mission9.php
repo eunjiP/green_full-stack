@@ -7,9 +7,9 @@
     $star = rand(3, 10);
     print $star . "<br>";
 
-    for($i = 0;$i < $star; $i++)
+    for($i = 1;$i <= $star; $i++)
     {
-        for($j=0; $j <= $i; $j++)
+        for($j=1; $j <= $i; $j++)
         {
             print "*";
         }
