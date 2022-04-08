@@ -1,0 +1,37 @@
+/* 
+
+CSS var() 함수 사용법 
+https://developer.mozilla.org/ko/docs/Web/CSS/var
+html, css 궁금한 것을 찾아볼때는 위에 mdn 사이트가 좋다.
+
+ex) 하얀색 텍스트 사용하고 싶을때
+color : #fff;
+대신 color : var(--white-color);
+transition : all 0.2s ease-in;
+대신 transition : var(--tran-02);
+
+위 방법을 사용하는 이유 나중에 테마를 쉽게 수정가능하다.
+--white-color 의 색상만 바꾸면 되기 때문
+
+*/
+
+:root {
+    /* ====== background color ====== */
+    --main-bg: #fff;
+    --pink-bg: #ffcdd2;
+    --footer-icon-bg: #222326;
+    --header-bg: #000;
+
+    /* ====== text color ====== */
+    --white-text: #fff;
+    --sign-text: #d9dadc;
+    --link-hover: #1ed760;
+    --footer-title: #919496;
+    --main-text: #000;
+
+    /* ====== Transition ====== */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
