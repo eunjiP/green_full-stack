@@ -12,15 +12,19 @@ header {background-color: black;
     font-weight: bolder;
 }
 header i { font-size: 2rem;
-    padding-left: 300px;
-    padding-right: 500px;
+    padding-left: 580px;
+    padding-right: 470px;
+    position: relative;
+    top: 3px;
     }
 header i:hover ,footer .fa-brands { cursor: pointer;}
 header .top1 a {text-decoration: none; color: #fff;}
 header .top1 {padding: 0 15px;}
 header .top2 a {text-decoration: none; color: #d9dadc; padding: 0 15px;}
 header div a:hover {color: #1ed760;}
-header div {display: inline-block;}
+header div {display: inline-block;
+    position: relative;
+    top: 25px;}
 
 main { text-align: center;
     background-color: #ffcdd2;}
@@ -28,24 +32,51 @@ main { text-align: center;
     padding-top: 4rem;
     padding-bottom: 2rem;}
 .container h4 {font-size: 1.5rem; font-weight: 500;
-    padding-bottom: 50px;}
+    padding-bottom: 20px;}
+main #download { font-size: 1rem;}
+main #download > a {color: #fff;
+    border: 1px solid #fff;
+    padding: 0 10px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    background-color: #000;
+    border-radius: 7px;
+    }
+main .s_text {font-size: 0.5rem;}
 main div {font-size: 0.75rem;
-    padding-top: 30px;
-    padding-bottom: 80px;}
+    padding: 20px 0 ;
+    padding-bottom: 20px;}
+#clause { padding-bottom: 80px;}
 .text_d {text-decoration: underline;}
-
-footer {background-color: #000000; height: 530px;}
-footer > i {font-size: 2.5rem;}
-footer > i > span{font-size: 2rem;}
+footer {background-color: #000000; height: 530px;
+    position: relative;}
+footer > i {font-size: 2.5rem;
+    position: absolute;
+    top: 80px;
+    left: 600px;}
+footer > i > span{font-size: 1.5rem;}
 footer > div {display: flex;
     display: inline-block;
     justify-content: center;
     line-height: 50px;}
-footer #manu1 {flex-direction: column; padding-left: 500px;}
-footer #manu2 {flex-direction: column; padding-left: 100px;}
-footer #manu3 {flex-direction: column; padding-left: 100px;}
+footer #manu1 {flex-direction: column; 
+    position: absolute;
+    padding-left: 100px;
+    top: 80px;
+    left: 700px;}
+footer #manu2 {flex-direction: column; padding-left: 100px;
+    position: absolute;
+    top: 80px;
+    left: 900px;}
+footer #manu3 {flex-direction: column; padding-left: 100px;
+    position: absolute;
+    top: 80px;
+    right: 1050px;}
 footer #manu4 {flex-direction: column; font-size: 2rem;}
 footer #manu4 i {border: 1px solid #222326;
+    position: relative;
+    left: 1500px;
+    top: 80px;
     border-radius: 50%;
     padding: 15px;
     font-size: 25px;
@@ -58,10 +89,12 @@ footer .title {color: #919496;
 footer i, .manu, footer span {color: #fff;}
 footer .bottom, .bottom > span {color: #919496;
     position: relative;
-    left: 190px;
-    top: 90px;
+    left: 320px;
+    top: 190px;
     padding-right: 15px;
     }
-.bottom > div {position: relative; left: 1220px;}
+.bottom > div {position: relative; left: 1240px;
+    top: 120px;
+    line-height: 25px;}
 footer .bottom {display: block;
     font-size: 13px;}
