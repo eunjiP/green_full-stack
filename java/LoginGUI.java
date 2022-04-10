@@ -1,12 +1,13 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.beans.Statement;
-import java.sql.Connection;
+import java.net.Socket;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 public class LoginGUI extends JFrame implements ActionListener {
-	
+	//*************** GUI ***************
 	//메인 패널 ********************************************
 	JPanel mainWindowPanel = new JPanel();
 	//로그인 창 관련 *****************************************
@@ -23,9 +24,17 @@ public class LoginGUI extends JFrame implements ActionListener {
 	JButton singUpExecuteButton;	//회원가입 버튼
 	JButton singUpCancleButton;	//회원가입 취소 버튼(로그인창으로 돌아감)
 	
+	//*************** 채팅 서버 ***************
+	String serverIP;	//서버주소
+	int serverPort;		//서버포트
+	Statement stmt; 
 	
-	//LoginGUI클래스의 생성자
-	public LoginGUI() {
+	//LoginGUI클래스의 생성자(채팅서버의 주소, 채팅서버의 포트, DB와 연결되 객체)
+	public LoginGUI(String serverIP, int serverport, Statement stmt) {
+		this.serverIP = serverIP;
+		this.serverPort = serverport;
+		this.stmt = stmt;
+		
 		this.setTitle("Login");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//화면의 해상도를 구한다
@@ -81,27 +90,57 @@ public class LoginGUI extends JFrame implements ActionListener {
 	}
 	
 	protected boolean signUpQuery(String id, String pw, String nickName) {
-		Connection connect = new DBConnectionFactory().getConnection();
-		Statement stmt = new Statement(connect);
-		Statement stmt = connect.createStatement();
-		
 		String query = "insert into users values" + 
 				"('" + id + "', '" + pw + "', '" + nickName + "');";
-		boolean result = stmt.executeUpdate(query);
-		return result;
-	}
 		
+		try {
+			
+			int result = stmt.executeUpdate(query);
+			if(result == 1) {
+				System.out.println("회원가입이 정상적으로 이루어졌습니다.");
+			}
+			
+		}catch (Exception e) {
+			System.out.println("Error : query문이 잘못되었습니다. 확인 바람.");
+			System.out.println("Error : ID혹은 닉네임이 중복입니다.");
+		}
+		
+		return true;
+	}
 	
+	protected String loginQuery(String id, String pw) {
+		String query = "select * from users where " + 
+				"user_id = '" + id + "' and user_pw = '" + pw + "'";
+		try {
+			ResultSet result = stmt.executeQuery(query);
+			if(result.next()) {
+				String nickName = result.getString("user_nickName");
+				return nickName;
+			}
+		} catch (Exception e) {
+			System.out.println("Error : id와 pw가 틀렸습니다!");
+		}
+		return null;
+	}
 	
-	
-	
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton button = (JButton) e.getSource();
 		//내가 로그인 버튼을 눌렀다.
 		if(button == loginButton) {
-			
+			String nickName = loginQuery(loginTextField.getText(), pwTextField.getText());
+			if(nickName != null) {
+				try {
+					Socket socket = new Socket(serverIP, serverPort);
+					System.out.println("채팅Server 접속에 성공하였습니다.");
+					//ChatRoom또한 런어블이라서 스레드생성
+					Thread chatThread = new Thread(new ChatRoom(loginTextField.getText(), socket));
+					chatThread.start();
+				} catch (Exception e2) {
+					System.out.println("Error : 채팅Server가 열려있지 않습니다.");
+				}
+			}
 		}
 		//내가 회원가입 버튼을 눌렀다
 		else if(button == singUpButton) {
@@ -110,17 +149,15 @@ public class LoginGUI extends JFrame implements ActionListener {
 		}
 		//회원가입 창에서 회원가입 시도 버튼을 눌렀다
 		else if(button == singUpExecuteButton) {
-			
+			System.out.println("회원가입을 시도합니다.");
+			//회원가입창의 텍스트필드에서 문자열들을 가져와서 쿼리문으로 만들어 전송한다.
+			signUpQuery(loginTextField.getText(), pwTextField.getText(), nickNameTextField.getText());
 		}
 		//회원가입 창에서 취소 버튼을 눌렀다
 		else if(button == singUpCancleButton) {
 			System.out.println("로그인 창으로 이동합니다.");
 			login_panel_open();  //로그인 창을 띄움
 		}
-	}
-	
-	public static void main(String[] args) {
-		new LoginGUI();
 	}
 	
 	//로그인 화면을 띄우는 메소드
