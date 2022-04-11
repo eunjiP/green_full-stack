@@ -1,0 +1,21 @@
+20220411 스터디 활동
+깃허브과  Visual Studio Code 연동
+VSC > GitHub설치 > 깃허브 로그인
+> VSC에 하단 터미널에서 만든 저장소 설치 방법 따라 설치와 연동하기
+
+
+* 유용한 사이트 모음 *
+- 깃허브
+https://hackmd.io/@oW_dDxdsRoSpl0M64Tfg2g/ByfwpNJ-K
+- vscode 익스텐션
+https://juliestruly.tistory.com/44
+- vscode 개발자 폰트 적용
+https://velog.io/@woo0_hooo/vscode-%EC%97%90-%ED%8F%B0%ED%8A%B8-%EC%A0%81%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%BD%94%EB%94%A9%ED%95%98%EA%B3%A0-%EC%8B%B6%EA%B2%8C-%EB%A7%8C%EB%93%A4%EA%B8%B0
+- vscode 에서 php 디버깅 사용
+https://inveglo.tistory.com/entry/php-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95-window-Visual-Studio-Code-php
+
+터미널 계정 변경 방법 참고 - https://somjang.tistory.com/entry/Git-Git-Bash-%ED%84%B0%EB%AF%B8%EB%84%90-%EA%B3%84%EC%A0%95-%EB%B3%80%EA%B2%BD-%EB%B0%A9%EB%B2%95
+
+
+
+
