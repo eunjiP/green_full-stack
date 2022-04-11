@@ -1,5 +1,5 @@
 <?php
-    //이 배열은 순서와는 상관없는 배열
+    //이 배열은 순서와는 상관없는 배열-시퀀스(순서)가 없는 배열
     $freshman = array(
         //키    => 값
         "David" => "Computer",
@@ -11,7 +11,7 @@
 
     print_r($freshman);
 
-    print "<br>";
+    print "<br><br>";
     print $freshman["David"] . "<br>";
     print $freshman["Alice"] . "<br>";
     print $freshman["Elsa"] . "<br>";
@@ -26,6 +26,7 @@
     print $freshman["Frank"] . "<br>";
 
     $freshman[0] = "안녕";
+    $freshman["0"] = "Hello";   //동일한 결과
     print "<br><br>";
     print_r($freshman);
 

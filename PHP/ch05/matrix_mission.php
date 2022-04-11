@@ -13,9 +13,9 @@
     $names = array("영수", "순자", "영철", "옥순", "철수");
     $each_scores = array(0, 0, 0);
     print "-- 합계 --<br>";
-    for($i = 0; $i<count($scores); $i++)
+    for($i = 0; $i<count($scores); $i++)    //0~4
     {
-        for($j = 0; $j <count($scores[$i]);$j++)
+        for($j = 0; $j <count($scores[$i]);$j++)    //0~2
         {
              $each_scores[$i] += $scores[$i][$j];
         }
