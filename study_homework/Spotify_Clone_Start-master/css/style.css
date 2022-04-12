@@ -22,7 +22,7 @@ header .top1 a {text-decoration: none; color: #fff;}
 header .top1 {padding: 0 15px;}
 header .top2 a {text-decoration: none; color: #d9dadc; padding: 0 15px;}
 header div a:hover {color: #1ed760;}
-header div {display: inline-block;
+header div div {display: inline-block;
     position: relative;
     top: 25px;}
 
@@ -43,14 +43,14 @@ main #download > a {color: #fff;
     border-radius: 7px;
     }
 main .s_text {font-size: 0.5rem;}
-main div {font-size: 0.75rem;
+main div div {font-size: 0.75rem;
     padding: 20px 0 ;
     padding-bottom: 20px;}
 #clause { padding-bottom: 80px;}
 .text_d {text-decoration: underline;}
 footer {background-color: #000000; height: 530px;
     position: relative;}
-footer > i {font-size: 2.5rem;
+footer div > i {font-size: 2.5rem;
     position: absolute;
     top: 80px;
     left: 600px;}
