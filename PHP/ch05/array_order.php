@@ -21,6 +21,10 @@
     print "<br>";
     print "copy : ";
     print_r($copy_arr_1);   //값이 정렬 되면서 key가 사라진다.
+
+    print "<br>";
+    print "origin : ";
+    print_r($arr_age);      //origin은 변하지 않았다.
     print "<br>----------------------------<br>";
 
     //키 정렬
