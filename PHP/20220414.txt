@@ -1,0 +1,15 @@
+form태그에 method="post"하면 post
+
+나머지는 method="get"방식
+'?'로 시작하고, '키=value' 형식으로 표시 =>쿼리스트링
+
+post방식으로 보내면 i_board=10만 post방식으로 전달(주소창에 효시)되고 나머지는 바디에 담아서 전송
+get방식은 주소창에 키값 value값이 같이 담겨서 전송(주소창에 보인다-보안에 안좋다)
+
+## crud
+C - Create > insert	(생성)
+R - Read > select	(읽기)
+U - Update - update	(수정)
+D - Delete - delete	(삭제)
+
+
