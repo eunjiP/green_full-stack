@@ -4,7 +4,7 @@
     print "PHP VERSION : " . PHP_VERSION . "<br>";
     print "OS : " . PHP_OS . "<br>";
 
-    $GLOBALS["foo"] = 10;       //어느 파일에서도 사용가능한 상수
+    $GLOBALS["foo"] = 10;       //파일내에서 전역으로 사용가능한 상수
     $GLOBALS["foo"] = 11;
 
     print "-- 글로벌 상수 -- <br>";     //php superglobal (슈퍼 글로벌 상수)

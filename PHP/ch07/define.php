@@ -12,4 +12,18 @@
     print NAME . "<br>";
     print NAME2 . "<br>";
     print STAND_AGE;
+    print "---------------<br>";
+
+    function fn1() 
+    {
+        print "fn1 : " . NAME . "<br>";
+    }
+
+    function fn2()
+    {
+        define("TEST" , "테스트");
+    }
+    fn1();
+    fn2();  //호출만 되면 전역으로 사용가능 (호출하지 않으면 존재x)
+    print TEST . "<br>";
 ?> 

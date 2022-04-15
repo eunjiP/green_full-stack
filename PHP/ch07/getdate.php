@@ -1,13 +1,13 @@
 <?php
-    $seoul = getdate();     //처음 셋팅한 지역의 시간
+    $seoul = getdate();     //처음 셋팅한 지역의 시간을 배열로 저장
 
     print "현재 시간 : " . 
-        $seoul["year"] . "년 " . 
+        $seoul["year"] . "년 " .        
         $seoul["mon"] . "월 " . 
         $seoul["mday"] . "일 " . 
         $seoul["hours"] . "시 " . 
         $seoul["minutes"] . "분 " . 
-        $seoul["seconds"] . "초";
+        $seoul["seconds"] . "초";   //배열로 저장된거라 키값으로 호출한다
     
     print "<br>-----------------<br>";
 
