@@ -24,6 +24,7 @@
     <title>학생관리프로그램</title>
 </head>
 <body>
+    <a href="main.html"><button>메인으로</button></a>
     <a href="list.php"><button>리스트</button></a>
     <a href="mod.php?s_id=<?=$s_id?>"><button>점수 등록/수정</button></a>
     <a href="del_proc.php?s_id=<?=$s_id?>"><button>학생 삭제</button></a>

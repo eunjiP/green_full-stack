@@ -18,7 +18,6 @@
     <h1>학생 리스트</h1>
     <a href="main.html"><button>메인으로</button></a>
     <a href="sging_up.php"><button>학생등록</button></a>
-    <a href="score.php"><button>점수등록</button></a>
     <table>
         <tr>
             <th>학번</th>
