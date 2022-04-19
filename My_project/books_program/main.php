@@ -1,6 +1,13 @@
 <?php
     // 로그인 후에 이용할 수 있도록 하고 로그아웃을 누르기 전까지 학번은 계속 옮기는 페이지에 이동시킨다.
     $id = $_GET['id'];
+    include "db.php";
+
+    $conn = get_conn();
+    $sql = "SELECT lender FROM members WHERE id = $id";
+    $result = mysqli_query($conn, $sql);
+    $name = (mysqli_fetch_assoc($result))['lender'];
+    mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -13,14 +20,15 @@
     <style>
         body {text-align: center;}
         body > div {border: 1px dotted #000;
-            border-radius: 10px;}
+            border-radius: 10px;
+            padding-bottom: 25px}
         div > div {margin-bottom: 20px;}
     </style>
 </head>
 <body>
-    <h1>원하시는 메뉴를 선택해주세요</h1>
+    <h1>반갑습니다. <?=$name?>님</h1>
     <div>
-        <h4>안녕하세요 도서관리프로그램입니다<br>😀원하시는 서비스를 선택해주세요😀</h4>
+        <h4>😀원하시는 서비스를 선택해주세요😀</h4>
         <div><a href="lent.php?id=<?=$id?>"><button>도서 대여</button></a></div>
         <div><a href="return.php?id=<?=$id?>"><button>도서 반납</button></a></div>
         <a href="login.php"><button>로그아웃</button></a>

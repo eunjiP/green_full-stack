@@ -1,4 +1,5 @@
-<!-- 로그인페이지 -->
+<!-- 관리자 로그인페이지 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,19 +17,16 @@
 </head>
 <body>
     <div>
-        <h1>도서관리프로그램</h1>
-        <h4>이용자의 학번과 이름을 입력해주세요😀</h4>
-        <form action="login_proc.php" method="post">
-            <div><input type="text" name="id" placeholder="학번" required></div>
-            <div><input type="text" name="lender" placeholder="이름" required></div>
+        <h1>관리자 페이지 입니다.</h1>
+        <h4>관리자의 아이디와 비밀번호를 입력해주세요😀</h4>
+        <form action="root_login.php" method="post">
+            <div><input type="text" name="id" placeholder="아이디" required></div>
+            <div><input type="password" name="pw" placeholder="비밀번호" required></div>
             <input type="submit" value="로그인">
             <input type="reset" value="초기화">
         </form>
         <div>
-            <div>처음 이용하시는 학생은 학생추가 후에 이용바랍니다!</div>
-            <a href="singup.html"><button>학생추가</button></a>
-            <a href="list.php"><button>학생리스트</button></a>
-            <a href="root.php"><button>관리자페이지</button></a>
+            <a href="login.php"><button>학생로그인창</button></a>
         </div>
     </div>
 </body>
