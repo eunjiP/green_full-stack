@@ -9,5 +9,13 @@
         return mysqli_connect(URL, NAME, PW, DB_NAME);
     }
 
+    function s_avg(...$val)
+    {
+        $sum = 0;
+        for ($i=0; $i < count($val) ; $i++) { 
+            $sum += $val[$i];
+        }
+        return $sum/count($val);
+    }
     
 ?>

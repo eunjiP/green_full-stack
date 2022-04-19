@@ -34,12 +34,10 @@
     <div>국어점수 : <?=$k_score?></div>
     <div>수학점수 : <?=$m_score?></div>
     <div>영어점수 : <?=$e_score?></div>
+    <br>
     <?php
-    if($k_score > 0 && $m_score > 0 && $e_score > 0)
-    {
-        $s_avg = ($k_score + $m_score + $e_score)/3;
-        print "<br><div>평균점수는 ${s_avg}점입니다.";
-    }
+        $s_avg = s_avg($k_score, $m_score, $e_score);
+        print "평균점수는 ${s_avg}점입니다.";
     ?>
 </body>
 </html>
