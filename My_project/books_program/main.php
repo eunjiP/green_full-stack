@@ -16,13 +16,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/57749be668.js" crossorigin="anonymous"></script>
     <title>도서관리프로그램</title>
     <style>
         body {text-align: center;}
         body > div {border: 1px dotted #000;
             border-radius: 10px;
-            padding-bottom: 25px}
-        div > div {margin-bottom: 20px;}
+            }
+        div > div {margin-bottom: 10px;}
+        i {font-size:2rem; color: #000;}
+        #out { text-align:right;
+            margin-right: 5vw;}
     </style>
 </head>
 <body>
@@ -32,7 +36,7 @@
         <div><a href="lent.php?id=<?=$id?>"><button>도서 대여</button></a></div>
         <div><a href="return.php?id=<?=$id?>"><button>도서 반납</button></a></div>
         <div><a href="b_list.php?id=<?=$id?>"><button>도서 목록</button></a></div>
-        <a href="login.php"><button>로그 아웃</button></a>
+        <div id="out"><a href="login.php"><i class="fa-solid fa-arrow-right-to-bracket"></i></a></div>
     </div>
 </body>
 </html>

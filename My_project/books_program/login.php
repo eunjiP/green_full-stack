@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/57749be668.js" crossorigin="anonymous"></script>
     <title>도서관리프로그램</title>
     <style>
         body {text-align: center;}
@@ -16,8 +17,8 @@
 </head>
 <body>
     <div>
-        <h1>도서관리프로그램</h1>
-        <h4>이용자의 학번과 비밀번호를 입력해주세요😀</h4>
+        <h1><i class="fa-solid fa-book"></i>도서관리프로그램<i class="fa-solid fa-book"></i></h1>
+        <h4>이용자의 학번과 비밀번호를 입력해주세요</h4>
         <form action="login_proc.php" method="post">
             <div><input type="text" name="id" placeholder="학번" required></div>
             <div><input type="password" name="pw" placeholder="비밀번호" required></div>
