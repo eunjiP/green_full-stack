@@ -1,4 +1,5 @@
 <?php
+    // 중복 선택된 책의 번호를 $_REQUEST를 이용하여 배열에 담아서 여러개 삭제가능
     include "db.php";
 
     $book_id = $_REQUEST['book_id'];

@@ -1,5 +1,5 @@
 <?php
-    // 대여페이지 구현
+    // 학생용 대여페이지 구현
     $id = $_GET['id'];
 
     include "db.php";
