@@ -31,7 +31,8 @@
         <h4>😀원하시는 서비스를 선택해주세요😀</h4>
         <div><a href="lent.php?id=<?=$id?>"><button>도서 대여</button></a></div>
         <div><a href="return.php?id=<?=$id?>"><button>도서 반납</button></a></div>
-        <a href="login.php"><button>로그아웃</button></a>
+        <div><a href="b_list.php?id=<?=$id?>"><button>도서 목록</button></a></div>
+        <a href="login.php"><button>로그 아웃</button></a>
     </div>
 </body>
 </html>

@@ -3,19 +3,19 @@
     include "db.php";
 
     $id = $_POST['id'];
-    $lender = $_POST['lender'];
+    $pw = $_POST['pw'];
     
     $conn = get_conn();
-    $sql = "SELECT * FROM members";
+    $sql = "SELECT id, pw FROM members";
     $result = mysqli_query($conn, $sql);
     mysqli_close($conn);
 
     while($row = mysqli_fetch_assoc($result))
     {
         $id2 = $row['id'];
-        $lender2 = $row['lender'];
+        $pw2 = $row['pw'];
 
-        if($id === $id2 && $lender === $lender2)
+        if($id === $id2 && $pw === $pw2)
         {
             header("Location: main.php?id=$id");
         }
@@ -29,14 +29,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인 실패</title>
     <style>
-        body {line-height: 30px;}
+        body {line-height: 30px; text-align: center;}
+        #red {color:red;}
+        .size {font-weight: bolder; font-size:1.2rem}
     </style>
 </head>
 <body>
-    <h1>로그인에 실패하였습니다!</h1>
-    <div>학번과 이름을 정확히 입력해주세요</div>
-    <div>혹시 학생등록을 하지 않으신 분은 학생등록 후에 이용이 가능합니다.</div>
+    <h1>로그인에 <span id="red">실패</span>하였습니다!</h1>
+    <div><span class="size">학번</span>과 <span class="size">비밀번호</span>를 정확히 입력해주세요</div>
+    <div>혹시 학생등록을 하지 않으신 분은 가입 후에 이용이 가능합니다.</div>
     <a href="login.php"><button>다시 로그인</button></a>
-    <a href="singup.html"><button>학생추가</button></a>
+    <a href="singup.html"><button>가입하기</button></a>
 </body>
 </html>

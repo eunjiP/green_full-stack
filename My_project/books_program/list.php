@@ -14,20 +14,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>학생 리스트</title>
     <style>
-        body { margin: 30px}
-        div {margin: 10px 0}
-        table {border: 1px solid #000;
+        body { text-align: center;}
+        #button {margin-bottom: 10px}
+        table {border: 2px solid #000;
             border-collapse: collapse;
-            width: 20rem;}
+            width: 40vw;
+            margin-left: 28vw}
         th, td {border: 1px dotted #000;
             text-align: center;}
+        th {border-bottom:2px solid #000;}
+        #footer {margin-top: 10px}
+        span {font-weight: bolder;
+            font-size:1.3rem}
     </style>
 </head>
 <body>
     <h1>현재까지 등록된 학생 리스트</h1>
-    <div>
+    <div id="button">
         <a href="login.php"><button>로그인</button></a>
-        <a href="singup.html"><button>학생추가</button></a>
+        <a href="singup.html"><button>가입하기</button></a>
     </div>
     <table>
         <tr>
@@ -49,6 +54,6 @@
             }
         ?>
     </table>
-    <div>총 학생의 수는 <?=$count?>명 입니다.</div>
+    <div id="footer">총 학생의 수는 <span><?=$count?>명</span>입니다.</div>
 </body>
 </html>
