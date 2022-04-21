@@ -13,6 +13,7 @@
             border-radius: 10px;
             padding-bottom:30px}
         #footer {margin-top: 10px}
+        button {cursor:pointer;}
     </style>
 </head>
 <body>

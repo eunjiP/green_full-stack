@@ -27,6 +27,7 @@
         i {font-size:2rem; color: #000;}
         #out { text-align:right;
             margin-right: 5vw;}
+        button {cursor:pointer;}
     </style>
 </head>
 <body>

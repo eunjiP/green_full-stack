@@ -24,6 +24,7 @@
             margin-left: 30vw;}
         button {margin-bottom: 10px;}
         #button {margin-top: 10px;}
+        .cursor, label {cursor:pointer;}
     </style>
 </head>
 <body>
@@ -39,13 +40,13 @@
                     $title = $row['title'];
                     $book_id = $row['book_id'];
 
-                    print "<div><label><input type='checkbox' name='book_id[]' value='$book_id'>$title</label></div>";
+                    print "<div><label><input class='cursor' type='checkbox' name='book_id[]' value='$book_id'>$title</label></div>";
                 }
             ?>
         </div>
         <div id="button">
-            <input type="submit" value="선택한 책 반납">
-            <input type="reset" value="초기화">
+            <input class='cursor' type="submit" value="선택한 책 반납">
+            <input class='cursor' type="reset" value="초기화">
         </div>
     </form>
 </body>

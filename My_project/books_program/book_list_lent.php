@@ -25,6 +25,7 @@
             font-size: 1.3rem;}
         .center {text-align: center;
             margin: 20px 0}
+        button {cursor:pointer;}
     </style>
 </head>
 <body>

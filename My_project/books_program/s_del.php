@@ -27,7 +27,7 @@
             text-align: center;}
         body button {margin-bottom: 10px}
         span {color:#ff0000}
-        
+        .cursor {cursor:pointer;}
     </style>
 </head>
 <body>
@@ -47,8 +47,8 @@
     ?>
     </div>
     <div class="button">
-        <input type="submit" value="삭제">
-        <input type="reset" value="초기화">
+        <input class='cursor' type="submit" value="삭제">
+        <input class='cursor' type="reset" value="초기화">
     </div>
     </form>
 </body>

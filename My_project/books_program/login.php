@@ -13,6 +13,7 @@
             border-radius: 10px;}
         div > form{line-height: 30px;}
         div > div {margin: 10px;}
+        button, .cursor {cursor:pointer;}
     </style>
 </head>
 <body>
@@ -22,8 +23,8 @@
         <form action="login_proc.php" method="post">
             <div><input type="text" name="id" placeholder="학번" required></div>
             <div><input type="password" name="pw" placeholder="비밀번호" required></div>
-            <input type="submit" value="로그인">
-            <input type="reset" value="초기화">
+            <input class='cursor' type="submit" value="로그인">
+            <input class='cursor' type="reset" value="초기화">
         </form>
         <div>
             <div>처음 이용하시는 학생은 가입 후에 이용바랍니다!</div>

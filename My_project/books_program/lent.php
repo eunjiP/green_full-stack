@@ -24,6 +24,7 @@
         #check {text-align:left;
             margin-left: 30vw;}
         #button {margin-top: 10px;}
+        .cursor, label {cursor:pointer;}
     </style>
     
 </head>
@@ -40,14 +41,14 @@
                     $book_id = $row['book_id'];
                     $lender_id = $row['lender_id'];
 
-                    if($lender_id == null) { print "<div><label><input type='checkbox' name='book_id[]' value='$book_id'>$title</label></div>"; }
+                    if($lender_id == null) { print "<div><label><input class='cursor' type='checkbox' name='book_id[]' value='$book_id'>$title</label></div>"; }
                     else { continue; }
                 }
             ?>
         </div>
         <div id="button">
-            <input type="submit" value="선택 항목 대여">
-            <input type="reset" value="초기화">
+            <input class='cursor' type="submit" value="선택 항목 대여">
+            <input class='cursor' type="reset" value="초기화">
         </div>
     </form>
 </body>

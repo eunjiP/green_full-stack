@@ -24,6 +24,7 @@
         table a:visited, table a:link {color:#000;}
         table a:hover { background-color: #000;
             color: #fff;}
+        button {cursor:pointer;}
     </style>
 </head>
 <body>

@@ -27,6 +27,7 @@
         #footer {margin-top: 10px}
         span {font-weight: bolder;
             font-size:1.3rem}
+        button {cursor:pointer;}
     </style>
 </head>
 <body>

@@ -17,6 +17,7 @@
         form {line-height: 30px;}
         #button1 {text-align:left;margin-left:30vw;}
         #button1, #button2 {margin-bottom: 10px}
+        .cursor {cursor:pointer;}
     </style>
 </head>
 <body>
@@ -28,8 +29,8 @@
             <div><input type="text" name="title" placeholder="책 제목"></div>
             <div><input type="text" name="author" placeholder="책 저자"></div>
             <div id="button2">
-                <input type="submit" value="도서 등록">
-                <input type="reset" value="초기화">
+                <input class='cursor' type="submit" value="도서 등록">
+                <input class='cursor' type="reset" value="초기화">
             </div>
         </form>
     </div>

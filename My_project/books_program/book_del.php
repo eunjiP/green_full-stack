@@ -20,6 +20,7 @@
         h1, #button2 {text-align: center;}
         #button1 {text-align:left;}
         #button1, #button2 {margin: 10px 0;}
+        .cursor, label {cursor:pointer;}
     </style>
 </head>
 <body>
@@ -32,12 +33,12 @@
                 $book_id = $row['book_id'];
                 $title = $row['title'];
                 $author = $row['author'];
-                print "<div><label><input type='checkbox' name='book_id[]' value='$book_id'>$title / $author</label></div>";
+                print "<div><label><input class='cursor' type='checkbox' name='book_id[]' value='$book_id'>$title / $author</label></div>";
             }
         ?>
         <div id="button2">
-            <input type="submit" value="삭제">
-            <input type="reset" value="초기화">
+            <input class='cursor' type="submit" value="삭제">
+            <input class='cursor' type="reset" value="초기화">
         </div>
     </form>
 </body>
