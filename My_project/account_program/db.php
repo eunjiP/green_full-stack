@@ -1,3 +1,4 @@
+<!-- 데이터 베이스 연결 -->
 <?php
     define('URL', 'Localhost');
     define('NAME', 'root');

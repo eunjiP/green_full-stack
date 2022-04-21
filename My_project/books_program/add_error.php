@@ -1,3 +1,4 @@
+<!-- 중복되는 책을 추가시에 뜨는 에러 페이지 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

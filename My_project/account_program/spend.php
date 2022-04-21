@@ -1,3 +1,4 @@
+<!-- 지출 등록 하는 페이지 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
