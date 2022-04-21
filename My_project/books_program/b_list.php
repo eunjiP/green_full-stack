@@ -14,9 +14,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/57749be668.js" crossorigin="anonymous"></script>
     <title>도서관리프로그램</title>
     <style>
         body { margin: 50px;}
+        i {font-size:1.5rem; color:#000}
         div {margin-bottom: 10px}
         h1 {text-align: center;}
         table {border: 2px solid #000;
@@ -30,7 +32,7 @@
 </head>
 <body>
     <h1>현재 등록되어 있는 책의 목록</h1>
-    <div><a href="main.php?id=<?=$id?>"><button>메인으로</button></a></div>
+    <div><a href="main.php?id=<?=$id?>"><i class="fa-solid fa-house"></i></a></div>
     <table>
         <tr>
             <th>제목</th>

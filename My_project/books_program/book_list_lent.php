@@ -16,8 +16,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/57749be668.js" crossorigin="anonymous"></script>
     <title>관리자용-책 대여현황</title>
     <style>
+        i {font-size:1.5rem; color:#000}
         table {width:100%}
         span {color:red; font-weight: bold;
             font-size: 1.3rem;}
@@ -27,7 +29,7 @@
 </head>
 <body>
     <h1 class="center">현재 대여중인 책의 목록</h1>
-    <a href="root_main.php"><button>메인</button></a>
+    <a href="root_main.php"><i class="fa-solid fa-house"></i></a>
     <a href="book_list.php"><button>전체 리스트</button></a>
     <table>
         <tr>

@@ -15,8 +15,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/57749be668.js" crossorigin="anonymous"></script>
     <title>도서관리프로그램</title>
     <style>
+        i {font-size:1.5rem; color:#000}
         body { text-align: center;}
         #check {text-align:left;
             margin-left: 30vw;}
@@ -27,7 +29,7 @@
 <body>
     <h1>대여한 리스트</h1>
     <h4>반납하실 책을 선택해주세요</h4>
-    <a href="main.php?id=<?=$id?>"><button>메인으로</button></a>
+    <a href="main.php?id=<?=$id?>"><i class="fa-solid fa-house"></i></a>
     <form action="return_proc.php" method="post">
         <input type="hidden" name="id" value="<?=$id?>">
         <div id="check">
@@ -37,7 +39,7 @@
                     $title = $row['title'];
                     $book_id = $row['book_id'];
 
-                    print "<div><input type='checkbox' name='book_id[]' value='$book_id'>$title</div>";
+                    print "<div><label><input type='checkbox' name='book_id[]' value='$book_id'>$title</label></div>";
                 }
             ?>
         </div>

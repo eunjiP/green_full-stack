@@ -13,20 +13,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/57749be668.js" crossorigin="anonymous"></script>
     <title>관리자용-책 리스트</title>
     <style>
+        i {font-size:1.5rem; color:#000}
         a { text-decoration: none;}
         table {width:100%;}
         h1{text-align: center;}
         button {margin-bottom:10px}
-        a:visited, a:link {color:#000;}
-        a:hover { background-color: #000;
+        table a:visited, table a:link {color:#000;}
+        table a:hover { background-color: #000;
             color: #fff;}
     </style>
 </head>
 <body>
     <h1>현재 등록된 책의 목록</h1>
-    <a href="root_main.php"><button>메인</button></a>
+    <a href="root_main.php"><i class="fa-solid fa-house"></i></a>
     <a href="book_list_lent.php"><button>대여중인 도서현황</button></a>
     <table>
         <tr>
