@@ -15,7 +15,7 @@
         <div><input type="password" name="confirm_upw" placeholder="비밀번호 확인"></div>
         <div><input type="text" name="nm" placeholder="이름"></div>
         <div>성별 : <label>여자<input type="radio" name="gender" value="0"></label>
-                    <label>남자<input type="radio" name="gender" id="1"></label>
+                    <label>남자<input type="radio" name="gender" value="1"></label>
         </div>
         <div>
             <input type="submit" value="회원가입">
