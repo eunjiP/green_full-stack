@@ -1,0 +1,28 @@
+<!-- 여기에 로그인이 안되어있을 경우 볼수 없겠끔 구현가능(자주사용하니 함수로 만드는것도 좋다) -->
+<!-- 로그인하지 않는 사용자도 글쓰기 버튼은 보이지만 글쓰기페이지로는 갈 수 없고 로그인창으로 이동하게 구현 -->
+<?php
+    include_once "db/db_board.php";
+    session_start();
+    del_board_list();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기</title>
+</head>
+<body>
+    <h1>글쓰기</h1>
+    <!-- 중요한 PK값은 form태그 안에 넣고 보내지 않도록 주의!!(변경가능해서) -->
+    <form action="write_proc.php" method="post">
+        <div><input type="text" name="title" placeholder="제목"></div>
+        <div><textarea name="ctnt" placeholder="내용"></textarea></div>
+        <div>
+            <input type="submit" value="글쓰기">
+            <input type="reset" value="초기화">
+        </div>
+    </form>
+</body>
+</html>
