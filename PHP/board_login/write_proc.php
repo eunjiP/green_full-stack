@@ -15,4 +15,8 @@
     ];
     
     $result = ins_board($param);
-    header("Location: list.php");
+    if($result) {
+        header("Location: list.php");
+    }
+    
+   

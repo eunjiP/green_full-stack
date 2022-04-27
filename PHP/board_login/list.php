@@ -1,9 +1,24 @@
 <?php
+    include_once "db/db_board.php";
     session_start();
+    $nm = "";
+    $page = $_GET['page'];
+    //만약 쿼리스트링이 없으면 첫페이지를 볼수 있게 처리
+    if(!$page) { $page = 1;}
+    //나머지는 넘어온 페이지수를 정수로 형변환 시켜준다
+    else { $page = intval($page);}
+    print "page : " . $page;
     if(isset($_SESSION['login_user'])) {
         $login_user = $_SESSION['login_user'];
         $nm = $login_user['nm'];
     }
+    $row_count = 20;
+    $param = [
+        'row_count' => 20,
+        'start_idx' => ($page-1) * $row_count
+    ];
+    $paging_count = sel_paging_count($param);
+    $result = sel_board_list($param);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,12 +39,57 @@
             ?>
             <div>
                 <a href="list.php">리스트</a>
-                <a href="write.php">글쓰기</a>
-                <?=isset($_SESSION['login_user']) ? "<a href='logout.php'>로그아웃</a>" : "<a href='login.php'>로그인</a>" ?>
+            <?php
+                if(isset($_SESSION['login_user'])) { ?>
+                    <a href='write.php'>글쓰기</a>
+                    <a href='logout.php'>로그아웃</a>
+                <?php }
+                else { ?>
+                    <a href='login.php'>로그인</a>
+                <?php }
+            ?>
             </div>
         </header>
         <main>
             <h1>리스트</h1>
+            <!-- 글번호, 제목, 작성자명, 등록일시(테이블형식) -->
+            <table>
+                <tr>
+                    <th>글번호</th>
+                    <th>제목</th>
+                    <th>작성자명</th>
+                    <th>등록일시</th>
+                </tr>
+                <?php
+                    while($row = mysqli_fetch_assoc($result)) {
+                        $i_board = $row['i_board'];
+                        $title = $row['title'];
+                        $nm = $row['nm'];
+                        $created_at = $row['created_at'];
+
+                        print "<tr>";
+                        print "<td>$i_board</td>";
+                        print "<td><a href='detail.php?i_board=$i_board'>$title</a></td>";
+                        print "<td>$nm</td>";
+                        print "<td>$created_at</td>";
+                        print "</tr>";
+                    }
+                ?>
+                <!-- <?php //foreach문을 사용하는 방법
+                    foreach ($result as $item) { ?>
+                    <tr>
+                        <td><?=$item['i_board']?></td>
+                        <td><a href="detail.php?i_board=<?=$item['i_board']?>"><?=$item['title']?></a></td>
+                        <td><?=$item['nm']?></td>
+                        <td><?=$item['created_at']?></td>
+                    </tr>
+                <?php } ?> -->
+            </table>
+            <div>
+                <?php for ($i=1 ; $i<= $paging_count ; $i++) { ?>
+                    <span><a href="list.php?page=<?=$i?>"><?=$i?></a></span>
+                <?php } ?>
+            </div>
         </main>
     </div>
 </body>

@@ -1,7 +1,8 @@
 <?php
     include_once "db.php";
 
-    function ins_user($param)
+    //join
+    function ins_user(&$param)
     {
         $uid = $param["uid"];
         $upw = $param["upw"];
@@ -19,8 +20,9 @@
         mysqli_close($conn);
         return $result;
     }
-
-    function sel_user($param) {
+    //&(주소값전달)를 붙여서 메모리를 낭비를 최소화
+    //login
+    function sel_user(&$param) {
         $uid = $param["uid"];
         $sql = "SELECT i_user, uid, upw, nm, gender
             FROM t_user
