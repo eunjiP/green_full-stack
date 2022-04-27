@@ -32,3 +32,19 @@
             header("Location: login.php");
         }
     }
+
+    function sel_board($param){
+        $i_board = $param['i_board'];
+
+        $conn = get_conn();
+        $sql =
+        "   SELECT A.i_board, A.title, A.created_at, A.i_user, A.ctnt, B.nm, B.i_user
+            FROM t_board A
+            INNER JOIN t_user B
+            ON A.i_user = B.i_user
+            WHERE A.i_board = $i_board
+        ";
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+        return mysqli_fetch_assoc($result);
+    }

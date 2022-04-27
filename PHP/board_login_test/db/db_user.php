@@ -30,3 +30,9 @@
         mysqli_close($conn);
         return mysqli_fetch_assoc($result);
     }
+
+    //session의 값 가지고 오는 함수
+    function sessioncall($key) {
+        session_start();
+        return $_SESSION["login_user"][$key];
+    }

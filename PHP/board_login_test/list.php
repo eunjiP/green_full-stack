@@ -57,7 +57,7 @@
 
                         print "<tr>";
                         print "<td>$i_board</td>";
-                        print "<td>$title</td>";
+                        print "<td><a href='detail.php?i_board=$i_board'>$title</td>";
                         print "<td>$nm</td>";
                         print "<td>$created_at</td>";
                         print "</tr>";
