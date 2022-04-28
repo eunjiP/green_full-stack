@@ -33,6 +33,21 @@
         }
     }
 
+    function next_board($param) {
+        $i_board = $param['i_board'];
+
+        $conn = get_conn();
+        $sql =
+        "   SELECT i_board FROM t_board
+            WHERE i_board > 110
+            ORDER BY i_board
+            LIMIT 1
+        ";
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+        return mysqli_fetch_assoc($result);
+    }
+
     function sel_board($param){
         $i_board = $param['i_board'];
 

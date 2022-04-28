@@ -19,7 +19,7 @@
     $nm = sel_board($param)['nm'];
     $created_at = sel_board($param)['created_at'];
     $ctnt = sel_board($param)['ctnt'];
-
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +31,10 @@
 </head>
 <body>
     <div><a href="list.php">리스트</a></div>
+    <div>
+        <a href="detail.php">이전글</a>
+        <a href="detail.php?i_board=<?=next_board($param)[i_board]?>">다음글</a>
+    </div>
     <?php if( $i_user === $result['i_user'] ) { ?>
     <div>
         <a href="mod.php"><button>수정</button></a>
