@@ -1,4 +1,7 @@
 <?php
+    //CSS와 PHP가 연결이 안되면 강제 새로고침을 해주어야함!
+    //사이트에사 Ctrl + F5
+
     include_once "db/db_board.php";
     session_start();
     $nm = "";
@@ -86,7 +89,9 @@
             </table>
             <div>
                 <?php for ($i=1 ; $i<= $paging_count ; $i++) { ?>
-                    <span><a href="list.php?page=<?=$i?>"><?=$i?></a></span>
+                    <span class="<?=$i===$page ? 'pageSelected' : ''?>">
+                    <a href="list.php?page=<?=$i?>"><?=$i?></a>
+                    </span>
                 <?php } ?>
             </div>
         </main>
