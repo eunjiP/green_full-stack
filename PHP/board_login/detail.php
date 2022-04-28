@@ -22,6 +22,8 @@
     $nm = sel_board($param)['nm'];
     $created_at = sel_board($param)['created_at'];
     $ctnt = sel_board($param)['ctnt'];
+    $next_board = sel_next_board($param);
+    $prev_board = sel_prev_board($param);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +35,14 @@
 </head>
 <body>
     <div><a href="list.php">리스트</a></div>
+    <div>
+        <?php if($prev_board !== 0) {?>
+            <a href="detail.php?i_board=<?=$prev_board?>"><button>이전글</button></a>
+        <?php } ?>
+        <?php if($next_board !== 0) {?>
+            <a href="detail.php?i_board=<?=$next_board?>"><button>다음글</button></a>
+        <?php } ?>
+    </div>
     <div>
         <!-- 해당 글 쓴 사람만 나타나도록 처리
         (nm으로 하게되면 동명이인일 경우 작동될 수 있다) -->

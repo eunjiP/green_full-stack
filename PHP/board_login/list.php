@@ -2,12 +2,10 @@
     include_once "db/db_board.php";
     session_start();
     $nm = "";
-    $page = $_GET['page'];
+    $page = 1;
     //만약 쿼리스트링이 없으면 첫페이지를 볼수 있게 처리
-    if(!$page) { $page = 1;}
-    //나머지는 넘어온 페이지수를 정수로 형변환 시켜준다
-    else { $page = intval($page);}
-    print "page : " . $page;
+    if(isset($_GET['page'])) { $page = intval($_GET['page']);}
+    // print "page : " . $page;
     if(isset($_SESSION['login_user'])) {
         $login_user = $_SESSION['login_user'];
         $nm = $login_user['nm'];
@@ -19,6 +17,7 @@
     ];
     $paging_count = sel_paging_count($param);
     $result = sel_board_list($param);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

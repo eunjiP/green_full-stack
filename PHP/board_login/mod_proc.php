@@ -9,6 +9,7 @@
         'ctnt' => $_POST['ctnt']
     ];
     $result = upd_board($param);
+    //쿼리문이 정상적으로 실행만 되면 무조건 결과가 1일 뜬다!
     if($result) {
         header("Location: detail.php?i_board=$i_board");
     }
