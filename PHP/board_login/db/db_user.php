@@ -27,7 +27,7 @@ use LDAP\Result;
     //login
     function sel_user(&$param) {
         $uid = $param["uid"];
-        $sql = "SELECT i_user, uid, upw, nm, gender
+        $sql = "SELECT i_user, uid, upw, nm, gender, profile_img
             FROM t_user
             WHERE uid = '$uid'";
         $conn = get_conn();

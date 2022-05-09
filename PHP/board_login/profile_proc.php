@@ -46,7 +46,15 @@
     //move_uploaded_file(업로드할 파일의 이름, 업로드 경로) => true/false를 리턴하는 함수
     $imageUpload = move_uploaded_file($tmp_img, $target_full_path . "/" . $target_filenm);
     if($imageUpload) {  //업로드 성공했을때
-        //TODO : 이전에 등록된 프사가 있으면 삭제!
+        //이전에 등록된 프사가 있으면 삭제!
+        //섹션에 프사정보가 들어있으면 필요할때마다 select할 필요가 없음
+        if($login_user["profile_img"]) {
+            //저장된 파일 위치로 가서 파일이 있으면 파일을 삭제해라
+            $saved_img = $target_full_path . "/" . $login_user["profile_img"];
+            if(file_exists($saved_img)) {
+                unlink($saved_img);
+            }
+        }
         
         //DB에 저장
         $param = [
@@ -54,6 +62,9 @@
             "i_user" => $login_user['i_user']
         ];
         $result = upd_profile_img($param);
+        //바뀐 섹션 값의 프로필 이름을 변경해주어야한다.(변경하지 않으면 섹션이 변하지 않아서 파일이 계속 추가됨)
+        $login_user["profile_img"] = $target_filenm;
+        $_SESSION["login_user"] = $login_user;
         header("Location: profile.php");
     }else { //업로드 실패했을 때
         echo "업로드 실패";
