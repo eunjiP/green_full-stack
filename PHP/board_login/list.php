@@ -45,6 +45,7 @@
                 if(isset($_SESSION['login_user'])) { ?>
                     <a href='write.php'>글쓰기</a>
                     <a href='logout.php'>로그아웃</a>
+                    <a href="profile.php">프로필</a>
                 <?php }
                 else { ?>
                     <a href='login.php'>로그인</a>

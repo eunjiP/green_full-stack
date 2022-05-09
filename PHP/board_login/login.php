@@ -9,8 +9,8 @@
 <body>
     <h1>로그인</h1>
     <form action="login_proc.php" method="post">
-        <div><input type="text" name="uid" placeholder="아이디"></div>
-        <div><input type="password" name="upw" placeholder="비밀번호"></div>
+        <div><input type="text" name="uid" placeholder="아이디" value="gg"></div>
+        <div><input type="password" name="upw" placeholder="비밀번호" value="1234"></div>
         <div><input type="submit" value="로그인"></div>
     </form>
     <a href="join.php">회원가입</a>
