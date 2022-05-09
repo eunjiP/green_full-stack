@@ -4,7 +4,8 @@
     define('PROFILE_PATH', 'img/profile/');
 
     //사용자의 PK값으로 각각의 폴더로 관리하기 위해서
-    $login_user = $_SESSION['login_user'];
+    //주소복사로 한번더 변경 할 필요가 없다 
+    $login_user = &$_SESSION['login_user'];
     
     if($_FILES["img"]["name"] === "") {
         echo "이미지 없음";
@@ -64,7 +65,6 @@
         $result = upd_profile_img($param);
         //바뀐 섹션 값의 프로필 이름을 변경해주어야한다.(변경하지 않으면 섹션이 변하지 않아서 파일이 계속 추가됨)
         $login_user["profile_img"] = $target_filenm;
-        $_SESSION["login_user"] = $login_user;
         header("Location: profile.php");
     }else { //업로드 실패했을 때
         echo "업로드 실패";
