@@ -1,4 +1,5 @@
 <?php
+    include_once "db/db_user.php";
     session_start();    
     define('PROFILE_PATH', 'img/profile/');
 
@@ -26,8 +27,10 @@
     $img_name = $_FILES["img"]["name"];
     //lastindexOf : 검색하려는 인덱스 번호를 알려주는 함수
     //php - strrpos()를 사용(오른쪽에서 만나는 가장 첫번째의 인덱스번호 리턴)
-    $last_index = strrpos($img_name, ".");
+    //mb_strrpos : 파일명에 한글이 포함된 경우 사용(strrpos()사용시에 오류발생)
+    $last_index = mb_strrpos($img_name, ".");
     //substr : 문자열 자르기 함수
+    //mb_strrpos : 파일명에 한글이 포함된경우 
     $ext = mb_substr($img_name, $last_index);
 
     //실제로 DB에 저장하는 값
@@ -43,6 +46,14 @@
     //move_uploaded_file(업로드할 파일의 이름, 업로드 경로) => true/false를 리턴하는 함수
     $imageUpload = move_uploaded_file($tmp_img, $target_full_path . "/" . $target_filenm);
     if($imageUpload) {  //업로드 성공했을때
+        //TODO : 이전에 등록된 프사가 있으면 삭제!
+        
+        //DB에 저장
+        $param = [
+            "profile_img" => $target_filenm,
+            "i_user" => $login_user['i_user']
+        ];
+        $result = upd_profile_img($param);
         header("Location: profile.php");
     }else { //업로드 실패했을 때
         echo "업로드 실패";
