@@ -1,3 +1,5 @@
+let v = new XMLHttpRequest();
+
 const get = url => {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url);
