@@ -31,7 +31,7 @@
         $start_idx = $param['start_idx'];
         $row_count = $param['row_count'];
         $conn = get_conn();
-        $sql = "SELECT A.i_board, A.title, B.nm, A.created_at 
+        $sql = "SELECT A.i_board, A.title,B.i_user, B.nm, A.created_at, B.profile_img
         FROM t_board A
         INNER JOIN t_user B
         ON A.i_user = B.i_user

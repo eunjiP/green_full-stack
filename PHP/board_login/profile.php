@@ -8,6 +8,7 @@
 </head>
 <body>
     <div>프로필 이미지 디스플레이</div>
+    <!-- enctype="multipart/form-data" 필수!! -->
     <form action="profile_proc.php" method="post" enctype="multipart/form-data">
         <div><label>이미지 : <input type="file" name="img" accept="image/*"></label></div>
         <div><input type="submit" value="이미지 업로드"></div>

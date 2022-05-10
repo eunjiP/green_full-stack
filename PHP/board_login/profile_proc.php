@@ -4,7 +4,7 @@
     define('PROFILE_PATH', 'img/profile/');
 
     //사용자의 PK값으로 각각의 폴더로 관리하기 위해서
-    //주소복사로 한번더 변경 할 필요가 없다 
+    //주소복사로 원래 $login_user["profile_img"]값이 변경될 수 있다(얕은 복사) 
     $login_user = &$_SESSION['login_user'];
     
     if($_FILES["img"]["name"] === "") {

@@ -45,7 +45,16 @@
                 if(isset($_SESSION['login_user'])) { ?>
                     <a href='write.php'>글쓰기</a>
                     <a href='logout.php'>로그아웃</a>
-                    <a href="profile.php">프로필</a>
+                    <a href="profile.php">
+                        프로필
+                        <?php
+                            $session_img = $_SESSION["login_user"]["profile_img"];
+                            $profile_img =  $session_img == null ? "basic.jpg" : $_SESSION["login_user"]["i_user"] . "/" . $session_img;
+                        ?>
+                        <div class="circular__img wh40">
+                            <img src="/board_login/img/profile/<?=$profile_img?>">
+                        </div>
+                    </a>
                 <?php }
                 else { ?>
                     <a href='login.php'>로그인</a>
@@ -68,12 +77,17 @@
                         $i_board = $row['i_board'];
                         $title = $row['title'];
                         $nm = $row['nm'];
+                        $i_user = $row['i_user'];
                         $created_at = $row['created_at'];
+                        $pro_img = $row['profile_img'];
+                        $profile_img =  $pro_img == null ? "basic.jpg" : $i_user . "/" . $pro_img;
 
                         print "<tr>";
                         print "<td>$i_board</td>";
                         print "<td><a href='detail.php?i_board=$i_board'>$title</a></td>";
-                        print "<td>$nm</td>";
+                        print "<td>$nm
+                        <div class='circular__img wh40'>
+                            <img src='/board_login/img/profile/$profile_img'></div></td>";
                         print "<td>$created_at</td>";
                         print "</tr>";
                     }
