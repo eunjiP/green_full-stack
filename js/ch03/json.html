@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="list"></div>
+    <button>더보기</button>
+    <script>
+// https://picsum.photos/v2/list?page=2&limit=100
+// https://picsum.photos/
+        var divListElem = document.querySelector('#list');
+        var page = 0;
+        var moreButton = document.querySelector('button');
+
+        //버튼을 눌렀을때 동작한다
+        moreButton.addEventListener('click', getMore);
+
+        //페이지 값을 증가시켜서 화면에 보이는 사진 수가 증가
+        function getMore() {
+            page++;
+            getImgList();
+        }
+
+        function getImgList() {
+            var url = `https://picsum.photos/v2/list?page=${page}&limit=10`;
+
+            //json통신해서 받은 배열을 list로 담아온다
+            fetch(url).then(function (res) {
+                return res.json();
+            }).then(function (list) {
+                addImgs(list);
+            });
+        }
+
+        //담아온 정보를 원하는 데로 수정해서 화면에 보여준다
+        //받아오는 값을 1/10로 줄여준다(int로 변환방법1) ~~ , 방법2)parseInt )
+        function addImgs(list) {
+            for (var i = 0; i < list.length; i++) {
+                var item = list[i];
+                var img = document.createElement('img');
+                var height = ~~(item.height/10);
+                var width = ~~(item.width/10);
+                console.log(item);
+                img.src = `https://picsum.photos/id/` +  item.id + `/` + width + `/` + height;
+                divListElem.append(img);
+            }
+        }
+        // getImgList();
+    </script>
+</body>
+
+</html>
