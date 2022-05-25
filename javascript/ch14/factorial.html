@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var n = prompt('숫자를 입력하세요 : ');
+        //while 문으로 해결!
+        //문제) 값을 입력하지 않았다면 화면에 "노 입력!" 나타나게 하고
+        //숫자값을 입력했다면 팩토리얼 한다.
+        //ex)5> 5*4*3*2*1> 결과값을 화면에 나타낸다.
+        let result = 1;
+        if(n !== null) {
+            document.write(`${n}! : `);
+            while(n !== 0) {
+                result *= n;
+                n--;
+            }
+            document.write(` ${result} `);
+        } else {
+            alert('노 입력!');
+        }
+
+    </script>
+</body>
+</html>

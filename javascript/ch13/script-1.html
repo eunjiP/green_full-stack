@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {cursor: pointer;}
+    </style>
+</head>
+<body>
+    <h1 id="heading" class="heading">자바스크립트</h1>
+    <p id="text" class="heading">위 텍스트를 클릭해 보세요.</p>
+    <script>
+        //자바스크립트 문자열은 홑따움표
+        //이벤트 바인딩 (~했을때 뭐하겠다)
+        //document : 이 페이지에서 (앞에 window 가 생략되어 있음)
+        //querySelector('#heading') : heading이라는 아이디를 가진 엘리먼트를 찾아서 리턴한다
+        //querySelectorAll() : 갯수와 상관없이 배열로 넘어온다
+        //onclick(on으로 시작하면 이벤트라고 생각하기)
+        var heading = document.querySelectorAll('.heading');
+        //변수 heading가 클릭이 된다면 함수를 실행해라
+        heading[0].onclick = function() {
+            //heading의 스타일의 color를 red로 변경 시켜라
+            this.style.color = 'red';
+        }
+        //객체는 속성(명사)과 메소드-함수(동사)로 구성되어있다!
+        //메소드는 함수 즉 뒤에 소괄호가 있다!!(메소드와 속성 구분시에 뒤에 소괄호로 구분)
+    </script>
+</body>
+</html>
