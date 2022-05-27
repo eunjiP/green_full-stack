@@ -14,16 +14,38 @@
 <body>
     <div id="result">
         <ul>
-            <li><a href="#" onclick="changeBg('Green')">Green</a></li>
-            <li><a href="#" onclick="changeBg('Orange')">Orange</a></li>
+            <li><a href="#" id="first_a">Green</a></li>
+            <li><a href="#" id="second_a">Orange</a></li>
             <li><a href="#" onclick="changeBg('Purple')">Purple</a></li>
         </ul>
     </div>
     <script>
+        const resultDiv = document.querySelector('#result');
+
         function changeBg(color) {
-            const resultDiv = document.querySelector('#result');
             resultDiv.style.backgroundColor = color;
         }
+
+        function changeOrange(){
+            resultDiv.style.backgroundColor = 'orange';
+        }
+
+        const firstA = document.querySelector('#first_a');
+        firstA.onclick = function() {
+            changeBg('green');
+        }
+
+        function bindFn() {
+            // return function() {
+            //     resultDiv.style.backgroundColor = 'orange';
+            // };
+            return () => {resultDiv.style.backgroundColor = color = 'orange'};
+        }
+
+        //호출과 호출하지 않음의 차이
+        const secondA = document.querySelector('#second_a');
+        //= 다음의 함수의 주소값이 담겨야한다. 따라서 함수를 리턴해주면 된다
+        secondA.onclick = bindFn();
     </script>
 </body>
 </html>
