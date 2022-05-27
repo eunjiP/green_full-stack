@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .d_none { display: none;}
+    </style>
+</head>
+<body>
+    <img src="https://i.picsum.photos/id/979/500/300.jpg?hmac=YpeoDKd26bHTrifDoNXzLJKydHnPU6q5aOkpc9_7mzU">
+    <button id="viewBtn" class="over" onclick="flagDisplay();">상세 설명 보기</button>
+    <div id="desc" class="detail d_none">
+        <h3>제목</h3>
+        <p>설명 ~~~~~~~~~</p>
+        <button id="close" onclick="flagDisplay();">상세 설명 닫기</button>
+    </div>
+    <script>
+        const descDiv = document.querySelector('#desc');
+        const viewBtn = document.querySelector('#viewBtn');
+        //강사님 방식
+        //className : 클라스명이 문자열로 넘어온다
+        //classList : 유사배열로 넘어온다(여러개 클래스명이 있는 경우 활용)
+        //classList.toggle : 있으면 없애고 없으면 추가한다.
+
+        //toggle은 같은 버튼으로 닫고 열고를 할 때 주로 사용
+        function flagDisplay() {
+            //같은 버튼으로 여닫기가 안되도록 열었을때는 여는 버튼도 같이 지운다
+            descDiv.classList.toggle('d_none');
+            viewBtn.classList.toggle('d_none');
+        }
+    </script>
+</body>
+</html>

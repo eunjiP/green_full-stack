@@ -8,9 +8,14 @@
 </head>
 <body>
     <script>
-        //alert : 확인 버튼으로 팝업창 생성(알림용)
-        //브라우저에 내장된 함수 (벗어나면 에러처리됨)
-        alert('안녕하세요?');
+        var x = 10;
+
+        function displayNumber() {
+            console.log(`x is ${x}`);
+            console.log(`y is ${y}`);
+            var y = 20;
+        }
+        displayNumber();
     </script>
 </body>
 </html>

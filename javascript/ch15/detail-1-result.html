@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #desc { display: none;}
+    </style>
+</head>
+<body>
+    <img src="https://i.picsum.photos/id/979/500/300.jpg?hmac=YpeoDKd26bHTrifDoNXzLJKydHnPU6q5aOkpc9_7mzU">
+    <button class="over" onclick="flagDisplay('block');">상세 설명 보기</button>
+    <div id="desc" class="detail">
+        <h3>제목</h3>
+        <p>설명 ~~~~~~~~~</p>
+        <button id="close" onclick="flagDisplay('none');">상세 설명 닫기</button>
+    </div>
+    <script>
+        const descDiv = document.querySelector('#desc');
+
+        // function showDetail() {
+        //     showBut.style.display = 'block';
+        // }
+        // function hideDetail() {
+        //     closeBut.style.display = 'none';
+        // }
+
+        //다른 풀이
+        function flagDisplay(display) {
+            descDiv.style.display = display;
+        }
+    </script>
+</body>
+</html>

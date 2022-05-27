@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sum(n1, n2) {
+            document.write(`더하기 : ${n1 + n2}<br>`);
+        }
+        function minus(n1, n2) {
+            document.write(`빼기 : ${n1 - n2}<br>`);
+        }
+        //함수 이름만 호출하면 함수에 접근할 수 있는 주소값이 복사
+        let fn = sum;
+        //결국, sum(22, 11)과 같은 결과를 얻을 수 있다
+        fn(22, 11);
+        fn = minus;
+        fn(22, 11);
+        minus = sum;    //빼기 함수가 사라진다
+        fn = minus;
+        fn(22, 11);
+    </script>
+</body>
+</html>

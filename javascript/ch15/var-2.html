@@ -8,9 +8,12 @@
 </head>
 <body>
     <script>
-        //alert : 확인 버튼으로 팝업창 생성(알림용)
-        //브라우저에 내장된 함수 (벗어나면 에러처리됨)
-        alert('안녕하세요?');
+        function addsum() {
+            var sum = 10 + 20;
+            multi = 10 * 20;
+        }
+        addsum();   // 함수를 호출하지 않으면 multi를 선언안한거와 같다
+        console.log(multi);  
     </script>
 </body>
 </html>

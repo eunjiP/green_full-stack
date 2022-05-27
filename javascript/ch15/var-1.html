@@ -8,9 +8,13 @@
 </head>
 <body>
     <script>
-        //alert : 확인 버튼으로 팝업창 생성(알림용)
-        //브라우저에 내장된 함수 (벗어나면 에러처리됨)
-        alert('안녕하세요?');
+        //스코프 개념
+        //함수안에서만 존재하는 변수이므로 값을 밖에서 출력할 수 없다
+        function addsum() {
+            var sum = 10 + 20;
+        }
+        addsum();
+        console.log(sum);  
     </script>
 </body>
 </html>
