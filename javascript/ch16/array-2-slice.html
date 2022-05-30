@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //비파괴함수(원본은 건들지 않음)
+        const sIdx = 2;
+        const arr = [10, 20, 30, 40, 50, 60];
+        //sIdx번 자리 부터 sIdx + 3번까지의 값을 가지고 온다.
+        const resultArr = arr.slice(sIdx, sIdx + 3);
+        console.log(resultArr.toString());
+    </script>
+</body>
+</html>

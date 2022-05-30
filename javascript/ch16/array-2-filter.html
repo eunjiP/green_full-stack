@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [4, 20, 55, 32, 99, 47, 65, 1];
+        
+        /*
+        //방법1)
+        const arr2 = arr.filter(item => {
+            // if(item < 40) { return true;}
+            return item < 40;
+        });
+        */ 
+
+        //방법2)
+        const arr2 = arr.filter(item => item <40);
+        console.log(arr);
+        console.log(arr2);
+
+        //arr안에 있는 값들 중 짝수만 구성된 새로운 벼열을 만들어 주세요
+        const arr3 = arr.filter(item => !(item % 2));
+        console.log(arr3);
+    </script>
+</body>
+</html>

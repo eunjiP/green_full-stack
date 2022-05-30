@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //현재 시간을 now객체에 감고
+        const now = new Date();
+        //글쓴 날짜를 담는다
+        const writedDay = new Date('2022-02-28 13:27:00');
+
+        //1~59분 전 => 3,540
+        //1~23시간 전 => 82800
+        //1~15일 전 60 * 60 * 24 * 15 => 1,296,000
+        //1~3달 전 60 * 60 * 24 * 30 * 3 => 7,776,000
+        //이후는 날짜        
+        function getPassedInfo(sDate, eDate) {
+            const sDateMilSec = sDate.getTime();    //각 시간을 밀리초로 변경
+            const eDateMilSec = eDate.getTime();
+            //시작 시간과 끝나는 시간의 차이를 초로 환산
+            const passedSec = (eDateMilSec - sDateMilSec) / 1000;
+
+            //59초까지 적용된건 아니라서 참고(정확한 값이 필요하다면 개선 필요)
+            //초가 59분 미만이라면
+            if(passedSec < 3540) {
+                const min = Math.floor(passedSec / 60);
+                return `${min}분 전`;
+            } 
+            //23시간 미만이라면
+            else if(passedSec < 82800) {
+                const hour = Math.floor(passedSec / 3600);
+                return `${hour}시간 전`;
+            }
+            //15일 미만 이라면
+            else if(passedSec < 1296000) {
+                const date = Math.floor(passedSec / 86400);
+                return `${date}일 전`;
+            } 
+            //3개월 미만이라면 
+            else if(passedSec < 7776000) {
+                const mon = Math.floor(passedSec / 2592000);
+                return `${mon}달 전`;
+            } else {
+                const year = sDate.getFullYear();
+                const mon = fillZero(sDate.getMonth() + 1);
+                const date = fillZero(sDate.getDate());
+                return `${year}-${mon}-${date}`;
+            }
+        }
+
+        function fillZero(val) {            
+            return ('0' + val).slice(-2);
+        }
+
+        const result = getPassedInfo(writedDay, now);
+        console.log(result);
+
+    </script>
+</body>
+</html> 

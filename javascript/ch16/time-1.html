@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //설계도를 추가되었다고 생각(Date라는 객체에 속성이 추가되었다고 생각하면됨)
+        Date.prototype.myFn = function() {
+            alert('dd');
+        }
+        // 상수 now에는 객체가 담김
+        const now = new Date();
+        const now2 = new Date();
+        // 객체에 추가한것(다른 객체는 적용안됨)
+        // now.myFn = function() {
+        //     alert('dd');
+        // }
+
+        // now.myFn();     //alert가 뜸
+        now2.myFn();    //alert가 안뜸
+        // now.toString : 메소드 호출
+        document.write('현재 시각은 ' + now.getVarDate);
+    </script>
+</body>
+</html>

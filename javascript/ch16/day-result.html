@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //글을 쓰고 몇일 몇시간 몇분 몇초가 지났는지 확인
+        const now = new Date();
+        const firstDay = new Date('2020-10-01');
+
+        const toNow = now.getTime(); //밀리세컨드값으로 변경
+        const toFirst = firstDay.getTime();
+        const passedTime1 = toNow - toFirst; //밀리세컨드
+        //                                             초    분  시간  일
+        const passedTime2 = Math.round(passedTime1 / (1000 * 60 * 60 * 24)); // 몇 일 지났는지
+        document.write(`${firstDay.toLocaleString()}부터 현재까지 ${passedTime2}일이 지났습니다.`);
+    </script>
+</body>
+</html> 

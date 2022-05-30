@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const numbers = new Array();
+        //최신값이 있는것 처럼 보이게 됨
+        console.log(numbers);
+        /*
+        numbers[0] = 'A';
+        numbers[1] = 'B';
+        numbers[3] = 'C';   //2번 칸은 빈곳으로 생성
+        console.log(numbers);
+        console.log(numbers.length); //실제 값 들어 있는것과 차이 날수 잇다
+        */
+       // 안전하게 push로 값을 추가해랴
+       numbers.push('A');
+       numbers.push('B');
+       numbers.push('C');
+       numbers.push('D');
+       numbers.push('E');
+       numbers.length=2
+       console.log(numbers);
+       console.log(numbers.length);
+
+       console.log('---------------------numbers2');
+       const numbers2 = new Array(4);
+       console.log(numbers2);
+       console.log(numbers2.length);
+
+       console.log('---------------------numbers3');
+       const numbers3 = [];
+       console.log(numbers3);
+       console.log(numbers3.length);
+
+       console.log('---------------------numbers4');
+       const numbers4 = ['A', 'B', 'C'];
+       console.log(numbers4);
+       console.log(numbers4.length);
+    </script>
+</body>
+</html>

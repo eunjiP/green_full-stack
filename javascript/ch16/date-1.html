@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 568page
+        //Date() : 아규먼트 없이 보내면 현재 객체가 생성될때 시간을 알려줌
+        const now = new Date();
+        console.log(now);
+        //아규먼트를 넣으면 입력한 날짜의 객체로 생성
+        const date1 = new Date('2020-05-30 01:00:20');
+        console.log(date1);
+
+        //getFullYear : 년도 값만 가지고 옴
+        console.log(date1.getFullYear());
+        //getMonth : 달을 가지고 오는데 +1을 해줘야 정확하게 들고 올수 있음
+        console.log(date1.getMonth() + 1);
+        //getDate : 날짜
+        console.log(date1.getDate());
+        //getDay : 요일(일~토 0:일요일 / 1:월요일 . . .)
+        console.log(date1.getDay());
+        //getTime : 1970년 1월 1일부터 밀리초로 표시
+        console.log(now.getTime());
+
+        console.log(now.getHours());    //시
+        console.log(now.getMinutes());  //분
+        console.log(now.getSeconds());  //초
+        console.log(now.getMilliseconds()); //1초를 1/1000로 나눈값(많이 사용안함)
+        
+    </script>
+</body>
+</html>

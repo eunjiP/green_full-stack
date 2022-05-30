@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [1, 3, 5, 7, 9, 10];
+        //every : 배열을 검사하는 함수라고 생각하면 된다
+        //return false를 안적어도 되는 이유는 undfined이 되는 그건 결국 false이기 때문에
+        const result = arr.every(function(item) {
+            //return item % 2  같은말
+            if(item % 2 ===1) {
+                return true;
+            }
+            return false;
+        });
+        console.log(result);
+
+        //15이하 값으로만 배열값이 이루어져있는지 체크!(arr에 16을 추가했을 때는 false가 뜨는지도 확인)
+        const result2 = arr.every(function(item) {
+            if(item <= 15) {
+                return true;
+            }
+
+            //return item <= 15;    이렇게 입력도 가능!
+        });
+        console.log(result2);
+
+        const arr2 = [2, 4, 6, 8];
+        const result3 = arr2.every(function(item) {
+            return !(item % 2);
+        });
+        console.log(result3);
+    </script>
+</body>
+</html>

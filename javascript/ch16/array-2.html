@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const numbers = ['A', 'B', 'C', 'D'];
+        //for문 통해서 화면에 하나씩 찍어라
+        for (let i= 0; i< numbers.length;i++) {
+            document.write(`${numbers[i]}<br>`);
+        }
+        document.write('<hr>');
+        numbers.forEach(function(item) {
+            document.write(`<div>${item}<div>`);
+        });
+        
+    </script>
+</body>
+</html>

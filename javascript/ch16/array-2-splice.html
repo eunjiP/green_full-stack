@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //파괴 매소드 : 원본을 변경 하는 함수라는 뜻
+        console.log('--------------- insert');
+        const mine = [0, 1, 2, 3];
+        // splice : (추가할 인덱스, 제거할 인덱스, 추가하는 값)
+        //2번 자리에서 삭제 없이 5를 추가
+        mine.splice(2, 0, 5);
+        console.log(mine.toString());
+        mine.splice(1, 0, 11, 12);
+        console.log(mine.toString());
+
+        console.log('--------------- delete');
+        //2번 자리에서 1개 삭제
+        mine.splice(2, 1);
+        console.log(mine.toString());
+        //4번자리에서 2개 삭제
+        mine.splice(4, 2);
+        console.log(mine.toString());
+
+        console.log('--------------- update');
+        //1번 자리 1개 삭제 하고 1번 자리에 30 추가
+        mine.splice(1, 1, 30);
+        console.log(mine.toString());
+
+        console.log('--------------- update');
+        const pushArr = [10, 20, 30, 40];
+        //오른쪽 끝에 50을 추가
+        pushArr.splice(pushArr.length, 0, 50)
+        console.log(pushArr.toString());
+
+        console.log('--------------- pop');
+        const popArr = [10, 20, 30, 40, 50];
+        //오른쪽 끝 값을 삭제
+        popArr.splice(popArr.length-1, 1);
+        console.log(popArr.toString());
+
+        console.log('--------------- unshift');
+        const unshiftArr = [10, 20, 30, 40, 50];
+        //앞쪽에 60을 추가
+        unshiftArr.splice(0, 0, 60);    //0번 자리에 삭제는 하지 않고 60을 추가
+        console.log(unshiftArr.toString());
+
+        console.log('--------------- shift');
+        const shiftArr = [10, 20, 30, 40, 50];
+        //맨 앞쪽 값을 삭제
+        shiftArr.splice(0, 1);
+        console.log(shiftArr.toString());
+
+    </script>
+</body>
+</html>

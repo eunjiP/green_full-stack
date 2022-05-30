@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //배열은 상수임에도 배열이 추가가 가능
+        //배열에 접근하는 주소값을 저장하기 때문
+        const arr = ['A', 'B', 'C'];
+        //기존배열에 뒷쪽에 새로운 배열이 추가된다.
+        const arr2 = arr.concat(['D', 'E']);
+        console.log(arr2);  //원본은 건드리지 않음!!
+        console.log(arr);
+        //기본에 배열에서 앞쪽에 새로운 값을 추가할때
+        console.log(['D', 'E'].concat(arr));    
+    </script>
+</body>
+</html>

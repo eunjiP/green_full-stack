@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+        //indexOf : 찾는 값의 인덱스 번호를 리턴해준다
+        const idx = arr.indexOf(3);
+        const idx2 = arr.indexOf(6);
+        console.log(idx);
+        console.log(idx2);  //없는 값인 경우 -1을 리턴한다(값의 유무 또한 확인가능)
+
+        //lastIdx : 끝에서 부터 찾는 값의 인덱스 번로를 리턴
+        const lastIdx = arr.lastIndexOf(3);
+        console.log(lastIdx);
+
+        const fileNm = 'abcdef.fff.jpg';
+        const lastDotIdx = fileNm.lastIndexOf('.');
+        console.log('lastDotIdx : ' + lastDotIdx);
+    </script>
+</body>
+</html>
