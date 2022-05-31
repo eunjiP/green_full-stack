@@ -7,12 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="winClose">창 닫기</button>
     <script>
-        const arr = [1, 2, 3, 4, 5, 4, 3, 2, 1];
-        //join : 배열값을 문자열로 바꿀때 사이사이 문자 넣는 함수(기본값이 콤마)
-        //콤마가 싫다면 빈칸 넣어주면 가능
-        const result = arr.join('');
-        console.log(result);
+        const btnClose = document.querySelector('#winClose');
+        btnClose.addEventListener('click', () => {
+            window.close();
+        });
+
+        opener.changeBack();
     </script>
 </body>
 </html>

@@ -11,7 +11,7 @@
         //현재 시간을 now객체에 감고
         const now = new Date();
         //글쓴 날짜를 담는다
-        const writedDay = new Date('2022-02-28 13:27:00');
+        const writedDay = new Date('2022-05-31 09:59:00');
 
         //1~59분 전 => 3,540
         //1~23시간 전 => 82800
@@ -25,8 +25,8 @@
             const passedSec = (eDateMilSec - sDateMilSec) / 1000;
 
             //59초까지 적용된건 아니라서 참고(정확한 값이 필요하다면 개선 필요)
-            //초가 59분 미만이라면
-            if(passedSec < 3540) {
+            //초가 59분 59초 이전이 라면
+            if(passedSec < 3599) {
                 const min = Math.floor(passedSec / 60);
                 return `${min}분 전`;
             } 
@@ -44,7 +44,9 @@
             else if(passedSec < 7776000) {
                 const mon = Math.floor(passedSec / 2592000);
                 return `${mon}달 전`;
-            } else {
+            } 
+            //3개월 이후에는 작성 날짜가 나오도록
+            else {
                 const year = sDate.getFullYear();
                 const mon = fillZero(sDate.getMonth() + 1);
                 const date = fillZero(sDate.getDate());

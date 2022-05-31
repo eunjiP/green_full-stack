@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Math.PI : 파이값
+        Math.PI = 1.1;  //값이 변하지 않음
+        console.log(Math.PI);
+        console.log(Math.ceil(12.1));
+        console.log(Math.round(12.1));
+        console.log(Math.round(12.5));
+        console.log(Math.floor(12.9));
+        console.log(Math.random());  //0.00000001~0.9999999999까지의 값이 나온다(1은 안나옴)
+
+        //0~9 사이의 랜덤한 숫자를 만들어보자(10이 절대 안나온다)
+        const rVal = parseInt(Math.random() * 10);
+        const rVal2 = Math.floor(Math.random() * 10);
+        console.log(rVal);
+
+        //문제)1~9 사이의 랜덤한 숫자를 만들어라
+        //내답 (상수가 아닌 변수로 해결함....) => let은 무한으로 생성시 const보다 효율성이 안좋음
+        let val = Math.random() * 10;
+        Math.floor(val) > 1 ? val = Math.floor(val) : val = Math.ceil(val);
+        console.log(val);
+
+        //동기답, 강사님답
+        const rVal3 = Math.floor((Math.random() * 9) + 1);
+        console.log(rVal3);
+
+        //확인 법(무한 루프면 성공!)
+        // while (true) {
+        //     let val = Math.random() * 10;
+        //     Math.floor(val) > 1 ? val = Math.floor(val) : val = Math.ceil(val);
+        //     if(val < 1 || val > 9) {
+        //         console.log('잘 못 만들었음!!');
+        //         break;
+        //     }
+        // }
+
+        //문제) 10~20 이 되도록 해결
+        //내답1
+        // const rVal4 = (Math.random() * 9) + 1 > 9 ? Math.floor((Math.random() * 9) + 1) + 9 : Math.floor((Math.random() * 9) + 1) + 10;
+        //내답2
+        const rVal4 = ((Math.random() * 9) > 9 ? Math.ceil(Math.random() * 9) : Math.floor(Math.random() * 9)) + 10;
+        console.log(rVal4);
+
+        //강사님답(0~10)
+        const rVal5 = Math.floor(Math.random() * 11 + 10);
+        console.log(rVal5);
+
+        //확인
+        // while (true) {
+        //     const rVal4 = (Math.random() * 9) + 1 > 9 ? Math.floor((Math.random() * 9) + 1) + 9 : Math.floor((Math.random() * 9) + 1) + 10;
+        //     if(rVal4 < 10 || rVal4 > 20) {
+        //         console.log('잘 못 만들었음!!');
+        //         break;
+        //     }
+        // }
+
+        //문제) 25~50이 나오는 식(0~25 + 25)
+        //내답
+        const rVal6 = Math.ceil(Math.random() * 11) * 5;
+        console.log(rVal6);
+
+        //강사님 답
+        const rVal7 = Math.floor(Math.random() * 26) + 25;
+        console.log(rVal7);
+
+        //25~40 (0~15 +25) => 내가 구하고 싶은 끝 값에 +1한 값을 곱해주면 원하는 값까지 나옴
+        const rVal8 = Math.floor(Math.random() * 16) + 25;
+        console.log(rVal8);
+
+        while (true) {
+            const rVal8 = Math.floor(Math.random() * 16) + 25;
+            if(rVal8 < 25 || rVal8 > 40) {
+                console.log('잘 못 만들었음!!');
+                break;
+            }
+        }
+
+
+    </script>
+</body>
+</html>

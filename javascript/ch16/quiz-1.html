@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>현재 시각</title>
+</head>
+<body>
+    <p>현재 시각 <span id="current" class="display"></span></p>
+    <script>
+        let cnt = 0;
+
+        //setInterval : setTimeout과 비슷한데 정해진 시간이 지날때 마다 계속 실행
+        // setInterval(function() {
+        //     console.log(cnt++);
+        // }, 1000);
+
+        //setTimeout : 정해준 시간이 지나고 한번만 실행
+        // setTimeout(function() {
+        //     console.log(cnt++);
+        // }, 1000);
+
+        //문제) 현재 시각 오후 4:56:17 이런 형식으로 나오게 함수 구현
+        function displayNow() {
+            const toDay = new Date();
+            
+            //방법1)
+            // let hours = toDay.getHours();
+            // let ampm = '';
+            // hours > 12 ? ampm = '오후' : ampm = '오전';
+            // hours > 12 ? hours -= 12 : hours;
+            // let minutes = toDay.getMinutes();
+            // let seconds = toDay.getSeconds();
+
+            // const currentTime = `${ampm} ${hours}:${minutes}:${seconds}`;
+
+            //방법2) toLocaleTimeString() : 시간만 가지고 오는 함수
+            const currentTime = toDay.toLocaleTimeString();
+            document.querySelector('#current').innerText = currentTime;
+        }
+        
+        //형식 : setInterval(함수, 밀리초)
+        setInterval(displayNow, 1000);
+    </script>
+</body>
+</html>

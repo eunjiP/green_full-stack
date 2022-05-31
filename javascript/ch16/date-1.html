@@ -11,9 +11,15 @@
         // 568page
         //Date() : 아규먼트 없이 보내면 현재 객체가 생성될때 시간을 알려줌
         const now = new Date();
+        //객체만 출력하더라도 배열이 아닌 경우 자동적으로 toString()이 붙어서 안에 내용이 출력
         console.log(now);
+        console.dir(now);  //객체안의 상세한 내용까지 알고 싶을때
         //아규먼트를 넣으면 입력한 날짜의 객체로 생성
         const date1 = new Date('2020-05-30 01:00:20');
+        console.log(date1);
+
+        //년도를 변경 하려면 setter를 써야함
+        date1.setFullYear(2021);
         console.log(date1);
 
         //getFullYear : 년도 값만 가지고 옴

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #back {width: 100px; height: 100px;}
+    </style>
+</head>
+<body>
+    <button id="btnOpen">창 열기</button>
+    <button onclick="moveWin();">창 이동</button>
+    <button id="btnClose">창 닫기</button>
+    <div id="back"></div>
+    <script>
+        console.log('name : ' + window.name);
+        const btnOpen = document.querySelector('#btnOpen');
+        let newWin = null;
+        btnOpen.addEventListener('click', () => {
+            newWin = open('notice.html', '알림', 'width=400', 'height=400');
+            if(newWin === null) {
+                //팝업창이 차단된경우 newWin이 null 값이 된다
+                alert('차단을 풀어주세요!!!');
+            }
+        });
+
+        const btnClose = document.querySelector('#btnClose');
+        btnClose.addEventListener('click', ()=> {
+            newWin.close();
+        });
+
+        function changeBack() {
+            const divBack = document.querySelector('#back');
+            divBack.style.backgroundColor = 'red';
+        };
+
+        function moveWin() {
+            newWin.moveTo(0, 0);
+        }
+    </script>
+</body>
+</html>

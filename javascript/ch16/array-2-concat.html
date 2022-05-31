@@ -13,10 +13,18 @@
         const arr = ['A', 'B', 'C'];
         //기존배열에 뒷쪽에 새로운 배열이 추가된다.
         const arr2 = arr.concat(['D', 'E']);
-        console.log(arr2);  //원본은 건드리지 않음!!
+        console.log(arr2);  //원본은 건드리지 않음!!(비파괴함수)
         console.log(arr);
         //기본에 배열에서 앞쪽에 새로운 값을 추가할때
-        console.log(['D', 'E'].concat(arr));    
+        console.log(['D', 'E'].concat(arr));  
+
+        //Spread Operator 연산자(...) : 배열 값을 펼쳐서 값을 넣겠다
+        const arr4 = [...arr, ...arr2];
+        //배열안에 배열이 들어가게 된다(2차원 배열)
+        const arr5 = [arr, arr2];
+
+        console.log(arr4);
+        console.log(arr5);
     </script>
 </body>
 </html>
