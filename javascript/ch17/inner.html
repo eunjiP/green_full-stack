@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="innText();">innerText로 표시하기</button>
+    <button onclick="innHtml();">innerHtml로 표시하기</button>
+    <h1>현재 시각 : </h1>
+    <div id="current"></div>
+    <!-- &lt; : < / &gt; : > -->
+    <div>&lt; &gt;</div>
+    <script>
+        const now = new Date();
+
+        function innText() {
+            const divCurrent = document.getElementById('current');
+            // innerText : 내용을 text로 출력하겠다
+            divCurrent.innerText = `<em>${now}</em>`;
+        }
+
+        function innHtml() {
+            const divCurrent = document.getElementById('current');
+            // innerHTML : 태그는 태그대로 기능하고 출력한다(기울기기능 같이 나옴)
+            divCurrent.innerHTML = `<em>${now}</em>`;
+        }
+    </script>
+</body>
+</html>

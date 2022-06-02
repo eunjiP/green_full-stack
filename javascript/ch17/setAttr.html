@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main { width: 500px; height: 300px;}
+        #main > img {width: 100%;}
+        #sub {width: 500px; height: 100px; display: flex;}
+        #sub > img { flex-grow: 1;}
+    </style>
+</head>
+<body>
+    <div id="main">
+        <img src="https://i0.holapet.com/tools.holapet.com/uploaded/images/19100816214848.jpg?resize=640,480"
+        id="imgMain">
+    </div>
+    <div id="sub">
+        <img src="https://i0.holapet.com/tools.holapet.com/uploaded/images/19100816214848.jpg?resize=640,480" onclick="displaySrc(this.src);">
+        <img src="https://pbs.twimg.com/media/DExL87SUIAAol9X.jpg" onclick="displaySrc(this.src);">
+        <img src="https://th.bing.com/th/id/R.20b8f1cdd36c809f47775c83748e088c?rik=%2b4cpziw9qun1xQ&riu=http%3a%2f%2fcfile211.uf.daum.net%2fimage%2f232FEE4352DE20D206150A&ehk=s62FjaKWGU%2fMxceEFwF%2bS%2fKl6AvS1lYdEMNWTJigXMI%3d&risl=&pid=ImgRaw&r=0" onclick="displaySrc(this.src);">
+    </div>
+    <script>
+        //내 풀이
+        // const divPic = document.querySelector('#imgMain');
+        // function displaySrc(picSrc) {
+        //     // console.log(picSrc);
+        //     divPic.setAttribute('src', `${picSrc}`);
+        // }
+
+        //강사님 풀이
+        const imgMain = document.querySelector('#main > img');
+        
+        const subImgs = document.querySelectorAll('#sub > img');
+        subImgs.forEach(item => {
+            item.addEventListener('click', function() {
+                //클로저 : 죽어야 하는 변수가 죽지 않고 계속 살아 있는 현상
+                imgMain.src = item.src;
+            })
+        })
+
+    </script>
+</body>
+</html>

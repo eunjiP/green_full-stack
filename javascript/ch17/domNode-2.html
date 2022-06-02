@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>DOM을 공부합시다.</h1>
+        <!-- 원래는 계속 실행되지만 this.onclick='' 으로 인해서 최초 한번만 실행 -->
+        <a href="#" onclick="addP();">더보기</a>
+        <div id="info"></div>
+    </div>
+    <script>
+        let cnt = 1;
+        const divInfo = document.querySelector('#info');
+    
+        function addP() {
+            if(divInfo.innerHTML === '') {
+                // createElement(추가하고 싶은 태그명)
+                const newP = document.createElement('p');
+                const txtNode = document.createTextNode(`DOM은 document object model의 줄임말입니다.${cnt++}`);
+                //p태그에 텍스트를 추가
+                newP.appendChild(txtNode);
+                document.querySelector('#info').appendChild(newP);
+                // appendChild: 객체만 추가 가능!
+                //append : 객체, 문자열 추가 가능!(차이 구분)
+            } else {
+                divInfo.innerHTML = null;
+            }
+
+            
+        }
+    </script>
+</body>
+</html>

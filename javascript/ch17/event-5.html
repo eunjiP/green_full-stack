@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://pbs.twimg.com/media/DExL87SUIAAol9X.jpg"
+    id="cover">
+    <script>
+        const imgCover = document.querySelector('#cover');
+        imgCover.addEventListener('mouseover', function() {
+            this.src='https://th.bing.com/th/id/R.20b8f1cdd36c809f47775c83748e088c?rik=%2b4cpziw9qun1xQ&riu=http%3a%2f%2fcfile211.uf.daum.net%2fimage%2f232FEE4352DE20D206150A&ehk=s62FjaKWGU%2fMxceEFwF%2bS%2fKl6AvS1lYdEMNWTJigXMI%3d&risl=&pid=ImgRaw&r=0'
+        });
+
+        imgCover.addEventListener('mouseout', function() {
+            this.src = 'https://pbs.twimg.com/media/DExL87SUIAAol9X.jpg'
+        })
+    </script>
+</body>
+</html>

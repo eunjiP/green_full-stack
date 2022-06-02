@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {height: 100%;}
+        ul { list-style: none;}
+        li {display: inline-block;}
+        .pic {width: 200px; cursor: pointer;}
+        #lightbox {
+            height: 100%; 
+            width: 100%;
+            background-color: #00000066; 
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            left: 0;
+            top:0;
+        }
+       #lightbox > img {border: 2px solid #fff}
+    </style>
+</head>
+<body>
+    <div class="row">
+        <ul>
+            <li><img class="pic" src="https://i0.holapet.com/tools.holapet.com/uploaded/images/19100816214848.jpg?resize=640,480"></li>
+            <li><img class="pic" src="https://pbs.twimg.com/media/DExL87SUIAAol9X.jpg"></li>
+            <li><img class="pic" src="https://th.bing.com/th/id/R.20b8f1cdd36c809f47775c83748e088c?rik=%2b4cpziw9qun1xQ&riu=http%3a%2f%2fcfile211.uf.daum.net%2fimage%2f232FEE4352DE20D206150A&ehk=s62FjaKWGU%2fMxceEFwF%2bS%2fKl6AvS1lYdEMNWTJigXMI%3d&risl=&pid=ImgRaw&r=0"></li>
+        </ul>
+    </div>
+    <div id="lightbox">
+        <img src="" id="lightboxImage">
+    </div>
+
+    <script>
+        const lightbox = document.querySelector('#lightbox');
+        const lightboxImage = document.querySelector('#lightboxImage');
+        function showLightbox() {
+            const bigLocation = this.src;
+            lightboxImage.setAttribute('src', bigLocation);
+            lightbox.style.display = 'flex';
+        }
+        const pics = document.querySelectorAll('.pic');
+        pics.forEach(item => {
+            //addEventListener(이벤트, 함수의 주솟값-함수실행이 아님 주의!!)
+            item.addEventListener('click', showLightbox);
+        });
+
+        lightboxImage.addEventListener('click', function() {
+            lightbox.style.display = 'none';
+        })
+    </script>
+</body>
+</html>

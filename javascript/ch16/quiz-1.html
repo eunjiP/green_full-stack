@@ -8,8 +8,14 @@
 </head>
 <body>
     <p>현재 시각 <span id="current" class="display"></span></p>
+    <button onclick="stopInter();">멈춰!</button>
     <script>
         let cnt = 0;
+
+        //setInterval() 을 멈출때 clearInterval()사용
+        function stopInter() {
+            clearInterval(interObj)
+        }
 
         //setInterval : setTimeout과 비슷한데 정해진 시간이 지날때 마다 계속 실행
         // setInterval(function() {
@@ -41,7 +47,7 @@
         }
         
         //형식 : setInterval(함수, 밀리초)
-        setInterval(displayNow, 1000);
+        const interObj = setInterval(displayNow, 1000);
     </script>
 </body>
 </html>

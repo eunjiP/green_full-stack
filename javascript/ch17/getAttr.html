@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="prod-pic">
+        <button onclick="changePic();">이미지 바꾸기</button>
+        <img src="https://th.bing.com/th/id/R.9094c5ea822d922251cc857ea419cd02?rik=9Uh4uinf1S1sow&riu=http%3a%2f%2fcfile26.uf.tistory.com%2fimage%2f2554CB34565417D9100718&ehk=28Q6qaWRsbWx1C89DHFxKVpCCet7QMzPkXA1ba%2b9IEs%3d&risl=&pid=ImgRaw&r=0" 
+        alt="고양이" id="cat" width="200" height="200" onclick="displaySrc();">
+    </div>
+    <script>
+        const cat = document.querySelector('#cat');
+
+        function changePic() {
+            // cat.src = 'https://i0.holapet.com/tools.holapet.com/uploaded/images/19100816214848.jpg?resize=640,480';
+            // setAttribute(변경하려는 속성명, 속성값)
+            cat.setAttribute('src', 'https://i0.holapet.com/tools.holapet.com/uploaded/images/19100816214848.jpg?resize=640,480');
+        }
+
+        function displaySrc() {
+            // getAttribute()의 필요성 : 임의로 만든 속성값에는 .속성값으로는 값을 가지고 올 수 없음
+            //하지만 getAttribute()로는 가지고 올 수 있음(.속성값은 이미있는 것만 들고 올 수 있다)
+            console.log('getAttr : ' + cat.getAttribute('alt'));
+            console.log('.src : ' + cat.src);
+            console.log('.alt : ' + cat.alt);
+            console.log('.id : ' + cat.id);
+            console.log('.width : ' + cat.width);
+            console.log('.height : ' + cat.height);
+            console.log('.onclick : ' + cat.onclick);
+        }
+    </script>
+</body>
+</html>
