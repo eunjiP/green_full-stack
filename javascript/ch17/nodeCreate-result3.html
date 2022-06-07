@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .c_pointer {cursor: pointer;}
+        .parent {display: flex;}
+        .parent > .content {flex-grow: 1;}
+        .parent > .close {width: 15px;}
+    </style>
+</head>
+<body>
+    <h1>Web Programming</h1>
+    <p>공부할 주제를 기록해 보세요. ver.3</p>
+    <div>
+        <input type="text" id="subject">
+        <input type="button" value="추가" onclick="newReg();">
+        <input type="number" id="delIdx" style="width:30px;">
+        <input type="button" value="삭제" onclick="delSubject();">
+    </div>
+    <div id="itemList"></div>
+    <script>
+        const inputSubject = document.querySelector('#subject');
+        const inputDelIdx = document.querySelector('#delIdx');
+        const divList = document.querySelector('#itemList');
+        
+        inputSubject.addEventListener('keyup', function(e) {
+            if(e.keyCode === 13) {
+                newReg();
+            }
+        })
+
+        function newReg() {
+            const inputDiv = document.createElement('div');
+            const txt = inputSubject.value;
+            divList.appendChild(inputDiv);
+            inputDiv.innerText = txt;
+            inputSubject.value = '';
+        }
+
+        function delSubject() {
+           const delIdx = Number(inputDelIdx.value);
+        //    console.log(divList.children);
+        //부모주소값(나자신[인덱스 위치])
+        //divList.removeChild(divList.children[delIdx - 1]);
+        //나 자신.remove();
+        divList.children[delIdx - 1].remove();
+        }
+
+    </script>
+</body>
+</html>

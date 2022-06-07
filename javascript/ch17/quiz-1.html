@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {list-style: none; cursor: pointer;}
+        .clicked {color: #ccc; text-decoration: line-through;}
+    </style>
+</head>
+<body>
+    <h1>할 일 목록</h1>
+    <ul>
+        <li><span class="check">v 할 일1</span></li>
+        <li><span class="check">v 할 일2</span></li>
+        <li><span class="check">v 할 일3</span></li>
+        <li><span class="check">v 할 일4</span></li>
+        <li><span class="check">v 할 일5</span></li>
+    </ul>
+    <script>
+        const checkList = document.querySelectorAll('.check');
+
+        //내풀이
+        // function clickfn() {
+        //     const clickedClass = "clicked";
+        //     this.classList.toggle(clickedClass);
+        // }
+        // checkList.forEach(item => {
+        //     item.addEventListener('click', clickfn);
+        // });
+        
+        //강사님
+        checkList.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.target.classList.toggle('clicked');
+            });
+        });
+    </script>
+</body>
+</html>

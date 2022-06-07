@@ -20,13 +20,15 @@
         function addP() {
             if(divInfo.innerHTML === '') {
                 // createElement(추가하고 싶은 태그명)
-                const newP = document.createElement('p');
+                //const newP = document.createElement('p');
+                //appendChild는 주소값을 리턴하기 때문에 p태그 생성 후 추가와 주소값 저장 가능
+                const newP = divInfo.appendChild(document.createElement('p'));
                 const txtNode = document.createTextNode(`DOM은 document object model의 줄임말입니다.${cnt++}`);
                 //p태그에 텍스트를 추가
                 newP.appendChild(txtNode);
                 document.querySelector('#info').appendChild(newP);
-                // appendChild: 객체만 추가 가능!
-                //append : 객체, 문자열 추가 가능!(차이 구분)
+                // appendChild: 객체만 추가 가능!(리턴타입있음-주소값리턴)
+                //append : 객체, 문자열 추가 가능!, 여러 값 추가 가능 (리턴타입없음)
             } else {
                 divInfo.innerHTML = null;
             }

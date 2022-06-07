@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .c_pointer {cursor: pointer;}
+        .parent {display: flex;}
+        .parent > .content {flex-grow: 1;}
+        .parent > .close {width: 15px;}
+    </style>
+</head>
+<body>
+    <h1>Web Programming</h1>
+    <p>공부할 주제를 기록해 보세요. ver.2</p>
+    <div>
+        <input type="text" id="subject">
+        <input type="button" value="추가" onclick="newReg();">
+        <input type="button" value="삭제" onclick="delSubject();">
+    </div>
+    <div id="itemList"></div>
+    <script>
+        const divList = document.querySelector('#itemList');
+        function newReg() {
+            const txt = document.getElementById('subject');
+            const newDiv = document.createElement('div');
+            newDiv.classList.add('parent');
+            newDiv.innerHTML = `
+                <div class="content">${txt.value}</div>
+                <div class="close c_pointer">X</div>
+            `;
+            divList.appendChild(newDiv);
+            const divClose = newDiv.querySelector('.close');
+            divClose.addEventListener('click', function() {
+                // newD.remove();
+                //this.parentElement.remove();
+                divClose.parentElement.remove();
+            })
+            txt.value = '';
+        }
+
+        function delSubject() {
+            //divItemList.lastChild.remove();
+            const delList = document.querySelector('#itemList > div:last-child');
+            delList.remove();
+        }
+
+    </script>
+</body>
+</html>
