@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function m1() {
+            console.log('1');
+        }
+
+        function m2() {
+            console.log('2');
+            return 1;
+        }
+
+        //m1이 false이므로 뒤에는 실행하지 않고 종결됨
+        if(m1() && m2()) {
+            console.log('3');
+        }
+    </script>
+</body>
+</html>

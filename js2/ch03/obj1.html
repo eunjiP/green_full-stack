@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //생성자 함수(객체 생성할 때 꼭 호출해야 하는 함수)
+        function User(name, age) {
+            this.name = name;
+            this.age = age;
+
+            this.showMyName = function() {
+                console.log(`나의 이름은 ${this.name}입니다.`);
+            }
+            this.showMyAge = function() {
+                console.log(`나의 나이는 ${this.age}살입니다.`);
+            }
+        }
+
+        const user1 = new User('홍길동', 12);
+        const user2 = new User('신사임당', 20);
+        
+        user1.showMyName();
+        user2.showMyName();
+
+        user1.showMyAge();
+        user2.showMyAge();
+
+    </script>
+</body>
+</html>
