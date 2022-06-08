@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function calc(cb, n1, n2) {
+            return cb(n1, n2);
+        }
+
+        function fnSum(n1, n2) {
+            return n1 + n2;
+        }
+
+        function fnMulti(n1, n2) {
+            return n1 * n2;
+        }
+
+        //나누기 결과값 나오게 익명함수 만들기
+        const r4 = calc(function(n1, n2) {
+            return n1 / n2;
+        }, 10, 2);
+        console.log(r4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const r1 = calc(fnSum, 10, 20);
+        console.log(r1);
+
+        const r2 = calc(fnMulti, 10, 20);
+        console.log(r2);
+
+        //보통 콜백함수는 익명함수로 만듬
+        const r3 = calc(function(n1, n2) {
+            return n1 - n2;
+        }, 100, 20);
+        console.log(r3);
+    </script>
+</body>
+</html>

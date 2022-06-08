@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myArr = {
+            '0' : 10, 
+            '1' : 43,
+            '2' : 22,
+            '3' : 38,
+            '4' : 17,
+            '5' : 56,
+            '6' : 47,
+            'length' : 7,
+            'forEach' : function(cb) {
+                for(let i = 0; i < this.length; i++) {
+                    // const val = this[i];
+                    //fnSum의 매개변수는 1개이므로 인데스 번호인 i는 무시됨(생략가능)
+                    cb(this[i], i);
+                }
+            },
+            'map' : function(cb) {
+                const tempArr = [];
+                for (let i = 0; i < myArr.length; i++) {
+                    tempArr.push(cb(this[i], i));
+                }
+                return tempArr;
+            }
+        }
+
+        const arr2 = myArr.map(function(item) {
+            return item + 3;
+        });
+        // console.log(arr.toString());
+        console.log(arr2.toString());
+
+        //myArr에 4번째 값 이후로 값들을 X2한 새로운 배열을 만든다.
+        const arr4 = myArr.map(function(item, idx) {
+            if(idx > 3) {
+                return item * 2;
+            }
+            return item;
+        });
+        console.log(arr4);
+    </script>
+</body>
+</html>

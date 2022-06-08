@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myArr = {
+            '0' : 10, 
+            '1' : 43,
+            '2' : 22,
+            '3' : 38,
+            '4' : 17,
+            '5' : 56,
+            '6' : 47,
+            'length' : 7,
+            'forEach' : function(cb) {
+                for(let i = 0; i < this.length; i++) {
+                    // const val = this[i];
+                    //fnSum의 매개변수는 1개이므로 인데스 번호인 i는 무시됨(생략가능)
+                    cb( this[i], i);
+                }
+            }
+        }
+        for (let i = 0; i < myArr.length; i++) {
+            console.log(myArr[i]);
+        }
+
+        let sum = 0;
+        function fnSum(item) {
+            sum += item;
+        }
+        myArr.forEach(fnSum);
+        console.log(`sum : ${sum}`);
+        console.log('---------');
+        let sum2 = 0;
+        myArr.forEach(function(item) {
+            sum2 += item;
+        });
+        console.log(`sum2 : ${sum2}`);
+        console.log('---------');
+
+        //forEach는 값, 인덱스번호, 배열이 순서대로 전달
+        myArr.forEach(function(item, idx) {
+            console.log(`arr[${idx}] : ${item}`);
+        });
+
+        console.log('---------');
+        myArr.forEach(function(item) {
+            if(item % 2 === 0) {
+                console.log(item);
+            }
+        });
+
+        console.log('---------');
+        let sum_odd = 0;
+        myArr.forEach(function(item){
+            if(item % 2 === 1) {
+                sum_odd += item;
+            }
+        })
+        console.log(`홀수 전체 더함 : ${sum_odd}`);
+    </script>
+</body>
+</html>
