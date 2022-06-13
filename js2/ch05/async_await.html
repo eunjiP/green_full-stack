@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn1() {
+            return new Promise(function(resolve, reject) {  
+                resolve(10);
+                // reject(new Error('문제 발생'));
+            });
+        }
+
+        function fn2(val) {
+            return new Promise(function(resolve) {
+                setTimeout(function() {
+                    resolve(val * 2);
+                }, 5000)
+            });
+        }
+
+        //async : 함수가 꼭 필요함!!
+        //await 사용시 Promise객체여야한다 필수(resolve의 값을 받는다)
+        async function mainRun() {
+            let val1 = 0;
+            try {
+                val1 = await fn1();
+                console.log(val1);
+                // const val2 = await fn2(val1);   //val1번이 찍히고 5초 뒤에 val2가 찍힘
+                // console.log(val2);
+            } catch(e) {
+                console.log(e);
+            }
+            const val2 = await fn2(val1);
+            console.log(val2);
+        }
+
+        mainRun();
+        
+    </script>
+</body>
+</html>

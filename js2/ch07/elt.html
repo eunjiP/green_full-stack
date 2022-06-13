@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        function elt(name, attr) {
+            var node = document.createElement(name);
+            if(attr) {
+                //attr 객체를 속성명이 한개씩 item에 담긴다
+                //attr[item] : 객체의 값을 구함
+                for(const item in attr) {
+                    //attr.hasOwnProperty(item) : 속성값이 있는지 한번더 확인(boolean값을 리턴)
+                    if(attr.hasOwnProperty(item)) {
+                        //setAttribute : 속성값 셋팅
+                        node.setAttribute(item, attr[item]);
+                    }
+                }
+            }
+            return node;
+        }
+        const optionObj = {
+            'src' : 'https://upload.wikimedia.org/wikipedia/ko/thumb/d/d4/%ED%8E%AD%EC%88%98.jpg/300px-%ED%8E%AD%EC%88%98.jpg',
+            'alt' : '펭수'
+        };
+        const eleImg = elt('img', optionObj);
+        console.log(eleImg);
+        const divContainer = document.querySelector('#container');
+        divContainer.appendChild(eleImg);
+
+    </script>
+</body>
+</html>

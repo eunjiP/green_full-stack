@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+    <style>
+        img { width: 200px; }
+    </style>
+</head>
+<body>
+    <div id="list"></div>
+    <button onclick="getData();">데이터 가져오기</button>
+    <script>
+        let page =1;
+        const divList = document.querySelector('#list');
+
+        // 통신담당. 끝나면 아래 두함수에 넘겨준다.
+        function getData() {        
+            console.log(`page : ${page}`);     //페이지 호출
+
+            const url = `https://picsum.photos/v2/list?limit=30&page=${page++}`;
+            fetch(url).then(function(res){  
+                return res.json();  //Promise객체가 리턴
+            }).then(function(data) {    // 통신의 결과를 
+                makeList(data)          //makeList에 결과(배열형태)를 보냄.
+            });
+        }
+
+        // 두 함수는 화면에 뿌리는 사람.
+
+        // makeList = 직급 높은 사람.
+        // 통신이 끝나면 makeList에 준다.
+        function makeList(data) {   // 위 함수의 결과값(배열)이 여기에 들어옴.
+            data.forEach(function(item) {
+                const img = makeImg(item); // img태그의 주소값을 item에 줌. //그 값을 담아서 img에 넣어 줬고 
+                divList.appendChild(img); // id가 List인 divList에 그 값을 넣어주고
+            });
+        }
+        // 직급 아래인사람.(신입사원?)
+        function makeImg(item) {    // divList를 넣어준다. 아래 함수내용을 리턴.
+            const img = document.createElement('img');      // 메모리에 이미지 태그가 만들어 진 상태.
+            img.src = item.download_url;                    // 넘어온 객체 1개의 다운로드한 url 값을 복사하여 img태그의 src(속성)에 준다.
+            return img; // 메모리에 있는 주솟값을 리턴.
+        }
+
+    </script>
+</body>
+</html>

@@ -8,6 +8,7 @@
 </head>
 <body>
     <script>
+        //cb=hello : 초기값을 hello로 주겠다는 이야기
         function print(p1, p2, cb=hello) {
             cb(p1, p2);
         }
@@ -20,7 +21,6 @@
             console.log(`Bye~~~ ${nm}`);
         }
 
-        //cb=hello : 초기값을 hello로 주겠다는 이야기
         print('박은지');
         //함수에게 필요하게 한개의 매개변수 이므로 두번째 값은 무시됨(자리 차지용)
         //3번째 자리에 함수가 위치해야만 변경 가능

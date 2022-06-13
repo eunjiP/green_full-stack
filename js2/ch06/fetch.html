@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch</title>
+</head>
+<body>
+    <!--    
+        fetch 사용할 때, 주솟값/애로우펑션/?? 작성.
+        fetch('http://example.com/movies.json')
+        .then((response) => response.json())    // () => Arrow function으로 사용할 때, 주의점은 {}중괄호가 없어야하고, 객체를 호출해야함.
+        .then((data) => console.log(data));
+
+        https://picsum.photos/v2/list 여기 접속함.
+        ajackson 통신 ? 주솟값을 바꿔서 통신을 하는 것이 아니라 부분만 자바스크립트와 백엔드와 통신을 함. 그래서 부분이 변경이 됨.
+
+        자바스크립트는 배열도 객체!!
+
+     -->
+    <script>
+        const url = 'https://picsum.photos/v2/list';
+        // get방식.
+        fetch(url).then(function(res){  // fetch(url)는 promise객체
+            // console.log(res.json());    // promise객체 인지 확인됨.
+            return res.json();
+        }).then(function(data) {    // fetch가 알아서 문자열로 받을 것을 객체로 바꿔줌.
+            console.log(data);
+
+             data.forEach(function(item) {  // 받은 객체를 배열로 찍음.
+                console.log(item);
+             });
+        });
+
+        // form태그로는 get post밖에 없음.
+        // 자바스크립트는 아래처럼 4가지 모두 날릴 수 있다.
+
+        // post방식 => 안씀.
+
+        // JSON 통신 최적화!!   -- 화면이랑 상관없음. 
+        // Restful API (CRUD) : 이것은 규칙!! 안지켜도 되지만 지키면 편하다!
+        // get      - select
+        // post     - insert
+        // put      - update
+        // delete   - delete
+
+        /*
+        // 화면도 신경쓰고 DB도 신경써야함. 그래서 get과 post방식으로만 사용가능.
+
+        // 같은 주솟값이라도 다르게 처리가 가능하다. (메소드)에 따라서
+        /board/write (get)  -글 쓰는 화면 열기
+        /board/write (post) -글처리
+
+        /board/list.php (get) - 글 리스트 보기
+
+        /board/detail.php (get) - 글읽기
+        /board/detail.php (get/ post) - 글삭제
+
+        /board/mod.php (get) -글 수정 화면 읽기     - 데이터 가져오기
+        /board/mod.php (post) -글 수정 처리         - 데이터 처리
+
+        ---------------------------------------------------------
+        // ajackson으로 만들 때 사용.
+        데이터 가져오기와 데이터처리 2가지 방법. (화면이랑 상관없음.)
+        // 파일은 하나로 반들어서 분배.
+
+        /board.php      (get)        - 글 리스트 데이터 가져오기.
+        /board.php/4    (get)        - 글 디테일 데이터 가져오기.
+        /board.php/4    (delete)     - 글 삭제처리.
+        /board.php/4    (put)        - 글 수정 처리.
+        /board.php      (post)       - 글 쓰기 처리.        
+        
+        */
+    </script>
+</body>
+</html>

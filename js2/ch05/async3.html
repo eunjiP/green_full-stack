@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비동기로 인한 문제점.</title>
+</head>
+<body>
+    <script>
+        /*
+        setTimeout(function(){
+            console.log('A');
+        }, 3000);
+        setTimeout(function(){
+            console.log('B');
+        }, 2500);
+        setTimeout(function(){
+            console.log('C');
+        }, 2000);
+        
+        */
+
+       // CBA를 출력하는 setTimeout을 ABC로 호출하고 싶을 때, 아래처럼 작성해야함.
+       // 저렇게 > 이렇게 식이 나오는 모양을 콜백지옥이라 부름. 
+       // 1번
+        setTimeout(function(){      // 인자값 2개, 첫번째는 function이고 두번째는 값(3000(초))
+            console.log('A');
+            
+            // 2번
+            setTimeout(function(){
+                console.log('B');
+                
+                // 3번
+                setTimeout(function(){
+                    console.log('C');
+
+                    console.log('어쩌고 저쩌고');
+                }, 2000);
+
+            }, 2500);
+
+        }, 3000);
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="list"></div>
+    <button onclick="getData();">데이터 가져오기</button>
+    <script>
+        let page =1;
+        const divList = document.querySelector('#list');
+
+        function getData() {        
+            console.log(`page : ${page}`);     
+
+            const url = `https://picsum.photos/v2/list?limit=30&page=${page++}`;
+            fetch(url).then(function(res){  
+                return res.json();
+            }).then(function(data) {    
+                makeList(data)  ;
+                console.log(data);       
+            });
+        }
+
+        function makeList(data) {   
+            data.forEach(function(item) {
+                const img = makeImg(item); 
+                divList.appendChild(img); 
+            });
+        }
+        function makeImg(item) {   
+            const img = document.createElement('img');      
+            // img.src = item.download_url;     // 이건 그냥 사이즈 조절 없이 그대로 받을때.
+            
+            // 이미지 크기 수정해서 부르는 방법.
+            let width = parseInt(item.width * 0.1);
+            let height = ~~(item.height * 0.1);    // / 10  나누기보다 곱하기 써주기 더 빠름. 나누기가 오래걸림.
+            img.src = `https://picsum.photos/id/${item.id}/${width}/${height}`;
+            return img; 
+        }
+
+    </script>
+</body>
+</html>

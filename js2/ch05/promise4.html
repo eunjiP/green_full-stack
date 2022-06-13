@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // fn1 ~ fn3는 통신. => 통신은 무조건 promise사용.
+        // fn1 리턴값을 fn2에 전달.
+        // fn2 리턴값을 fn3에 전달.
+
+        function fn1() {
+            return new Promise(function(resolve) {  // reject는 작성하지 않아서 catch는 사용할 수 없음.
+                resolve(10);
+            });
+        }
+
+        function fn2(val) {
+            // return val *2;
+            // 프로미스 객체를 만들지 않아도 프로미스객체가 넘어오기 때문에 적지 않아도 됨.
+            // 프로미스 객체가 넘어오면 또 프로미스 객체가 들어가도 또 만들어주는게 아니가 그 객체 안에서 작동된다.
+            // 위와 동일함.
+            return new Promise(function(resolve) {
+                setTimeout(function() {
+                    resolve(val *2);
+                }, 2000)
+            });
+        }
+
+        function fn3(val) {
+            return new Promise(function(resolve){
+                resolve(val-1);
+            });
+        }
+
+        // 콜백지옥과 동일한구조. 이렇게 사용하면 안됨.
+        const p1 = fn1();       // 전달받은 Promise객체가 들어있음.
+        p1.then(function(result) {
+                fn2(result).then(function(result2){
+                    fn3(result2).then(function(result3){
+                        console.log(result3);
+                    });
+                });
+        });
+
+        console.log('-------------');
+
+        fn1()
+        .then(function(result) {            // 프로미스의 주솟값을 보냈고, 그 값을 리턴시켜줌.
+        // p1.then(function(result) {       // 10 = result , p1.then(메소드) = 주솟값. then 
+            return result;                  // 리턴했으면 무조건 프로미스여야함. 프로미스가 넘어오지 않아도 리턴시키면 프로미스 구조로 만들어짐.
+        }).then(function(result2){          // p1.then(메소드).then = (프로미스 객체)주솟값.then
+            return fn2(result2);            
+        }).then(function(result3){
+            return fn3(result3);
+        }).then(function(result4){
+            console.log(result4);
+        });
+    </script>
+</body>
+</html>

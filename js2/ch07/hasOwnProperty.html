@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj1 = {
+            name : '홍길동',
+            age : 20
+        };
+        console.log(obj1.hasOwnProperty('name'));
+        console.log(obj1.hasOwnProperty('age'));
+        obj1.addr = '경기도';
+        console.log(obj1.hasOwnProperty('addr'));
+        // obj1.prototype.height = 172.2;   //상수에 속성 추가불가
+
+        function Human(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Human.prototype.height = 172.2;
+        const obj2 = new Human('홍길동', 21);
+        console.log(obj2.hasOwnProperty('name'));
+        console.log(obj2.hasOwnProperty('age'));
+        obj2.addr = '제주도';   //함수에 속성값 추가는 가능
+        console.log(obj2.hasOwnProperty('addr'));
+        // obj2.height = 182.2;
+        console.log(obj2.height);
+        console.log(obj2.hasOwnProperty('height')); 
+        //hasOwnProperty() : 내가 가지고 있는건지(true) 아니면 상속받은 건지(false) 확인
+        
+    </script>
+</body>
+</html>

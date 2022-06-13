@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <script>
+        /*
+        1. 콜백지옥을 안하기 위해서 promise를 사용해야 한다.
+            // 콜백지옥이 많이 사용되는 것은 아닌데, async3.html처럼 가독성이 떨어지기 때문에 (너무 많은 작업들이 섞여있음....)
+            // 통신에 통신을 해결해야하기 때문에 promise를 사용해야 한다.
+        2. promise객체를 만들 때, 보내는 콜백함수! 
+            resolve를 호출하면 then이 실행되고
+            reject를 호출하면 catch가 실행된다.
+        3. 2번 콜백에서 리턴 값을 resolve에 아규먼트로 사용한 promise객체가 리턴된다.
+           // 3.최종:  2번 콜백에서 리턴값이 promise객체가 아니라면 리턴값을 resolve에 아규먼트로 사용한 promise객체가 리턴된다.
+       
+        */                     
+                                // 1번콜백
+        const p1 = new Promise(function(resolve) {
+            // resolve('안녕',1,2,3);  // resolve, reject는 파라미터 1개만 받는다. 즉, '안녕'을 뺀 나머지는 절대 받지 않음.
+            resolve('안녕');    // 정확한 작성방범.
+        });
+
+        const val = cb('안녕');
+        return new Promise(function(resolve) {
+            resolve(val);
+        });
+        
+                            // 2번콜백
+        const p2 = p1.then(function(result){
+            console.log(` p1 : ${result}`);
+            return result;
+        });
+
+        // .then, .catch가 오면 .(점) 앞에 객체는 promise객체가 넘어온다고 생각하면 됨.
+        p2.then(function(result){
+            console.log(` p2 : ${result} `);
+        });
+
+
+    </script>
+</body>
+</html>

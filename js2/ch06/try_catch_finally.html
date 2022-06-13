@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //finally 없는 함수
+        function fn1() {
+            try {
+                const div = 10 / 2;
+                return div;
+            } catch (e) {
+                console.log(e);
+            } 
+            //리턴이 먼저되서 실행안됨
+            console.log('무조건 실행해야 하는 소스'); 
+            return 0;
+        }
+
+        function fn2() {
+            try {
+                const div = 10 / 2;
+                return div;
+            } catch (e) {
+                console.log(e);
+            } finally {
+                //리턴 전에 무조건 실행되고 리턴
+                console.log('무조건 실행해야 하는 소스'); 
+            }
+            return 0;
+        }
+
+        const fn1Result = fn1();
+        console.log(fn1Result);
+        console.log('-----------------');
+        const fn2Result = fn2();
+        console.log(fn2Result);
+    </script>
+</body>
+</html>

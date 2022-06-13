@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myArr = {
+            '0' : 10, 
+            '1' : 43,
+            '2' : 22,
+            '3' : 38,
+            '4' : 17,
+            '5' : 56,
+            '6' : 47,
+            'length' : 7,
+            'forEach' : function(cb) {
+                for(let i = 0; i < this.length; i++) {
+                    // const val = this[i];
+                    //fnSum의 매개변수는 1개이므로 인데스 번호인 i는 무시됨(생략가능)
+                    cb(this[i], i);
+                }
+            },
+            'map' : function(cb) {
+                const tempArr = [];
+                for (let i = 0; i < myArr.length; i++) {
+                    tempArr.push(cb(this[i], i));
+                }
+                return tempArr;
+            },
+            'filter' : function(cb) {
+                const tempArr = [];
+                for(let i = 0; i < this.length; i++) {
+                    if(cb(this[i])) {tempArr.push(this[i])}
+                }
+                return tempArr;
+            },
+            'toString' : function() {
+                let result = '';
+                for(let i= 0; i < this.length; i++) {
+                    if(i === 0) {
+                        result += `[${this[i]}, `;
+                    } else if (i === this.length - 1) {
+                        result += `${this[i]}]`;
+                    } else {
+                        result += `${this[i]}, `;
+                    }
+                }
+                return result;
+            }
+        }
+
+        const arr2 = myArr.filter(function(item) {
+            return item % 2 === 0;
+        });
+        console.log(arr2.toString());
+        console.log(myArr.toString());
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise 함축사용</title>
+</head>
+<body>
+    <!-- 내가 직접 Promise하는 일은 잘 없다. 라이브러리에 보통 있음. 사용방법을 아는 게 중요! -->
+    <script>
+        const p1 = new Promise(function pMethod(resolve, reject) {     
+            resolve('1111');
+            // reject('1111');
+        });    
+
+        // 내가 특별히 만든 객체가 아니고 .then, .catch는 promise객체가 넘어온다고 생각하면 됨.
+        
+        p1.then(function (result) {        
+            console.log(`resolveMethod : ${result}`);
+        });
+        p1.catch(function (result) {          
+            console.log(`catchMethod : ${result}`);
+        });  
+    </script>
+</body>
+</html>

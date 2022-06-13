@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 이건 딜레이가 필요없는 작업.
+        function sum(n1, n2){
+            let result = 0;     // result = 버스 생성.
+            result = n1 + n2;   // 버스탈때까지 기다려줌. => 이건 기다림이 없음.
+            return result;      // 타면 그 값을 다시 돌려줌.
+        }
+        console.log(sum(10,20));
+        // 통신이 느린 것들은 실행하고 지나감.
+        // 즉, setTimeout처럼 초가 있으면, 일단 작성대로 실행시켜놓고 
+        // 야! 도착하면 연락줘! 하고 지나감. 그래서 출력이 제일 통신이 빠른초가 먼저 출력이 되는 것.
+
+
+        // 즉, 비동기 => 값이 도착할 때까지 기다리지않는 것
+        function sum2(n1, n2){
+            let result = 0;         // 버스생성.
+            setTimeout(function(){  // 시간보니 오래걸리네?하고 지나감. 기다리지 않고.
+                // setTimeout : 서버한테 신호를 보내는 통신. 함수 : 서버에 신호를 보냈고 그걸 받았다.
+                result = n1 + n2;   // 값이 탈때까지 기다리지 않고 초가 실행되고
+            },1000);
+            return result;  // 바로 리턴됨. 1초후에 값을 넣어주기때문에 0이 뜨는 것.
+        }
+        console.log(sum2(10,20));
+    </script>
+</body>
+</html>
+<!-- 
+    CPU  core 1개
+    = 예전에는 시분할 처리.
+    멀티프로세싱. : OS에서 (윈도우에서) 메모장도 열고 줌도 열고 등등... 하는 것은 멀티프로세싱.(시분할처리 + OS)
+
+    멀티스레드 : 소프트웨어 입장. (소프트웨어에서 실행 주체.)
+
+-->

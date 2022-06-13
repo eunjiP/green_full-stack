@@ -1,0 +1,97 @@
+<script>
+    const myArr = { 
+        '0' : 10,      
+        '1' : 43,
+        '2' : 22,
+        '3' : 38,
+        '4' : 17,
+        '5' : 56,
+        '6' : 47,
+        'length' : 7,
+        'forEach' : function(cb){
+            for(let i=0; i<this.length; i++){
+                let aa = this[i];
+                cb(aa, i);
+            }
+        },
+        'map' : function(cb){
+            let bb = [];
+            for(let i=0; i<this.length; i++){
+                bb.push(cb(this[i],i));
+            }
+            return bb;
+        },
+        'filter' : function(cb){
+            let cc = [];
+            for(let i=0; i<this.length; i++){
+                if(cb(this[i])){
+                    cc.push(this[i]);
+                }
+            }
+            return cc;
+        },
+        'toString' : function(){
+            let dd ='[ ';
+            for(let i=0; i<this.length; i++){
+                dd+= i<this.length-1 ? `${this[i]}, ` : `${this[i]} }`;
+            }
+            return dd;
+        }
+    }
+
+    myArr.forEach(function(item,idx){
+        console.log(`${idx} : ${item}`);
+    });
+
+    console.log('--------------');
+
+    const mapArr = myArr.map(function(item){
+        item % 2 === 0 ? item*2 : item;
+    });
+    console.log(myArr.toString());
+
+    console.log('--------------');
+
+
+    
+
+</script>
+<!-- 
+    // return 없는 함수 => forEach, toString
+    // return 있는 함수 => map, filter
+
+    'forEach' : function(cb){
+            for(let i=0; i<this.length; i++){
+                let aa = this[i];
+                cb(aa, i);
+            }
+        },
+        'map' : function(cb){
+            let bb = [];
+            for(let i=0; i<this.length; i++){
+                let cc = cb(this[i],i);
+                bb.push(cc);
+            }
+            return bb;  
+        },
+        'filter' : function(cb){
+            let dd = [];
+            for( let i=0; i<this.length; i++){
+                if(cb(this[i],i)){
+                    dd.push(this[i]);
+                }
+            }
+            return dd;
+        },
+        'toString' : function(){
+            let ff = '[';
+            for(let i=0; i<this.length; i++){
+                ff += i < this.length-1 ? `${this[i]}, ` : `${this[i]}]`;
+            }
+            return ff;
+        }
+
+
+
+
+ -->
