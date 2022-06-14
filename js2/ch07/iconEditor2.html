@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>    
+    <script>
+        function elt(name, attr) {
+            const node = document.createElement(name);
+            if(attr) {
+                for(const item in attr) {
+                    if(attr.hasOwnProperty(item)) {
+                        node.setAttribute(item, attr[item]);
+                    }
+                }
+            }
+            return node;
+        }
+
+        function createIconEditor(parent, nx, ny) {
+
+            //color input 
+            const inputColor = elt('input', {type: 'color'});
+            parent.appendChild(inputColor);
+
+            //All Clear button
+            const btnAllClear = elt('input', {type:'button', value:'All Clear'});
+            parent.appendChild(btnAllClear);
+
+            //table
+            const table = elt('table');
+            parent.appendChild(table);
+
+            table.style.borderCollapse = 'collapse';
+            table.style.marginTop = '10px';
+
+            for(let i=0; i<ny; i++) {
+                const tr = elt('tr');
+                table.appendChild(tr);
+
+                for(let z=0; z<nx; z++) {                    
+                    const td = elt('td');                    
+                    tr.appendChild(td);
+
+                    td.style.width = td.style.height = '15px';
+                    td.style.border = '1px solid #000';
+
+                    td.addEventListener('click', function(e) {
+                        //color16 : 커스텀 속성을 만들어서 값을 담을 용도(RGB값으로 변환되지않음)
+                        if(e.target.style.backgroundColor === '' || e.target.color16 !== inputColor.value) {
+                            e.target.style.backgroundColor = inputColor.value;
+                            e.target.color16 = inputColor.value;
+                        } else {
+                            e.target.style.backgroundColor = '';
+                        }
+
+                        //다른 풀이 1)
+                        // if(e.target.style.backgroundColor === '' || rgbToHex !== inputColor.value) {
+                        //     e.target.style.backgroundColor = inputColor.value;
+                        // } else if(rgbToHex === inputColor.value || e.target.style.backgroundColor !== '') {
+                        //     e.target.style.backgroundColor = '';
+                        // } 
+                    });
+
+                    //다른풀이2)
+                    // let colorStr = '';
+                    //     td.addEventListener('click', function (e) {
+                    //         if (e.target.style.backgroundColor === '' || colorStr !== inputColor.value) {
+                    //         e.target.style.backgroundColor = inputColor.value;
+                    //         colorStr = inputColor.value;
+                    //         } else {
+                    //         e.target.style.backgroundColor = '';
+                    //         }
+                    // });
+                }
+            }
+        }
+        function convertRGBtoHex(rgb) {
+            if(rgb === '') {
+                return '';
+            }
+            const colors = rgb.substring(rgb.indexOf('(') + 1, rgb.lastIndexOf(')')).split(/,\s*/);
+            return '#' + colorToHex(colors[0]) + colorToHex(colors[1]) + colorToHex(colors[2]);
+        }
+
+        function colorToHex(color) {
+            var hexadecimal = parseInt(color, 10).toString(16);
+            return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
+        }
+
+        createIconEditor(document.body, 10, 5);
+    </script>
+</body>
+</html> 
