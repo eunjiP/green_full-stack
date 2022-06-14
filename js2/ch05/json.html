@@ -11,7 +11,7 @@
         JSON은 공식규격 (DB가 통신을 통해서 왔다갔다 할 때, DB를 정리해서 왔다갔다 해야해 주는 것.)
         XML보다 덜 잡아먹는다. XML은 장점이 없다.
         JSON (javascript Object Notaion)
-        // 자바스크립트에서 객체 만들때 사용하는 문법으로 데이터를 표현.
+        자바스크립트에서 객체 만들때 사용하는 문법으로 데이터를 표현.
 
         JSON형태 : 객체->문자열 로 만들어 서버에 문자열로 보내면 (배열, 객체를)문자열로 저장한다.
     -->
@@ -29,6 +29,7 @@
         */
 
         // 자바스크립트에서 쓰는 문법으로 객체 2개를 만듬.
+        //객체는 저장이 가능하다(분리가 가능하다)
         const userVo_1 = {
             'name' : '신사임당',
             'age' : 20,
@@ -42,15 +43,17 @@
         // 객체인지 확인가능하고, 객체 안 내용을 확인 할 수 있음.
         console.log(userVo_1);
         console.log(userVo_2);
-        // 객체를 사용하면 아래처럼 자료를 빼오기 쉽다!!
+        // 객체를 사용하면 아래처럼 자료를 빼오기 쉽다!!(속성명으로 값을 가지고 오기 쉽다)
         console.log(userVo_1.addr);
         console.log(userVo_1['addr']);
 
         // ★ JSON 사용으로 문자열화 시키기 ★ = JSON 으로 변경해서 문자열로 출력.
+        //stringify : JSON을 문자열로
         const json1 = JSON.stringify(userVo_1);
         console.log(json1);
         // 일부러 바꿔서 사용할 때도 있고, 패치 사용해서 사용할 수 있음.
         // 문자열로 보낼수있어야하고 받아서 다시 객체로 바꿀 수 있다.
+        //parse : 문자열을 JSON으로
         const obj = JSON.parse(json1);  
         console.log(obj);
 
