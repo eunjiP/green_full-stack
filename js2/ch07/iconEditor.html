@@ -32,6 +32,9 @@
             //All Clear Button
             const btnAllClear = elt('input', {type: 'button', value:'All Clear'});
             parent.appendChild(btnAllClear);
+            //색이 추가될 td를 담을 배열
+            const cells = [];
+           
 
             //table
             const table = elt('table');
@@ -53,6 +56,7 @@
 
                     //강사님 답
                     td.addEventListener('click', function(e) {
+                        cells.push(this);
                         let inpcolor = "" ;
                         e.target.style.backgroundColor === "" ? inpcolor = inputColor.value : inpcolor;
                         e.target.style.backgroundColor = `${inpcolor}`;
@@ -60,6 +64,29 @@
                 }
                 table.appendChild(tr);
             }
+            //미션) All Clear 눌렀을때 모두 지워지게 
+            //addEventListener 사용
+            btnAllClear.addEventListener('click', function() {
+                // 방법1)전수검사를 함, forEach가 워낙 빨라서 굳이 방법2를 쓸 필요는 없음
+                // const td = document.querySelectorAll('td');
+                // td.forEach(item => {
+                //     item.style.backgroundColor = '';
+                // });
+
+                //방법2)
+                //전체 td를 비우는게 아니라 추가된 td만 비우는 방식(속도 향상을 위한것)
+                cells.forEach(item => {
+                    item.style.backgroundColor = '';
+                })
+            });
+
+            //onclick사용
+            // btnAllClear.onclick = function() {
+            //     const td = document.querySelectorAll('td');
+            //     td.forEach(item => {
+            //         item.style.backgroundColor = '';
+            //     });
+            // };
 
             //onclick 사용방법
             // for (let i = 0; i < ny; i++) {
@@ -76,7 +103,7 @@
 
         }
 
-        createIconEditor(document.body, 10, 10);
+        createIconEditor(document.body, 10, 20);
 
         //방법1)
         // const allTd = document.querySelectorAll('td');

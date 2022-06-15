@@ -8,10 +8,6 @@
 </head>
 <body>
     <script>
-        //hasOwnProperty : 자기 자신이 가지고 있는 속성인지 확인
-        //(여기서 hasOwnProperty 쓰는이유는 상속인지 자기 자신속성인지 확인하기위한것)
-        //false일 경우, 부모로 상속받은 경우, 자기 자신이 속성을 가지고 있지 않은 경우
-        //true일 경우, 자기자신의 속성일 경우
         const obj1 = {
             name : '홍길동',
             age : 20
@@ -27,7 +23,6 @@
             this.age = age;
         }
         Human.prototype.height = 172.2;
-        //new로 객체(붕어빵)를 만들면 프로토타입(붕어빵틀)을 상속 받는다
         const obj2 = new Human('홍길동', 21);
         console.log(obj2.hasOwnProperty('name'));
         console.log(obj2.hasOwnProperty('age'));

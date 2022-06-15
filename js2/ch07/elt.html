@@ -16,10 +16,8 @@
                 //attr[item] : 객체의 값을 구함
                 for(const item in attr) {
                     //attr.hasOwnProperty(item) : 속성값이 있는지 한번더 확인(boolean값을 리턴)
-                    //hasOwnProperty : 자기 자신이 가지고 있는 속성인지 확인(여기서 false라는 말은 상속인지 자기 자신속성인지 확인)
                     if(attr.hasOwnProperty(item)) {
                         //setAttribute : 속성값 셋팅
-                        //node : 객체(이미지 태그에 속성추가되어 있는 객체), item : 문자열, attr[item] : 문자열
                         node.setAttribute(item, attr[item]);
                     }
                 }
