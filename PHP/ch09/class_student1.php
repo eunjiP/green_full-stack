@@ -5,8 +5,8 @@
 
     //클래스는 변수명을 대문자로 시작(암묵적인 약속)
     //public : 접근제어자, 접근지시어(Access Modifier)
-    //java : private, default, protected, pulic (4개)
-    //php : private(클래스안에서만 사용가능), protected(같은파일, 상속받은경우, 네임스페이스인경우), pulic(완전오픈) (3개)
+    //java : private, default, protected, public (4개)
+    //php : private(클래스안에서만 사용가능), protected(같은파일, 상속받은경우, 네임스페이스인경우), public(완전오픈) (3개)
     class Student {
         public $studentId;
         public $studentName;

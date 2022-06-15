@@ -12,6 +12,7 @@
 
     //자식 클래스 extends 부모 클래스 : 상속받는다
     //상속하면 소스 절약이 가능하며 위로 갈수록 추상적이고 밑으로 갈수록 상세하다
+    //다중 상속 불가
     class Student extends People {
         private $studentId;
 

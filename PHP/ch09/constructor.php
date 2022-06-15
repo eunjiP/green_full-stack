@@ -10,7 +10,8 @@
         private $price;
         
         //__construct : 생성자 (멤버함수는 모두 자동으로 public이 붙는다)
-        function __construct($name, $color, $price) {
+        //$color="초깃값" : 초깃값 지정가능 => 유연하게 사용가능
+        function __construct($name=null, $color=null, $price=null) {
             $this->name = $name;
             $this->color = $color;
             $this->price = $price;
@@ -25,6 +26,8 @@
 
     $apple = new Fruit("Apple", "red", 1000);
     $banana = new Fruit("Banana", "yellow", 500);
+    $banana2 = new Fruit("", "yellow"); //칸만 맞춰주면 위치만 맞으면 객체 생성 가능
     
     $apple->print_fruit();
     $banana->print_fruit();
+    $banana2->print_fruit();

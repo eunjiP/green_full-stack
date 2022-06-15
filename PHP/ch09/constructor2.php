@@ -11,7 +11,7 @@
         private $color;
         private $price;
         
-        //오버라이딩 : 생성할때 매개변수를 정확히 정하지않고 변수를 자유롭게 넣고 싶을때
+        //오버로딩 : 생성할때 매개변수를 정확히 정하지않고 변수를 자유롭게 넣고 싶을때(php, 자바스크립트 X)
         //아래 내용이 자동적으로 들어간다
         function __construct() {
             return $this;
@@ -43,7 +43,7 @@
     $apple1 = (new Fruit)->setName('사과');
     $apple1->print_fruit();
 
-    //빌드 패턴
+    //빌드 패턴(setter 필수)
     $apple2 = (new Fruit)
                 ->setColor("파란")
                 ->setPrice(1000);
