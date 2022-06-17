@@ -1,6 +1,7 @@
 <!-- 로그인한 아이디로 대여중인 책만 표시해서 보여준다 -->
 <?php
-    $id = $_GET['id'];
+    session_start();
+    $id = $_SESSION['id'];
     
     include "db.php";
     $conn = get_conn();
@@ -30,7 +31,7 @@
 <body>
     <h1>대여한 리스트</h1>
     <h4>반납하실 책을 선택해주세요</h4>
-    <a href="main.php?id=<?=$id?>"><i class="fa-solid fa-house"></i></a>
+    <a href="main.php?"><i class="fa-solid fa-house"></i></a>
     <form action="return_proc.php" method="post">
         <input type="hidden" name="id" value="<?=$id?>">
         <div id="check">

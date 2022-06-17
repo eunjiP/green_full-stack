@@ -1,7 +1,9 @@
 <!-- 관리자용 아이디를 데이터베이스에 저장해야할지 고민하다가 우선 php에 넣어놓고 일치여부 확인함 -->
 <?php
+    session_start();
+    $_SESSION['id'] = 'root';
     $id = 'root';
-    $pw = 'rhksflwk';
+    $pw = '1234';
 
     $id_p = $_POST['id'];
     $pw_p = $_POST['pw'];

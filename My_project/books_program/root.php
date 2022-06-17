@@ -1,4 +1,8 @@
 <!-- 관리자 로그인페이지 -->
+<?php
+    session_start();
+    session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

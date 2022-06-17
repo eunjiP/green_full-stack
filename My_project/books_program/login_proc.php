@@ -17,7 +17,9 @@
 
         if($id === $id2 && $pw === $pw2)
         {
-            header("Location: main.php?id=$id");
+            session_start();
+            $_SESSION['id'] = "$id";
+            header("Location: main.php");
         }
     }
 ?>
@@ -27,6 +29,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="1; url=login.php">
     <title>로그인 실패</title>
     <style>
         body {line-height: 30px; text-align: center;}

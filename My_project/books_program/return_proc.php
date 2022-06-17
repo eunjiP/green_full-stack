@@ -13,5 +13,5 @@
         mysqli_close($conn);
     }
 
-    header("Location: main.php?id=$id");
+    header("Location: main.php");
 ?>

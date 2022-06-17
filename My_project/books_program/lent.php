@@ -1,6 +1,7 @@
 <?php
     // 학생용 대여페이지 구현
-    $id = $_GET['id'];
+    session_start();
+    $id = $_SESSION['id'];
 
     include "db.php";
 

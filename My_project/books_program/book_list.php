@@ -2,6 +2,8 @@
 <?php
     include "db.php";
     
+    session_start();
+    $id = $_SESSION['id'];
     $conn = get_conn();
     $sql = "SELECT book_id, title, author FROM t_books";
     $result = mysqli_query($conn, $sql);

@@ -2,7 +2,8 @@
 <?php
     include "db.php";
         
-    $id = $_GET['id'];
+    session_start();
+    $id = $_SESSION['id'];
     $conn = get_conn();
     $sql = "SELECT book_id, title, author FROM t_books";
     $result = mysqli_query($conn, $sql);
@@ -32,7 +33,7 @@
 </head>
 <body>
     <h1>현재 등록되어 있는 책의 목록</h1>
-    <div><a href="main.php?id=<?=$id?>"><i class="fa-solid fa-house"></i></a></div>
+    <div><a href="main.php"><i class="fa-solid fa-house"></i></a></div>
     <table>
         <tr>
             <th>제목</th>
