@@ -1,0 +1,17 @@
+* { font-size: 9pt;}
+
+a { text-decoration: none;}
+/* link > hover > active > visited 순서로 작성 필요함! */
+a:link { color: #1a1f7a; }
+a:hover {color: #a12ba0; text-decoration: underline;}
+a:active {color: #ff4e02; text-decoration: underline;}
+a:visited { color:#003194 }
+
+font { font-family: '굴림';}
+table { font-family: '굴림';}
+td { line-height: 15px;}
+th { font-weight: bold; color: white; }
+small { line-height: 18px; font-family: '굴림'; }
+strong { font-size:  10pt; line-height: 18px; font-family: '굴림'; font-weight: bold; }
+ul { line-height: 16px; font-family: '굴림';}
+select { font-family: '굴림';}
