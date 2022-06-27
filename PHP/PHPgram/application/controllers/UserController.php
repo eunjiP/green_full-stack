@@ -16,9 +16,10 @@ class UserController extends Controller {
                 $result = $this->model->selUser($param);
                 //password_verify : 암호화 패스워드를 확인하는 함수
                 if($result && password_verify($pw, $result->pw)) {
-                    session_start();
-                        $_SESSION[_LOGINUSER] = $result;
-                        return 'redirect:/feed/index';
+                    $result->pw = null;
+                    $result->regdt = null;
+                    $this->flash(_LOGINUSER, $result);
+                    return 'redirect:/feed/index';
                 } else {
                     return "redirect:signin?email={$email}&err";
                 }
@@ -48,5 +49,10 @@ class UserController extends Controller {
                     return "redirect:signin";
                 }
         }
+    }
+
+    public function logout() {
+        $this->flash(_LOGINUSER);
+        return "redirect:/user/signin";
     }
 }
