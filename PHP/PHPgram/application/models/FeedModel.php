@@ -23,6 +23,7 @@ class FeedModel extends Model {
         $stmt = $this->pdo->prepare($sql);  
         $stmt->bindValue(":ifeed", $param['ifeed']);
         $stmt->bindValue(":img", $param['img']);
-        return $stmt->execute();
+        $stmt->execute();
+        return $stmt->rowCount();
     }
 }

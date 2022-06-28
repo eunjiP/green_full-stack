@@ -20,6 +20,7 @@ class FeedController extends Controller {
                 // print "ctnt : " . $_POST['ctnt'] . "<br>";
                 // print "location : " . $_POST['location'] . "<br>";
                 if(!is_array($_FILES) || !isset($_FILES['imgs'])) {
+                    //에러가 발생 시 JSON형태로 0이 리턴
                     return ["result" => 0];
                 }
                 //insFeed 메소드 호출하고 리턴 값 받은 다음
@@ -30,6 +31,7 @@ class FeedController extends Controller {
                 ];
                 $ifeed = $this->model->insFeed($param);
 
+                $paramImg = ["ifeed" =>  $ifeed];
                 foreach($_FILES['imgs']['name'] as $key => $originFileNm) {
                     $saveDirectory = _IMG_PATH . "/feed/" . $ifeed;
                     if(!is_dir($saveDirectory)) {
@@ -38,15 +40,11 @@ class FeedController extends Controller {
                     $tempName = $_FILES['imgs']['tmp_name'][$key];
                     $rFileNm = getRandomFileNm($originFileNm);
                     if(move_uploaded_file($tempName, $saveDirectory . "/" . $rFileNm)) {
-                        $param = [
-                            "ifeed" =>  $ifeed,
-                            "img" => $rFileNm
-                        ];
-                        $this->model->insFeedImg($param);
+                        $paramImg["img"] = $rFileNm;
+                        $this->model->insFeedImg($paramImg);
                     }
                 }
-
-                // return ["result" => $r];
+                return ["result" => 1];
         }
     }
 }
