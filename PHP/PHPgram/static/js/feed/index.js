@@ -39,23 +39,18 @@
 
                     const fData = new FormData();
                     for(let i=0; i<files.length; i++) {
-                        fData.append('imgs', files[i]);
+                        fData.append('imgs[]', files[i]);
                     }
                     fData.append('ctnt', body.querySelector('textarea').value);
                     fData.append('location', body.querySelector('input[type=text]').value);
 
-                    fetch('/feed/reg', {
+                    fetch('/feed/rest', {
+                        //글등록이므로 method는 post방식!!
                         method: 'post',
                         body: fData
                     }).then(res => res.json())
                         .then(myJson => {
-
-                            const closeBtn = modal.querySelector('.btn-close');
-                            closeBtn.click();
-
-                            if(feedObj && myJson.result) {
-                                feedObj.refreshList();
-                            }
+                            console.log(myJson);
                         });
                 });
             }
