@@ -3,6 +3,7 @@ namespace application\libs;
 // inclued할 경우 라이브러리에 받아 놓으면 다른 파일에 하지 않아도 됨
 require_once "application/utils/UrlUtils.php";
 require_once "application/utils/SessionUtils.php";
+require_once "application/utils/FileUtils.php";
 
 class Application{
     
