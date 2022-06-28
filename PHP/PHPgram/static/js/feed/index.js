@@ -4,6 +4,7 @@
         const modal = document.querySelector('#newFeedModal');
         const body =  modal.querySelector('#id-modal-body');
         const frmElem = modal.querySelector('form');
+        const btnClose = modal.querySelector('.btn-close');
 
         //이미지 값이 변하면
         //frmElem : form태그 안에서 있는 태그만 selector하지 않고 .으로 접근가능함
@@ -51,6 +52,10 @@
                     }).then(res => res.json())
                         .then(myJson => {
                             console.log(myJson);
+
+                            if(myJson.result) {
+                                btnClose.click();
+                            }
                         });
                 });
             }
