@@ -19,11 +19,22 @@ class UserModel extends Model {
         return $stmt->rowCount();
 
     }
+    
     public function selUser(&$param) {
         $sql = "SELECT * FROM t_user
                 WHERE email = :email";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":email", $param["email"]);        
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function selUserByIuser(&$param) {
+        $sql = "SELECT iuser, email, nm, cmt, mainimg, regdt 
+                  FROM t_user
+                 WHERE iuser = :iuser";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":iuser", $param["iuser"]);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
