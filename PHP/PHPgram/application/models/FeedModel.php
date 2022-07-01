@@ -87,4 +87,5 @@ class FeedModel extends Model {
         $stmt->execute();
         return $stmt->rowCount();
     }
+
 }
