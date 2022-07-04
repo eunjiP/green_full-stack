@@ -1,5 +1,6 @@
 <?php
 namespace application\controllers;
+use application\libs\Application;
 
 class FeedController extends Controller {
     public function index() {
@@ -60,6 +61,8 @@ class FeedController extends Controller {
                 $list = $this->model->selFeedList($param);
                 foreach($list as $item) {
                     $item->imgList = $this->model->selFeedImgList($item);
+                    $param2 = ["ifeed" => $item->ifeed];
+                    $item->cmt = Application::getModel("feedcmt")->selFeedCmt($param2);
                 }
                 return $list;
         }
