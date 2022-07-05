@@ -1,10 +1,10 @@
 function getFeedList() {
     if(!feedObj) { return; }
     feedObj.showLoading();            
-    const gData = document.querySelector('#gData');
+    const lData = document.querySelector('#lData');
     const param = {
         page: feedObj.currentPage++,
-        iuser:gData.dataset.toiuser
+        iuser:lData.dataset.toiuser
     }
     // url가지고 오는 다른 방법
     // const url = new URL(location.href);
@@ -23,12 +23,12 @@ function getFeedList() {
 getFeedList(); 
 
 (function() {
-    const gData = document.querySelector('#gData');
+    const lData = document.querySelector('#lData');
     const btnFollow = document.querySelector('#btnFollow');
     if(btnFollow) {
         btnFollow.addEventListener('click', function() {
             const param = {
-                toiuser: parseInt(gData.dataset.toiuser)
+                toiuser: parseInt(lData.dataset.toiuser)
             };
             console.log(param);
             //data값 들고 오는 방법 dataset!!!!
@@ -49,10 +49,13 @@ getFeedList();
                             } else {
                                 btnFollow.innerHTML = "팔로우";
                             }
+                            const feedWinFollower = document.querySelector('#feedWinFollower');
+                            const cnt = feedWinFollower.innerHTML;
+                            feedWinFollower.innerHTML = ~~(cnt) - 1;
                         }
                     });
                     break;
-                case '0':   //팔로우 등록
+                    case '0':   //팔로우 등록
                     fetch(followUrl , {
                         method: "POST",
                         body: JSON.stringify(param)
@@ -64,6 +67,10 @@ getFeedList();
                             btnFollow.classList.remove('btn-primary');
                             btnFollow.classList.add("btn-outline-secondary");
                             btnFollow.innerHTML = "팔로우 취소";
+
+                            const feedWinFollower = document.querySelector('#feedWinFollower');
+                            const cnt = feedWinFollower.innerHTML;
+                            feedWinFollower.innerHTML = ~~(cnt) + 1
                         }
                     });
                     break;

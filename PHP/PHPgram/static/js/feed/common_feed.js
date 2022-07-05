@@ -3,31 +3,7 @@ const feedObj = {
     itemLength: 0,
     currentPage: 1,
     swiper: null,
-    loadingElem: document.querySelector('.loading'),
-    containerElem: document.querySelector('#item-container'),
-    makeCmtItem:function(item) {
-        const divCmtItemContainer = document.createElement('div');
-        divCmtItemContainer.className = 'd-flex flex-row align-items-center mb-2';
-        let src ='/static/img/profile/' + (item.writerimg ? `${item.iuser}/${item.writerimg}` : "defaultProfileImg_100.gif");
-        divCmtItemContainer.innerHTML = `
-            <div class="circleimg h24 w24 me-1">
-                <img src='${src}' class="profile w24 pointer">
-            </div>
-            <div class="d-flex flex-row">
-                <div class="pointer me-2">${item.writer} - <span class="rem0_7">${getDateTimeInfo(item.regdt)}</span></div>
-                <div>${item.cmt}</div>
-            <div>
-        `;
-        return divCmtItemContainer;
-    },
-    makeFeedList: function(list) {
-        if(list.length !== 0) {
-            list.forEach(item => {
-                const divItem = this.makeFeedItem(item);
-                this.containerElem.appendChild(divItem);
-            });
-        }
-
+    refreshSwiper: function() {
         if(this.swiper !== null) { this.swiper = null; }
         this.swiper = new Swiper('.swiper', {
             navigation: {
@@ -39,7 +15,52 @@ const feedObj = {
             direction: 'horizontal',
             loop: false
         });
-
+    },
+    loadingElem: document.querySelector('.loading'),
+    containerElem: document.querySelector('#item-container'),
+    getFeedCmtList:function(ifeed, divCmtList, spanMoreCmt) {
+        fetch(`/feedcmt/index?ifeed=${ifeed}`)
+            .then(res => res.json())
+            .then(res => {
+                if(res && res.length > 0) {
+                    if(spanMoreCmt) {spanMoreCmt.remove(); }
+                    divCmtList.innerHTML = null;
+                    res.forEach(item => {
+                        const divCmtItem = this.makeCmtItem(item);
+                        divCmtList.appendChild(divCmtItem);
+                    });
+                }
+            });
+    },
+    makeCmtItem:function(item) {
+        const divCmtItemContainer = document.createElement('div');
+        divCmtItemContainer.className = 'd-flex flex-row align-items-center mb-2';
+        let src ='/static/img/profile/' + (item.writerimg ? `${item.iuser}/${item.writerimg}` : "defaultProfileImg_100.gif");
+        divCmtItemContainer.innerHTML = `
+            <div class="circleimg h24 w24 me-1 moveFeedwin">
+                <img src='${src}' class="profile w24 pointer">
+            </div>
+            <div class="d-flex flex-row">
+                <div class="pointer me-2 moveFeedwin">${item.writer} - <span class="rem0_7">${getDateTimeInfo(item.regdt)}</span></div>
+                <div>${item.cmt}</div>
+            <div>
+        `;
+        const divMove = divCmtItemContainer.querySelectorAll('.moveFeedwin');
+        divMove.forEach(element => {
+            element.addEventListener('click', e => {
+                location.href = `/user/feedwin?iuser=${item.iuser}`;
+            });
+        });
+        return divCmtItemContainer;
+    },
+    makeFeedList: function(list) {
+        if(list.length !== 0) {
+            list.forEach(item => {
+                const divItem = this.makeFeedItem(item);
+                this.containerElem.appendChild(divItem);
+            });
+        }
+        this.refreshSwiper();
         this.hideLoading();
     },
     makeFeedItem: function(item) {
@@ -162,6 +183,8 @@ const feedObj = {
         const divCmt = document.createElement('div');
         divContainer.appendChild(divCmt);
         
+        const spanMoreCmt = document.createElement('span');
+
         if(item.cmt) {
             const divCmtItem = this.makeCmtItem(item.cmt);
             divCmtList.appendChild(divCmtItem);  
@@ -171,12 +194,11 @@ const feedObj = {
                 divCmt.appendChild(divMoreCmt);
                 divMoreCmt.className = 'ms-3 mb-3';
 
-                const spanMoreCmt = document.createElement('span');
                 divMoreCmt.appendChild(spanMoreCmt);
                 spanMoreCmt.className = 'pointer rem0_9 c_lightgray';
                 spanMoreCmt.innerText = '댓글 더보기';
-                spanMoreCmt,addEventListener('click', e => {
-    
+                spanMoreCmt.addEventListener('click', e => {
+                    this.getFeedCmtList(item.ifeed, divCmtList, spanMoreCmt);
                 });
             }
 
@@ -190,8 +212,14 @@ const feedObj = {
             <input type="text" class="flex-grow-1 my_input back_color p-2" placeholder="댓글을 입력하세요...">
             <button type="button" class="btn btn-outline-primary">등록</button>
         `;
-        const btnCmtReg = divCmtForm.querySelector('button');
         const inputCmt = divCmtForm.querySelector('input');
+        inputCmt.addEventListener('keyup', e=> {
+            //엔터를 했을때 btnCmtReg를 누른것과 같은 효과가 나게 적용
+            if(e.key === 'Enter') {
+                btnCmtReg.click();
+            }
+        });
+        const btnCmtReg = divCmtForm.querySelector('button');
         btnCmtReg.addEventListener('click', e => {
             const params = {
                 "ifeed":item.ifeed,
@@ -206,7 +234,8 @@ const feedObj = {
                 console.log(res.result);
                 if(res.result) {
                     inputCmt.value = '';
-                    
+                    //댓글 등록 시에 더보기를 누른것과 동일한 효과가 난다
+                    this.getFeedCmtList(item.ifeed, divCmtList, spanMoreCmt);
                 }
             })
             
@@ -276,10 +305,16 @@ function moveToFeedWin(iuser) {
                         body: fData                       
                     }).then(res => res.json())
                         .then(myJson => {
-                           console.log(myJson);
-
-                           if(myJson.result) {                                
+                           if(myJson) {                                
                                 btnClose.click();
+                                const lData = document.querySelector('#lData');
+                                const gData = document.querySelector('#gData');
+                                if(lData && lData.dataset.toiuser !== gData.dataset.loginiuser) { return; }
+                                // 남의 feedWin이 아니라면 화면에 등록!!!
+                                const feedItem = feedObj.makeFeedItem(myJson);
+                                //prepend : 가장 앞에 추가
+                                feedObj.containerElem.prepend(feedItem);
+                                feedObj.refreshSwiper();
                            }
                         });
 
