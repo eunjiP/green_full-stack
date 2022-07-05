@@ -32,16 +32,13 @@ class UserModel extends Model {
     public function selUserProfile(&$param) {
         $feediuser = $param['feediuser'];
         $loginiuser = $param['loginiuser'];
-        $sql = "SELECT A.iuser, A.email, A.nm, A.cmt, A.mainimg, count(B.ifeed) feedCtn,
+        $sql = "SELECT A.iuser, A.email, A.nm, A.cmt, A.mainimg, (SELECT COUNT(ifeed) FROM t_feed WHERE iuser = {$feediuser}) AS feedCnt,
             (SELECT COUNT(fromiuser) FROM t_user_follow WHERE fromiuser = $feediuser AND toiuser = $loginiuser) AS youme, 
             (SELECT COUNT(fromiuser) FROM t_user_follow WHERE fromiuser = $loginiuser AND toiuser = $feediuser) AS meyou,
             (SELECT COUNT(fromiuser) AS follow FROM t_user_follow WHERE toiuser = $feediuser) AS followerCnt,
             (SELECT COUNT(fromiuser) AS follow FROM t_user_follow WHERE fromiuser = $feediuser) AS followCnt
             FROM t_user A
-            INNER JOIN t_feed B
-            ON A.iuser = B.iuser
-            GROUP BY iuser
-            HAVING iuser = $feediuser";
+            WHERE iuser = {$feediuser}";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_OBJ);
@@ -73,7 +70,8 @@ class UserModel extends Model {
     
     //---------------------- Feed -------------------------------//
     public function selFeedList(&$param) {
-        $iuser = $param['iuser'];
+        $toiuser = $param['toiuser'];
+        $loginiuser = $param['loginiuser'];
         $sql = "SELECT A.ifeed, A.location, A.ctnt, A.iuser, A.regdt,
             C.nm AS writer, C.mainimg
             ,IFNULL(E.cnt, 0) AS favCnt
@@ -81,7 +79,6 @@ class UserModel extends Model {
             FROM t_feed A
             INNER JOIN t_user C
             ON A.iuser = C.iuser
-            AND C.iuser = {$iuser}
             LEFT JOIN (
                 SELECT ifeed, COUNT(ifeed) AS cnt
                 FROM t_feed_fav
@@ -91,9 +88,10 @@ class UserModel extends Model {
             LEFT JOIN (
                 SELECT ifeed
                 FROM t_feed_fav
-                WHERE iuser = {$iuser}
+                WHERE iuser = {$loginiuser}
                 ) D
             ON A.ifeed = D.ifeed
+            WHERE C.iuser = $toiuser
             ORDER BY A.ifeed DESC
             LIMIT :startIdx, :feedItemCnt";
 

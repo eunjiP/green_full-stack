@@ -26,3 +26,7 @@
         }
     ?>
 </head>
+<?php
+    if(isset($_SESSION[_LOGINUSER])){ ?>
+    <div id="gData" data-loginiuser="<?=getIuser()?>"></div> 
+<?php } ?>
