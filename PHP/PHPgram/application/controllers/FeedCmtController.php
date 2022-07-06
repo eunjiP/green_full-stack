@@ -7,7 +7,12 @@
             switch(getMethod()) {
                 case _POST:
                     $json = getJson();
-                    return [_RESULT =>$this->model->insFeedCmt($json)];
+                    if(preg_replace('/\s+/','', $json["cmt"])) {
+                        $json["iuser"] = getIuser();
+                        return [_RESULT => $this->model->insFeedCmt($json)];
+                    } else {
+                        return [_RESULT => 0];
+                    }
                 case _GET:
                     $ifeed = isset($_GET['ifeed']) ? intval($_GET['ifeed']) : 0;
                     $param = ['ifeed' => $ifeed];

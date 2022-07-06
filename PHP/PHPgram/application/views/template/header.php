@@ -23,7 +23,7 @@
                             <a href="#" role="button" id="navDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" class="header_profile">
                                 <div class="circleimg h30 w30">
                                     <!-- this.onerror=null; 를 넣지 않으면 다른쪽에서 에러발생시 무한 루프에 빠짐(넣어서 무한 루프 돌지 않도록 방지) -->
-                                    <img src='/static/img/profile/<?=getMainImgSrc();?>' onerror="this.onerror=null;this.src='/static/img/profile/defaultProfileImg_100.gif'">
+                                    <img class="profileimg" src='/static/img/profile/<?=getMainImgSrc();?>' onerror="this.onerror=null;this.src='/static/img/profile/defaultProfileImg_100.gif'">
                                 </div>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navDropdownMenuLink">

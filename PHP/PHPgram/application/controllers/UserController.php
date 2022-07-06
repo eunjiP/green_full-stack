@@ -86,6 +86,7 @@ class UserController extends Controller {
             forEach($list as $item) {
                 $param2 = [ 'ifeed' => $item->ifeed];
                 $item->imgList  = Application::getModel("feed")->selFeedImgList($param2);
+                $item->cmt = Application::getModel("feedcmt")->selFeedCmt($param2);
             }
             return $list;
         }
@@ -106,4 +107,22 @@ class UserController extends Controller {
         }
     }
 
+    public function profile() {
+        switch(getMethod()) {
+            case _DELETE:
+                $loginUser = getLoginUser();
+                if($loginUser) {
+                    $path = "static/img/profile/{$loginUser->iuser}/{$loginUser->mainimg}";
+                    if(file_exists($path) && unlink($path)) {
+                        $param = ["iuser" => $loginUser->iuser, "delMainImg" => 1];
+                        if($this->model->updUser($param)) {
+                            rmdir("static/img/profile/{$loginUser->iuser}");
+                            $loginUser->mainimg = null;
+                            return [_RESULT => 1];
+                        }
+                    }
+                }
+                return [_RESULT => 0];
+        }
+    }
 }
