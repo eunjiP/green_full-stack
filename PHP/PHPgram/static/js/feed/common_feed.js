@@ -3,6 +3,43 @@ const feedObj = {
     itemLength: 0,
     currentPage: 1,
     swiper: null,
+    getFeedUrl: '',
+    iuser:0,
+    //인피니티 스크롤 부분
+    setScrollInfinity: function() {
+        window.addEventListener('scroll', e => {
+            //document.documentElement 밑의 값 중에 3가지 값을 따로따로 정의하는게 아닌 한번에 모아서 정의가능
+            const {
+                scrollTop,
+                scrollHeight,
+                clientHeight
+            } = document.documentElement;
+
+            if(scrollTop + clientHeight >= scrollHeight - 10 && this.itemLength === this.limit) {
+                this.getFeedList();
+            }
+            //passive 참고 사이트 : https://amati.io/eventlisteneroptions-passive-true/
+        }, {passive:true});
+    },
+    getFeedList: function() {
+        this.itemLength = 0;
+        this.showLoading();            
+    
+        const param = {
+            page: this.currentPage++,
+            iuser: this.iuser
+        }
+        fetch(this.getFeedUrl + encodeQueryString(param))
+        .then(res => res.json())
+        .then(list => {    
+            this.itemLength = list.length;            
+            this.makeFeedList(list);                
+        })
+        .catch(e => {
+            console.error(e);
+            this.hideLoading();
+        });
+    },
     refreshSwiper: function() {
         if(this.swiper !== null) { this.swiper = null; }
         this.swiper = new Swiper('.swiper', {
@@ -38,7 +75,7 @@ const feedObj = {
         let src ='/static/img/profile/' + (item.writerimg ? `${item.iuser}/${item.writerimg}` : "defaultProfileImg_100.gif");
         divCmtItemContainer.innerHTML = `
             <div class="circleimg h24 w24 me-1 moveFeedwin">
-                <img src='${src}' class="profile w24 pointer">
+                <img src='${src}' class="profile w24 pointer profileimg">
             </div>
             <div class="d-flex flex-row">
                 <div class="pointer me-2 moveFeedwin">${item.writer} - <span class="rem0_7">${getDateTimeInfo(item.regdt)}</span></div>
@@ -73,7 +110,7 @@ const feedObj = {
 
         const regDtInfo = getDateTimeInfo(item.regdt);
         divTop.className = 'd-flex flex-row ps-3 pe-3';
-        const writerImg = `<img src='/static/img/profile/${item.iuser}/${item.mainimg}' 
+        const writerImg = `<img class="profileimg" src='/static/img/profile/${item.iuser}/${item.mainimg}' 
             onerror='this.error=null;this.src="/static/img/profile/defaultProfileImg_100.gif"'>`;
 
         divTop.innerHTML = `
@@ -124,24 +161,37 @@ const feedObj = {
         heartIcon.className = 'fa-heart pointer rem1_5 me-3';
         heartIcon.classList.add(item.isFav === 1 ? 'fas' : 'far');
         heartIcon.addEventListener('click', e => {
-
             let method = 'POST';
             if(item.isFav === 1) { //delete (1은 0으로 바꿔줘야 함)
                 method = 'DELETE';
             }
-
+            
             fetch(`/feed/fav/${item.ifeed}`, {
                 'method': method,
             }).then(res => res.json())
             .then(res => {                    
                 if(res.result) {
+                    const favcount = document.querySelector(`#favcount${item.ifeed}`);
+                    const likecnt = favcount.innerHTML;
                     item.isFav = 1 - item.isFav; // 0 > 1, 1 > 0
                     if(item.isFav === 0) { // 좋아요 취소
                         heartIcon.classList.remove('fas');
                         heartIcon.classList.add('far');
+
+                        //좋아요 갯수 바로 적용(좋아요 갯수가 0이면 안보이게)
+                        if(!(parseInt(likecnt) - 1)) {
+                            divFav.className= 'p-3 d-none';
+                        }
+                        favcount.innerHTML = parseInt(likecnt) - 1;
                     } else { // 좋아요 처리
                         heartIcon.classList.remove('far');
                         heartIcon.classList.add('fas');
+                        
+                        //좋아요 갯수 바로 적용(좋아요갯수가 안보이게 되어 있었다면 보이게 변경하고 숫자변경)
+                        if(!parseInt(favcount.innerHTML)) {
+                            divFav.className= 'p-3';
+                        } 
+                        favcount.innerHTML = parseInt(likecnt) + 1;
                     }
                 } else {
                     alert('좋아요를 할 수 없습니다.');
@@ -163,8 +213,8 @@ const feedObj = {
         divFav.className = 'p-3 d-none';
         const spanFavCnt = document.createElement('span');
         divFav.appendChild(spanFavCnt);
-        spanFavCnt.className = 'bold';
-        spanFavCnt.innerHTML = `좋아요 ${item.favCnt}개`;
+        spanFavCnt.className = 'bold FavCnt';
+        spanFavCnt.innerHTML = `좋아요 <span id='favcount${item.ifeed}'>${item.favCnt}</span>개`;
 
         if(item.favCnt > 0) { divFav.classList.remove('d-none'); }
 
@@ -236,6 +286,9 @@ const feedObj = {
                     inputCmt.value = '';
                     //댓글 등록 시에 더보기를 누른것과 동일한 효과가 난다
                     this.getFeedCmtList(item.ifeed, divCmtList, spanMoreCmt);
+                } else {
+                    inputCmt.value = '';
+                    alert("댓글을 등록할 수 없습니다. 다시 입력해주세요!");
                 }
             })
             
@@ -315,6 +368,7 @@ function moveToFeedWin(iuser) {
                                 //prepend : 가장 앞에 추가
                                 feedObj.containerElem.prepend(feedItem);
                                 feedObj.refreshSwiper();
+                                window.scrollTo(0, 0);
                            }
                         });
 
