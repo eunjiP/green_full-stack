@@ -108,9 +108,9 @@ class UserController extends Controller {
     }
 
     public function profile() {
+        $loginUser = getLoginUser();
         switch(getMethod()) {
             case _DELETE:
-                $loginUser = getLoginUser();
                 if($loginUser) {
                     $path = "static/img/profile/{$loginUser->iuser}/{$loginUser->mainimg}";
                     if(file_exists($path) && unlink($path)) {
@@ -123,6 +123,42 @@ class UserController extends Controller {
                     }
                 }
                 return [_RESULT => 0];
+            case _POST:
+                if(!is_array($_FILES) || !isset($_FILES['imgs'])) {
+                    //에러가 발생 시 JSON형태로 0이 리턴
+                    return [_RESULT => 0];
+                }
+                $key = $_FILES['imgs']['name'];
+                $saveDirectory = _IMG_PATH . "/profile/" . getIuser();
+                if(!is_dir($saveDirectory)) {
+                    mkdir($saveDirectory, 0777, true);
+                }
+                if(getLoginUser()->mainimg) {
+                    $path = $saveDirectory . "/" . getLoginUser()->mainimg;
+                    unlink($path);
+                }
+                $tempName = $_FILES['imgs']['tmp_name'];
+                $rFileNm = getRandomFileNm($key);
+                if(move_uploaded_file($tempName, $saveDirectory . "/" . $rFileNm)) {
+                    $param = [
+                        'iuser' => getIuser(),
+                        'mainimg' => $rFileNm
+                    ];
+                    if($this->model->updUser($param)) {
+                        $loginUser->mainimg = $rFileNm;
+                        return [_RESULT => $rFileNm];
+                    }
+                }
+                
+        }
+    }
+
+    public function userInfo() {
+        switch(getMethod()) {
+            case _POST:
+                $json = getJson();
+                $json['iuser'] = getIuser();
+                return [_RESULT => $this->model->updUserInfo($json)];
         }
     }
 }

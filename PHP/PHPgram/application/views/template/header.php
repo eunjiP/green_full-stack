@@ -55,7 +55,6 @@
             </div>
             <div class="modal-body" id="id-modal-body"></div>
         </div>
-
         <form class="d-none">
             <input type="file" name="imgs" accept="image/*" multiple>
         </form>

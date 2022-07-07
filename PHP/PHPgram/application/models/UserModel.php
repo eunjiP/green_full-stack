@@ -120,5 +120,17 @@ class UserModel extends Model {
         return $stmt->rowCount();
     }
 
+    public function updUserInfo(&$param) {
+        $sql = "UPDATE t_user
+            SET nm = :nm, cmt = :cmt
+            WHERE iuser = :iuser";
+        $stmt = $this->pdo->prepare($sql);  
+        $stmt->bindValue(":nm", $param['nm']);
+        $stmt->bindValue(":cmt", $param['cmt']);
+        $stmt->bindValue(":iuser", $param['iuser']);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
 
 }
