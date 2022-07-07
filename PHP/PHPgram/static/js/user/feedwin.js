@@ -34,8 +34,13 @@ if(feedObj) {
     const lData = document.querySelector('#lData');
     const btnFollow = document.querySelector('#btnFollow');
     const feedWinFollower = document.querySelector('#feedWinFollower');
+    const profileChangeForm = document.querySelector('#profileChangeForm');
+    const profileInfoChangeForm = document.querySelector('#profileInfoChangeForm');
+    const btnInsCurrentProfilePic = document.querySelector('#btnInsCurrentProfilePic');
     const btnDelCurrentProfilePic = document.querySelector('#btnDelCurrentProfilePic');
     const btnProfileImgModalClose = document.querySelector('#btnProfileImgModalClose');
+    const btnProfileInfoModalSave = document.querySelector('#btnProfileInfoModalSave');
+    const btnProfileInfoModalClose = document.querySelector('#btnProfileInfoModalClose');
 
     if(btnFollow) {
         btnFollow.addEventListener('click', function() {
@@ -89,6 +94,8 @@ if(feedObj) {
         });
     }
 
+    //프로필 사진 수정
+    const btnDel = document.querySelector('#btnDel');
     if(btnDelCurrentProfilePic) {
         btnDelCurrentProfilePic.addEventListener('click', e => {
             fetch('/user/profile', {method : "DELETE"})
@@ -100,8 +107,57 @@ if(feedObj) {
                         item.src = '/static/img/profile/defaultProfileImg_100.gif';
                     }) 
                 }
+                btnDel.className = '_modal_item d-none';
                 btnProfileImgModalClose.click();
             })
+        });
+    }
+    if(btnInsCurrentProfilePic) {
+        btnInsCurrentProfilePic.addEventListener('click', function() {
+            profileChangeForm.profileImg.click();
+
+            profileChangeForm.profileImg.addEventListener('change', function(e) {
+                const profile = profileChangeForm.profileImg.files;
+                const fData = new FormData();
+                fData.append('imgs', profile[0]);
+            
+                fetch('/user/profile', {method:"POST", body: fData})
+                .then(res => res.json())
+                .then(res => {
+                    if(res.result) {
+                        const profileImgList = document.querySelectorAll('.profileimg');
+                        profileImgList.forEach(item => {
+                            item.src = `/static/img/profile/${lData.dataset.toiuser}/${res.result}`;
+                        });
+                    }
+                });
+                btnDel.className = '_modal_item';
+                btnProfileImgModalClose.click();
+            });
+        });
+    }
+
+    //프로필 정보 수정
+    if(btnProfileInfoModalSave) {
+        btnProfileInfoModalSave.addEventListener('click', function() {
+            const changeNm = profileInfoChangeForm.nm.value;
+            const changeCmt = profileInfoChangeForm.cmt.value;
+            const param =  {
+                nm: changeNm,
+                cmt: changeCmt
+            };
+            fetch('/user/userInfo', {method:"POST", body: JSON.stringify(param)})
+                .then(res => res.json())
+                .then(res => {
+                    if(res.result) {
+                        const nm = document.querySelector('#userNm');
+                        const cmt = document.querySelector('#userCmt');
+
+                        nm.innerHTML = changeNm;
+                        cmt.innerHTML = changeCmt;
+                    }
+            });
+            btnProfileInfoModalClose.click();
         });
     }
 
