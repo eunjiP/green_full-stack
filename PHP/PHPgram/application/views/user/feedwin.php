@@ -9,7 +9,7 @@
                 <?php } else { ?>
                     <div class="circleimg h150 w150 feedwin">
                 <?php } ?>
-                    <img class="profileimg" src='/static/img/profile/<?=$this->data->iuser?>/<?=$this->data->mainimg?>' onerror='this.error=null;this.src="/static/img/profile/defaultProfileImg_100.gif"'>
+                    <img class="profileimg" id="orginImg" src='/static/img/profile/<?=$this->data->iuser?>/<?=$this->data->mainimg?>' onerror='this.error=null;this.src="/static/img/profile/defaultProfileImg_100.gif"'>
                 </div>
             </div>
             <div class="flex-grow-1 d-flex flex-column justify-content-evenly">
@@ -113,7 +113,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title bold" id="changeProfileImgLabel">사진 업로드</h5>
-                <button type="button" id="btnClose" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-mainimg="<?=$this->data->mainimg?>"></button>
+                <button type="button" id="btnClose" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
                 <div class="circleimg h300 w300 pointer">
