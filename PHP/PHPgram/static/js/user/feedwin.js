@@ -144,8 +144,8 @@ if(feedObj) {
                         });
                     }
                 });
-                btnDel.className = '_modal_item';
                 btnClose.click();
+                btnDel.className = '_modal_item';
             });
 
         });
