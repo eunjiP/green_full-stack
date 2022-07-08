@@ -36,9 +36,11 @@ if(feedObj) {
     const feedWinFollower = document.querySelector('#feedWinFollower');
     const profileChangeForm = document.querySelector('#profileChangeForm');
     const profileInfoChangeForm = document.querySelector('#profileInfoChangeForm');
-    const btnInsCurrentProfilePic = document.querySelector('#btnInsCurrentProfilePic');
+    const currentProfileImg = document.querySelector('#currentProfileImg');
+    const changeBtn = document.querySelector('#changeBtn');
     const btnDelCurrentProfilePic = document.querySelector('#btnDelCurrentProfilePic');
     const btnProfileImgModalClose = document.querySelector('#btnProfileImgModalClose');
+    const btnClose = document.querySelector('#btnClose');
     const btnProfileInfoModalSave = document.querySelector('#btnProfileInfoModalSave');
     const btnProfileInfoModalClose = document.querySelector('#btnProfileInfoModalClose');
 
@@ -112,11 +114,22 @@ if(feedObj) {
             })
         });
     }
-    if(btnInsCurrentProfilePic) {
-        btnInsCurrentProfilePic.addEventListener('click', function() {
+    if(currentProfileImg) {
+        currentProfileImg.addEventListener('click', function() {
             profileChangeForm.profileImg.click();
-
+            
             profileChangeForm.profileImg.addEventListener('change', function(e) {
+                const imgElem = document.querySelector('#currentProfileImg');
+
+                const imgSource = e.target.files[0];
+                const reader = new FileReader();
+                reader.readAsDataURL(imgSource);
+                reader.onload = function() {
+                    imgElem.src = reader.result;
+                };
+            });
+
+            changeBtn.addEventListener('click', function() {
                 const profile = profileChangeForm.profileImg.files;
                 const fData = new FormData();
                 fData.append('imgs', profile[0]);
@@ -132,10 +145,17 @@ if(feedObj) {
                     }
                 });
                 btnDel.className = '_modal_item';
-                btnProfileImgModalClose.click();
+                btnClose.click();
             });
+
         });
     }
+    
+    // 변경 취소시 원래 프로필 사진으로 변경
+    btnClose.addEventListener('click', function() {
+        const imgElem = document.querySelector('#currentProfileImg');
+        imgElem.src = `/static/img/profile/${lData.dataset.toiuser}/${btnClose.dataset.mainimg}`;
+    })
 
     //프로필 정보 수정
     if(btnProfileInfoModalSave) {
