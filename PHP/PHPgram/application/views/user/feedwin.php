@@ -3,7 +3,7 @@
     <div class="size_box_100"></div>
     <div class="w100p_mw614">
         <div class="d-flex flex-row" id="Modal">            
-            <div class="d-flex flex-column justify-content-center me-3" id="btnProfileModal" data-bs-toggle="modal" data-bs-target="#ProfileModal">
+            <div class="d-flex flex-column justify-content-center me-3" data-mainimg="<?=getLoginUser()->mainimg?>" id="btnProfileModal" data-bs-toggle="modal" data-bs-target="#ProfileModal">
                 <?php if($this->data->iuser === getIuser()) { ?>
                     <div class="circleimg h150 w150 pointer feedwin">
                 <?php } else { ?>
@@ -92,7 +92,7 @@
                 <h5 class="modal-title bold">프로필 사진 바꾸기</h5>
             </div>
             <div class="_modal_item">
-                <span id="btnInsCurrentProfilePic" class="pointer blue">사진 업로드</span>
+                <span id="btnInsCurrentProfilePic" data-bs-toggle="modal" data-bs-target="#changeProfileImg" class="pointer blue">사진 업로드</span>
             </div>
             <?php if($this->data->mainimg !== null) { ?>
                 <div id="btnDel" class="_modal_item">
@@ -103,13 +103,38 @@
                 <span class="pointer" id="btnProfileImgModalClose" data-bs-dismiss="modal">취소</span>
             </div>
         </div>
-        <form id="profileChangeForm" class="d-none">
-            <input type="text" name="iuser" value="<?=$this->data->iuser?>">
-            <input type="file" name="profileImg" accept="image/*">
-        </form>
     </div>
 </div>
 <?php } ?>
+
+<!-- 프로필 변경시 미리보기 모달 -->
+<div class="modal fade" id="changeProfileImg" aria-hidden="true" aria-labelledby="changeProfileImg" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title bold" id="changeProfileImgLabel">사진 업로드</h5>
+                <button type="button" id="btnClose" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-mainimg="<?=$this->data->mainimg?>"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="circleimg h300 w300 pointer">
+                    <img id="currentProfileImg" class="profileimg" 
+                        src='/static/img/profile/<?=$this->data->iuser?>/<?=$this->data->mainimg?>' 
+                        onerror='this.error=null;this.src="/static/img/profile/defaultProfileImg_100.gif"'>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="changeBtn">변경하기</button>
+            </div>
+        </div>
+        <form id="profileChangeForm" class="d-none">
+            <input type="file" accept="image/*" name="profileImg">
+        </form>
+    </div>
+</div>
+
+
+
+
 
 <!-- 프로필 정보 수정 -->
 <div class="modal fade" id="ProfileInfoModal" tabindex="-1" aria-hidden="true">
