@@ -154,7 +154,8 @@ if(feedObj) {
     // 변경 취소시 원래 프로필 사진으로 변경
     btnClose.addEventListener('click', function() {
         const imgElem = document.querySelector('#currentProfileImg');
-        imgElem.src = `/static/img/profile/${lData.dataset.toiuser}/${btnClose.dataset.mainimg}`;
+        const orginImg = document.querySelector('#orginImg');
+        imgElem.src = orginImg.src;
     })
 
     //프로필 정보 수정
