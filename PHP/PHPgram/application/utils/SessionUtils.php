@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    // session_start();
 
     function getLoginUser() {
         return $_SESSION[_LOGINUSER];

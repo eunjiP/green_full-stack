@@ -15,6 +15,7 @@ class DmController extends Controller {
             case _GET:
                 $param = [ "iuser" => getIuser() ];
                 $dmList = $this->model->selDmList($param);
+                //방마다 대화의 상대를 확인하는 부분
                 foreach($dmList as $item) {
                     $param["idm"] = $item->idm;
                     $item->opponent = $this->model->selDmOpponent($param);
