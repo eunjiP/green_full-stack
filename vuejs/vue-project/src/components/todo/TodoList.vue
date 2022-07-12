@@ -2,10 +2,13 @@
   <section>
     <transition-group name="list" tag="ul">
       <!-- 반복문에는 key설정이 꼭 필요하다(vue든 리엑트든) -->
-      <li :key="todoItem.key" v-for="todoItem in propsItems" class="shadow">
+      <li :key="todoItem.itodo" v-for="todoItem in propsItems" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
-        {{ todoItem.value }}
-        <span class="removeBtn" type="button" @click="removeTodo(todoItem.key)">
+          <div class="grow_1 d-flex flex-col justify_content_evenly">
+            <div class="ctnt">{{ todoItem.todo }}</div>
+            <div class="small_text">{{ todoItem.created_at }}</div>
+          </div>
+        <span class="removeBtn" type="button" @click="removeTodo(todoItem.itodo)">
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         </span>
       </li>
@@ -37,14 +40,12 @@ export default {
   ul { list-style: none; padding-left: 0; margin-top: 0; text-align: left;}
   li {
     display: flex;
-    min-height: 50px;
-    height: 50px;
-    line-height: 50px;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0; 
     padding: 0 0.9rem;
     background-color: white;
     border-radius: 5px;
   }
-  .checkBtn { line-height: 50px; color: #62acde; margin-right: 5px;}
-  .removeBtn { margin-left: auto; color: #de4343; cursor: pointer;}
+  .checkBtn { line-height: 50px; color: #62acde; margin-right: 10px;}
+  .removeBtn { line-height: 50px; margin-left: auto; color: #de4343; cursor: pointer;}
+  .small_text {font-size: 0.8rem; color: #828181;}
 </style>
