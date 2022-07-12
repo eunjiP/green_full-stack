@@ -12,14 +12,14 @@ class Controller {
         $urlPaths = getUrl();
         foreach(static::$needLoginUrlArr as $url) {
             if(strpos( $urlPaths, $url) === 0 && !isset($_SESSION[_LOGINUSER]) ) {
-                echo "권한이 없습니다.";
-                exit();
+                //getView:함수 재활용하기!!
+                $this->getView("redirect:/user/signin");
             }
         }
 
         $this->model = $model;
         $view = $this->$action();
-        if(empty($view) && gettype($view) === "string")) {
+        if(empty($view) && gettype($view) === "string") {
             echo "Controller 에러 발생";
             exit();
         }
@@ -31,7 +31,7 @@ class Controller {
             echo json_encode($view);
         }        
     }
-    private function chkLoginUrl() {
+    protected function getModel($key) {
 
     }
     

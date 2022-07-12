@@ -1,7 +1,8 @@
 <?php
 namespace application\libs;
-
+// inclued할 경우 라이브러리에 받아 놓으면 다른 파일에 하지 않아도 됨
 require_once "application/utils/UrlUtils.php";
+
 
 class Application{
     
@@ -19,13 +20,17 @@ class Application{
             exit();
         }
 
-        if(!in_array($controller, static::$modelList)) {
-            $modelName = 'application\models\\' . $controller . 'model';
-            static::$modelList[$controller] = new $modelName();
-        }
-
         $controllerName = 'application\controllers\\' . $controller . 'controller';                
-        $model = static::$modelList[$controller];
+        $model = $this->getModel($controller);
         new $controllerName($action, $model);
+    }
+
+    //user에서도 feed model을 사용 할 수 있게 만들어야함
+    public static function getModel($key) {
+        if(!in_array($key, static::$modelList)) {
+            $modelName = 'application\models\\' . $key . 'model';
+            static::$modelList[$key] = new $modelName();
+        }
+        return static::$modelList[$key];
     }
 }
