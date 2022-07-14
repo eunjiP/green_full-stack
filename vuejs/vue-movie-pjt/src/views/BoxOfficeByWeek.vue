@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>BoxOfficeByDay</h1>
+    <h1>BoxOfficeByWeek</h1>
     <div>
       <input type="date" v-model="selectedDate" @change="search">
       <!-- <button>검색</button> -->
@@ -14,29 +14,33 @@ import RankTable from '../components/BoxOffiec/RankTable.vue';
 
 export default {
   data() {
-    return {
+      return {
       list:[],
       selectedDate:''
-    }
+      }
   },
   methods: {
-    async getData(targetDt) {
-      const data = await this.getBoxOfficeByDay(targetDt);
-      this.list = data.boxOfficeResult.dailyBoxOfficeList;
-    },
-    search() {
+      async getData(targetDt) {
+      const data = await this.getBoxOfficeByWeek(targetDt);
+      this.list = data.boxOfficeResult.weeklyBoxOfficeList;
+      },
+      search() {
       const targetDt = this.selectedDate.replaceAll('-', '');
       this.getData(targetDt);
-    }
+      }
   },
   created() {
-    const d = new Date();
-    d.setDate(d.getDate()-1);
-    this.selectedDate = this.getDateStr(d);
-    this.search();
+      const d = new Date();
+      d.setDate(d.getDate()-7);
+      this.selectedDate = this.getDateStr(d);
+      this.search();
   },
   components: {
     RankTable,
   }
 }
 </script>
+
+<style>
+
+</style>
