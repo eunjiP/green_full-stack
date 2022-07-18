@@ -5,14 +5,14 @@
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">제품명</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" v-model="product.product_name">
+          <input type="text" class="form-control" v-model="product.product_name" ref="product_name">
         </div>
       </div>
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">제품가격</label>
         <div class="col-md-9">
           <div class="input-group mb-3">
-            <input type="number" class="form-control" v-model="product.product_price">
+            <input type="number" class="form-control" ref="product_price" v-model="product.product_price">
             <span class="input-group-text">원</span>
           </div>
         </div>
@@ -21,7 +21,7 @@
         <label class="col-md-3 col-form-label">배송비</label>
         <div class="col-md-9">
           <div class="input-group mb-3">
-            <input type="number" class="form-control" v-model="product.delivery_price">
+            <input type="number" class="form-control" ref="delivery_price" v-model="product.delivery_price">
             <span class="input-group-text">원</span>
           </div>
         </div>
@@ -69,7 +69,7 @@
           <label class="col-md-3 col-form-label">출고일</label>
           <div class="col-md-9">
             <div class="input-group mb-3">
-              <input type="number" class="form-control" v-model="product.outbound_days">
+              <input type="number" class="form-control" ref="outbound_days" v-model="product.outbound_days">
               <span class="input-group-text">일 이내 출고</span>
             </div>
           </div>
@@ -157,6 +157,25 @@ export default {
     changeCate2() {
       this.selectedCateId = '';
     },
+    productInsert() {
+      if(this.product.product_name.trim() === '') {
+        //ref를 사용하여 자동 focus가 가도록 설정(input에 ref선언 필요함)
+        this.$refs.product_name.focus();
+        return this.$swal('제품명은 필수 입력값입니다.');
+      }
+      if(this.product.product_price === 0 || this.product.product_price === '') {
+        this.$refs.product_price.focus();
+        return this.$swal('제품 가격을 입력하세요.');
+      }
+      if(this.product.delivery_price === 0 || this.product.delivery_price === '') {
+        this.$refs.delivery_price.focus();
+        return this.$swal('배송료를 입력하세요.');
+      }
+      if(this.product.outbound_days === 0 || this.product.outbound_days === '') {
+        this.$refs.outbound_days.focus();
+        return this.$swal('출고일을 입력하세요.');
+      }
+    }
   }
 }
   
