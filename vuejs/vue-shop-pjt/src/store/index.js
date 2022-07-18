@@ -1,14 +1,22 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
+
 
 export default createStore({
-  state: {
-  },
-  getters: {
+  state() {
+    return {
+      user: {}
+    }
   },
   mutations: {
+    user : (state, data) => {
+      state.user = data;
+    }
   },
-  actions: {
-  },
-  modules: {
-  }
-})
+  plugins: [
+    createPersistedState({
+      //경로가 user일때만 저장하겠다
+      paths: ['user']
+    })
+  ],
+});
