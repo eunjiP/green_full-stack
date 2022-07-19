@@ -25,10 +25,12 @@
             <td>{{ productItem.delivery_price }}</td>
             <td>{{ productItem.add_delivery_price }}</td>
             <td>
-              <!-- <router-link class="nav-link" :to="{path: '/image_insert', query:{product_id:productItem.id}}">
+              <!-- 1) 통신을 두번해서 받는 방법
+              <router-link class="nav-link" :to="{path: '/image_insert', query:{product_id:productItem.id}}">
                 <button type="button" class="btn btn-info me-1">사진등록</button>
               </router-link> -->
 
+              <!-- 2) 통신하지 않고 정보를 다음 페이지로 전달해주는 방식 -->
               <button type="button" class="btn btn-info me-1" @click="goToImageInsert(Idx)">사진등록</button>
               <router-link class="nav-link" :to="{path: '/update', query:{product_id:productItem.id}}">
                 <button type="button" class="btn btn-warning me-1">수정</button>
