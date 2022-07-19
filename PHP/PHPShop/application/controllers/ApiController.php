@@ -10,4 +10,9 @@ class ApiController extends Controller {
         $json = getJson();
         return [_RESULT => $this->model->insProduct($json)];
     }
+
+    public function productList2() {
+        $result = $this->model->productList2();
+        return $result === false? [] : $result;
+    }
 }
