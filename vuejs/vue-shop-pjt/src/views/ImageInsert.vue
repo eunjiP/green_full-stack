@@ -4,7 +4,7 @@
       <h2 class="text-center">제품 사진 등록</h2>
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">제품ID</label>
-        <div class="col-md-9">{{ productId }}</div>
+        <div class="col-md-9">{{ productDetail.id }}</div>
       </div>
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">제품명</label>
@@ -74,22 +74,21 @@
 export default {
   data() {
     return {
-      productId: 0,
       productName: '',
       productDetail: {},
       productImage: [],
     }
   },
   created() {
-    this.productId = this.$route.query.product_id;
-    this.getProductDetail();
+    this.productId = this.$route.query.product_id; 
+    this.productDetail = this.$store.state.sallerSelectedProduct;
   },
   methods: {
-    async getProductDetail() {
+    /* async getProductDetail() {
       this.productDetail = await this.$get(
         `/api/productDetail/${this.productId}`, {});
       console.log(productDetail);
-    }
+    } */
   }
 }
 </script>

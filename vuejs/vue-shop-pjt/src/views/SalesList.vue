@@ -18,16 +18,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(productItem) in productList" :key="productItem.id">
+          <tr v-for="(productItem, Idx) in productList" :key="productItem.id">
             <td></td>
             <td>{{ productItem.product_name }}</td>
             <td>{{ productItem.product_price }}</td>
             <td>{{ productItem.delivery_price }}</td>
             <td>{{ productItem.add_delivery_price }}</td>
             <td>
-              <router-link class="nav-link" :to="{path: '/image_insert', query:{product_id:productItem.id}}">
+              <!-- <router-link class="nav-link" :to="{path: '/image_insert', query:{product_id:productItem.id}}">
                 <button type="button" class="btn btn-info me-1">사진등록</button>
-              </router-link>
+              </router-link> -->
+
+              <button type="button" class="btn btn-info me-1" @click="goToImageInsert(Idx)">사진등록</button>
               <router-link class="nav-link" :to="{path: '/update', query:{product_id:productItem.id}}">
                 <button type="button" class="btn btn-warning me-1">수정</button>
               </router-link>
@@ -47,7 +49,7 @@
 export default {
   data() {
     return {
-      productList:[]
+      productList:[],
     }
   },
   created() {
@@ -57,6 +59,10 @@ export default {
     async getProductList() {
       const result = await this.$get('/api/productList2');
       this.productList = result;
+    },
+    goToImageInsert(Idx) {
+      this.$store.commit('sallerSelectedProduct', this.productList[Idx]);
+      this.$router.push( {path: '/image_insert'});
     }
   }
 }
