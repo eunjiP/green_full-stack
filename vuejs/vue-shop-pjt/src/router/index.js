@@ -6,9 +6,10 @@ import ProductUpdate from '../views/ProductUpdate';
 import SalesList from '../views/SalesList';
 import ImageInsert from '../views/ImageInsert';
 import store from '@/store';
+//오리지날 sweetalert2
 import swal from 'sweetalert2';
 
-// 네비게이션 가드
+// 네비게이션 가드(미들웨어)
 const requireAuth = () => (to, from, next) => {
   if(store.state.user.iuser === undefined) {
     //fire(타이틀, 내용, 타입)
@@ -52,7 +53,8 @@ const routes = [
   {
     path: "/image_insert",
     name: "ImageInsert",
-    component: ImageInsert
+    component: ImageInsert,
+    beforeEnter: requireAuth()
   },
 ];
 
