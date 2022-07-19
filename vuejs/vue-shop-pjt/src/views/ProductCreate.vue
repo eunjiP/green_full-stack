@@ -51,12 +51,11 @@
               </select>
             </div>
             <div class="col-auto" v-if="cate2 !== ''">
-               <select class="form-select" v-model="selectedCateId">
+               <select class="form-select" v-model="product.category_id">
               <!-- (cate, idx) in categoryObj[cate1][cate2] : 마지막은 배열이므로 in 사용 -->
                 <option :value="cate.id" :key="cate.id" v-for="cate in categoryObj[cate1][cate2]">{{ cate.value }}</option>
               </select>
             </div>
-            {{  selectedCateId }}
           </div>
         </div>
         <div class="mb-3 row">
@@ -98,13 +97,12 @@ export default {
         add_delivery_price: 0,
         tags: '',
         outbound_days: 0,
-        category_id: 1,
+        category_id: '',
         seller_id: 1
       },      
       categoryObj: {},    
       cate1: '',
       cate2: '',
-      selectedCateId: '',
     };
   },
   created() {
@@ -152,10 +150,10 @@ export default {
     },
      changeCate1() {
       this.cate2 = '';
-      this.selectedCateId = '';
+      this.product.category_id = '';
     },
     changeCate2() {
-      this.selectedCateId = '';
+      this.product.category_id = '';
     },
     productInsert() {
       if(this.product.product_name.trim() === '') {
@@ -175,7 +173,26 @@ export default {
         this.$refs.outbound_days.focus();
         return this.$swal('출고일을 입력하세요.');
       }
-    }
+      if(this.product.category_id === '') {
+        return this.$swal('카테고리를 선택해주세요.')
+      }
+
+      this.$swal.fire({
+        title: '정말 등록 하시겠습니까?',
+        showCancelButton: true,
+        showCancelButtonText:'등록',
+        cancelButtonText: '취소'
+        //.then을 사용했다는것은 프라미스가 리턴된다는 의미
+      }).then(async result => {
+        if(result.isConfirmed) {
+          const res = this.$post('/api/productInsert', this.product);
+          console.log(res);
+          this.$swal.fire('저장되었습니다.', '', 'success');
+          // 주소를 /sales로 이동하겠다
+          this.$router.push({path: '/sales'});
+        }
+      });
+    },
   }
 }
   
