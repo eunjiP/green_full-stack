@@ -19,3 +19,19 @@ function gen_uuid_v4() {
         , mt_rand(0, 0xffff) 
     ); 
 }
+
+function rmdirAll($dir) {
+    if(!is_dir($dir)) { return; }
+    $dirs = dir($dir);
+    while(false !== ($entry = $dirs->read())) {
+        if(($entry != '.') && ($entry != '..')) {
+            if(is_dir($dir.'/'.$entry)) {
+            rmdirAll($dir.'/'.$entry);
+            } else {
+            @unlink($dir.'/'.$entry);
+            }
+            }
+        }
+    $dirs->close();
+    @rmdir($dir);
+}
