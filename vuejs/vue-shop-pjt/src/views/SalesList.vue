@@ -19,7 +19,9 @@
         </thead>
         <tbody>
           <tr v-for="(productItem, Idx) in productList" :key="productItem.id">
-            <td></td>
+            <td>
+              <img v-if="productItem.path !== null" :src="`/static/img/${productItem.id}/1/${productItem.path}`" style="height:50px; width:auto;">
+            </td>
             <td>{{ productItem.product_name }}</td>
             <td>{{ productItem.product_price }}</td>
             <td>{{ productItem.delivery_price }}</td>
@@ -32,12 +34,8 @@
 
               <!-- 2) 통신하지 않고 정보를 다음 페이지로 전달해주는 방식 -->
               <button type="button" class="btn btn-info me-1" @click="goToImageInsert(Idx)">사진등록</button>
-              <router-link class="nav-link" :to="{path: '/update', query:{product_id:productItem.id}}">
-                <button type="button" class="btn btn-warning me-1">수정</button>
-              </router-link>
-              <router-link class="nav-link" :to="{path: '/image_insert', query:{product_id:productItem.id}}">
-                <button type="button" class="btn btn-danger">삭제</button>
-              </router-link>
+              <button type="button" class="btn btn-warning me-1">수정</button>
+              <button type="button" class="btn btn-danger" @click="deleteProduct(productItem.id, Idx)">삭제</button>
             </td>
           </tr>
         </tbody>
@@ -51,10 +49,16 @@
 export default {
   data() {
     return {
-      productList:[],
+      productList: [],
+      cate1List: [],
+      cate2List: [],
+      cate3List: []
     }
   },
   created() {
+    this.getProductList();
+  },
+  updated() {
     this.getProductList();
   },
   methods: {
@@ -65,6 +69,12 @@ export default {
     goToImageInsert(Idx) {
       this.$store.commit('sallerSelectedProduct', this.productList[Idx]);
       this.$router.push( {path: '/image_insert'});
+    },
+    async deleteProduct(productId, idx) {
+      const result = await this.$delete(`/api/productDelect/${productId}`);
+      if(result) {
+        this.productList.splice(idx, 1);
+      }
     }
   }
 }
