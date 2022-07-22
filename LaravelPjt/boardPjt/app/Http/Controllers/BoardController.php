@@ -28,8 +28,8 @@ class BoardController extends Controller
         ]);
         //내용저장해줌
         $board->save();
-        //리다이렉트
-        return redirect('/boards');
+        //리다이렉트 (저장과 동시에 입력한 pk값 가지고 오는것 또한 가능!)
+        return redirect()->route('boards.show', ['id' => $board->id]);
     }
 
     public function show(Request $req) {
