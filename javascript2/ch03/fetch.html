@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 리스트</title>
+</head>
+<body>
+    <div id="imgList"></div>
+    <!-- <hr>
+    <img src="https://t1.daumcdn.net/cfile/blog/99CCD54E5E7AAD6B26" id="img"> -->
+    <script>
+        let page = 1;
+        const divImgList = document.querySelector('#imgList');
+        // const img = document.querySelector('#img');
+        //appendChild 하기 전에는 hr이 위에 가는데 하고 나면 밑에 hr태그가 있게됨
+        // divImgList.appendChild(img);
+
+        //fetch는 윈도우상에 존재하는 객체임으로 js파일로 생성해서 사용할 수 없다
+        function getList() {
+            fetch(`https://picsum.photos/v2/list?page=${page++}&limit=40`)
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                mackList(result)
+            });
+        }
+        function mackList(list) {
+            list.forEach(item => {
+                //append(객체와 문자열 둘다 가능), appendChild(객체만 추가 가능)
+                divImgList.appendChild(makeItem(item));
+            });
+        }
+        //이미지 태그 생성 하기
+        function makeItem(item) {
+            const imgTag = document.createElement('img');
+            imgTag.src = item.download_url;
+            imgTag.style.width = '500px'
+            return imgTag;
+        }
+        getList();
+    </script>
+</body>
+</html>

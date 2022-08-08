@@ -26,16 +26,14 @@ const arr = {
             }
         }
         return tempArr;
-    },
-    map: function(cb) {
-        const tempArr = [];
-        for (let i = 0; i < this.length; i++) {
-            tempArr.push(cb(this[i], i));
-        }
-        return tempArr;
     }
 };
-const arr2 = arr.map((item, idx) => {
-        return idx <= 3 ? item * item : item
+
+arr.push(111);
+arr.push(222);
+
+const arr2 = arr.filter((item, idx) => {
+    return item % 2 === 0;
 });
+
 console.log(arr2);

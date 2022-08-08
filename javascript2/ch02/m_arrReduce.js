@@ -21,7 +21,7 @@ const arr = {
     filter: function(cb) {
         const tempArr = [];
         for (let i = 0; i < this.length; i++) {
-            if(cb(this[i], i)) {
+            if(cb(result, this[i], i)) {
                 tempArr.push(this[i]);
             }
         }
@@ -33,9 +33,17 @@ const arr = {
             tempArr.push(cb(this[i], i));
         }
         return tempArr;
+    },
+    reduce: function(cb) {
+        let preVal = this[0];
+        for (let i = 1; i < this.length; i++) {
+            preVal = cb(preVal, this[i], i)
+        }
+        return preVal;
     }
 };
-const arr2 = arr.map((item, idx) => {
-        return idx <= 3 ? item * item : item
-});
-console.log(arr2);
+//reduce의 또 다른 기능
+const totalSum = arr.reduce((preVal, curVal, idx) => {
+        return preVal + curVal;
+}, 0);
+console.log('totalSum : ' + totalSum);
