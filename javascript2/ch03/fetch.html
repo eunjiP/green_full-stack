@@ -8,11 +8,13 @@
 </head>
 <body>
     <div id="imgList"></div>
+    <button>이미지 더 가져오기</button>
     <!-- <hr>
     <img src="https://t1.daumcdn.net/cfile/blog/99CCD54E5E7AAD6B26" id="img"> -->
     <script>
         let page = 1;
         const divImgList = document.querySelector('#imgList');
+        const button = document.querySelector('button');
         // const img = document.querySelector('#img');
         //appendChild 하기 전에는 hr이 위에 가는데 하고 나면 밑에 hr태그가 있게됨
         // divImgList.appendChild(img);
@@ -35,11 +37,12 @@
         //이미지 태그 생성 하기
         function makeItem(item) {
             const imgTag = document.createElement('img');
-            imgTag.src = item.download_url;
-            imgTag.style.width = '500px'
+            const width = ~~(item.width * 0.1);
+            const height = parseInt(item.height * 0.1);
+            imgTag.src = `https://picsum.photos/id/${item.id}/${width}/${height}`;
             return imgTag;
         }
-        getList();
+        button.addEventListener('click', getList);
     </script>
 </body>
 </html>
